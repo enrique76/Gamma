@@ -76,6 +76,8 @@
     <addaction name="actionGaficar"/>
     <addaction name="separator"/>
     <addaction name="actionExtras"/>
+    <addaction name="separator"/>
+    <addaction name="actionLaTex"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
@@ -224,6 +226,7 @@
    <addaction name="separator"/>
    <addaction name="actionExtras"/>
    <addaction name="separator"/>
+   <addaction name="actionLaTex"/>
   </widget>
   <action name="actionNuevo_Proyecto">
    <property name="icon">
@@ -434,6 +437,15 @@
    </property>
    <property name="text">
     <string>Pegar</string>
+   </property>
+  </action>
+  <action name="actionLaTex">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/OIP.jpg</normaloff>:/new/prefix1/iconos/OIP.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>LaTex</string>
    </property>
   </action>
  </widget>

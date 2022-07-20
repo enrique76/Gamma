@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "nuevo.h"
+#include "texto.h"
 #include<QTreeWidgetItem>
 #include<QTreeWidget>
 
@@ -50,10 +51,10 @@ void MainWindow::AgregarAlArbol(QString nombre){
     ui->arbol->addTopLevelItem(ArbolProyecto);
 }
 
-void MainWindow::AgregarAlArbol(QAction * a){
+void MainWindow::AgregarAlArbol(QAction * a, QString text){
     QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
 
-    s->setText(0,a->text()+"_"+p->CurrentIndexText());
+    s->setText(0,a->text()+"_"+text);
     s->setIcon(0,a->icon());
     ui->arbol->addTopLevelItem(ArbolProyecto);
 }
@@ -162,25 +163,25 @@ void MainWindow::on_arbol_itemClicked(QTreeWidgetItem *item, int column){
 
 // Funciones
 void MainWindow::on_actionReaolver_triggered(){
-    AgregarAlArbol(ui->actionReaolver);
+    AgregarAlArbol(ui->actionReaolver,p->CurrentIndexText());
     CrearMatriz(10,10,"Resolver",true);
 }
 
 void MainWindow::on_actionEstadistica_triggered(){
-    AgregarAlArbol(ui->actionEstadistica);
+    AgregarAlArbol(ui->actionEstadistica,p->CurrentIndexText());
     CrearMatriz(10,10,"Estadistica",true);
 }
 
 
 void MainWindow::on_actionEntre_Matrices_triggered(){
-    AgregarAlArbol(ui->actionEntre_Matrices);
+    AgregarAlArbol(ui->actionEntre_Matrices,p->CurrentIndexText());
     CrearMatriz(10,10,"EntreMatrices",true);
 }
 
 
 void MainWindow::on_actionEntre_Escalar_triggered()
 {
-    AgregarAlArbol(ui->actionEntre_Escalar);
+    AgregarAlArbol(ui->actionEntre_Escalar,p->CurrentIndexText());
     CrearMatriz(10,10,"EntreEscalar",true);
 }
 
@@ -193,5 +194,14 @@ void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
     m->addAction(ui->actionPegar);
 
     m->exec(QCursor::pos());
+}
+
+
+void MainWindow::on_actionLaTex_triggered(){
+    AgregarAlArbol(ui->actionLaTex,"LaTex");
+
+    texto *t = new texto();
+
+    p->AgregarTexto(t,"LaTex_"+p->CurrentIndexText());
 }
 

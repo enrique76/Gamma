@@ -13,19 +13,22 @@ SOURCES += \
     mainwindow.cpp \
     matriz.cpp \
     nuevo.cpp \
-    proyecto.cpp
+    proyecto.cpp \
+    texto.cpp
 
 HEADERS += \
     mainwindow.h \
     matriz.h \
     nuevo.h \
-    proyecto.h
+    proyecto.h \
+    texto.h
 
 FORMS += \
     mainwindow.ui \
     matriz.ui \
     nuevo.ui \
-    proyecto.ui
+    proyecto.ui \
+    texto.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,6 +1,7 @@
 #include "proyecto.h"
 #include "ui_proyecto.h"
 #include "matriz.h"
+#include "texto.h"
 #include<QMessageBox>
 #include"mainwindow.h"
 #include<QTime>
@@ -103,6 +104,14 @@ QString proyecto::GetValor(int r, int c,int i){
 void proyecto::SetFilasColumnasSplinBox(int r, int c){
     ui->filas->setValue(r);
     ui->columnas->setValue(c);
+}
+
+void proyecto::AgregarTexto(texto *t,QString texto){
+    ui->area->addTab(t,texto);
+
+    t->GenerarCodigo(matrices.at(ui->area->currentIndex()));
+
+    ui->area->setCurrentIndex(ui->area->currentIndex()+1);
 }
 
 void proyecto::on_pushButton_8_clicked(){

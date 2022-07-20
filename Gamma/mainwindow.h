@@ -20,7 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void AgregarAlArbol(QString);
-    void AgregarAlArbol(QAction *);
+    void AgregarAlArbol(QAction *, QString);
     void CrearMatriz(int,int,QString,bool);
 
 private slots:
@@ -47,6 +47,8 @@ private slots:
     void on_actionEntre_Escalar_triggered();
 
     void ContexMenuTreeWidget(QContextMenuEvent *);
+
+    void on_actionLaTex_triggered();
 
 public:
     Ui::MainWindow *ui;

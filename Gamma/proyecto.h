@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "matriz.h"
+#include "texto.h"
 #include <QVector>
 #include<QTreeWidget>
 
@@ -27,6 +28,7 @@ public:
     void SetValor(int,int,int,QString);
     QString GetValor(int,int,int);
     void SetFilasColumnasSplinBox(int,int);
+    void AgregarTexto(texto *,QString);
 
 public:
     Ui::proyecto *ui;
