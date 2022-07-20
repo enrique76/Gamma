@@ -121,13 +121,24 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 //        ui->actionNuevo_Proyecto->setEnabled(false);
 //    }
 
-    ui->arbol->addTopLevelItem(ArbolProyecto);
+//    QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+
+//    s->setText(0,n.nombreMatriz);
+//    s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+//    ui->arbol->addTopLevelItem(ArbolProyecto);
+//    p->AgregarMatriz(n.filas,n.columnas,n.nombreMatriz,n.ok);
+//    p->SetFilasColumnasSplinBox(n.filas,n.columnas);
+//    ui->proyecto->addWidget(p);
+
+//    ui->arbol->addTopLevelItem(ArbolProyecto);
 
     ArbolProyecto->setText(0,"Proyecto#1");
     ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
 
 
     Matriz *m = new Matriz();
+
+    m->CreateItem(ArbolProyecto);
 
     m->SetNameItem("Matriz Nueva");
 
@@ -220,17 +231,6 @@ void MainWindow::on_actionEntre_Escalar_triggered()
 //    CrearMatriz(10,10,"EntreEscalar",true);
 }
 
-void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
-    QMenu *m = new QMenu();
-
-    m->addAction(ui->actionCerrar);
-    m->addAction(ui->actionRenombrar);
-    m->addAction(ui->actionCopiar);
-    m->addAction(ui->actionPegar);
-
-    m->exec(QCursor::pos());
-}
-
 
 void MainWindow::on_actionLaTex_triggered(){
 //    AgregarAlArbol(ui->actionLaTex,"LaTex");
@@ -241,7 +241,4 @@ void MainWindow::on_actionLaTex_triggered(){
 }
 
 
-void MainWindow::on_arbol_itemActivated(QTreeWidgetItem *item, int column){
-
-}
 

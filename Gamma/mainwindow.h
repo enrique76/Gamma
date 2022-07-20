@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QVector>
+#include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QAction>
 
@@ -18,7 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void AgregarAlArbol(QString);
-    void AgregarAlArbol(QAction *, QString);
+    void AgregarAlArbol(QAction *,QString);
     void CrearMatriz(int,int,QString,bool);
 
 private slots:
@@ -43,17 +44,15 @@ private slots:
     void on_actionEntre_Matrices_triggered();
 
     void on_actionEntre_Escalar_triggered();
-
-    void ContexMenuTreeWidget(QContextMenuEvent *);
+    
 
     void on_actionLaTex_triggered();
-
-    void on_arbol_itemActivated(QTreeWidgetItem *item, int column);
 
 public:
     Ui::MainWindow *ui;
     QTreeWidgetItem *ArbolProyecto = new QTreeWidgetItem();
     QString ruta;
+    //QVector<matriz> ms;
     int pos = 0;
 };
 #endif // MAINWINDOW_H

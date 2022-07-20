@@ -4,8 +4,6 @@
 
 Matriz::Matriz(QWidget *parent) :QWidget(parent),ui(new Ui::Matriz){
     ui->setupUi(this);
-    item = new QTreeWidgetItem();
-    item->setIcon(0,QIcon(":/new/prefix1/iconos/matriz2.png"));
 }
 
 Matriz::~Matriz()
@@ -19,4 +17,9 @@ void Matriz::SetNameItem(QString name){
 
 QString Matriz::GetNameItem(){
     return this->item->text(0);
+}
+
+void Matriz::CreateItem(QTreeWidgetItem *p){
+    item = new QTreeWidgetItem(p);
+    item->setIcon(0,QIcon(":/new/prefix1/iconos/matriz2.png"));
 }

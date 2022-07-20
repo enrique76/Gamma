@@ -18,7 +18,7 @@ public:
     ~Matriz();
     void SetNameItem(QString);
     QString GetNameItem();
-
+    void CreateItem(QTreeWidgetItem *);
 
 public:
     Ui::Matriz *ui;
