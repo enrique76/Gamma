@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     // arbol
 
+
+
     //QMenu *m = new QMenu();
 
     ui->arbol->addAction(ui->actionCerrar);
@@ -119,6 +121,8 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 //        ui->actionNuevo_Proyecto->setEnabled(false);
 //    }
 
+    ui->arbol->addTopLevelItem(ArbolProyecto);
+
     ArbolProyecto->setText(0,"Proyecto#1");
     ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
 
@@ -130,20 +134,30 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     ui->area->addTab(m,m->GetNameItem());
     ui->area->setCurrentIndex(ui->area->currentIndex()+1);
 
-    ui->arbol->addTopLevelItem(m->item);
+    ArbolProyecto->addChild(m->item);
+
+    ui->actionNuevo_Proyecto->setEnabled(false);
 
 }
 
 void MainWindow::on_actionNuevo_Archivo_triggered(){
-    Nuevo n(this);
-    n.setWindowTitle("Nueva Matriz");
-    n.setWindowIcon(QIcon(":/new/prefix1/iconos/nuevo-documento.png"));
-    n.AgregarMatriz();
-    n.AbrirArchivo();
-    n.exec();
-    ruta = n.ruta;
+//    Nuevo n(this);
+//    n.setWindowTitle("Nueva Matriz");
+//    n.setWindowIcon(QIcon(":/new/prefix1/iconos/nuevo-documento.png"));
+//    n.AgregarMatriz();
+//    n.AbrirArchivo();
+//    n.exec();
+//    ruta = n.ruta;
     //setWindowTitle(windowTitle()+" \t "+ruta);
 
+    Matriz *m = new Matriz();
+
+    m->SetNameItem("Matriz Nueva");
+
+    ui->area->addTab(m,m->GetNameItem());
+    ui->area->setCurrentIndex(ui->area->currentIndex()+1);
+
+    ArbolProyecto->addChild(m->item);
 
 }
 
