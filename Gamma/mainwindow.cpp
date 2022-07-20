@@ -1,16 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "nuevo.h"
-#include "texto.h"
+#include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QTreeWidget>
+#include<QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 
+    //ui->arbol->setVisible(true);
 
 
     // iniciando el proyecto
+    ui->actionLaTex->setVisible(false);
     ui->ventanaArbol->setVisible(false);
     ui->terminal->setVisible(false);
     ui->actionEntre_Matrices->setEnabled(false);
@@ -60,8 +63,8 @@ void MainWindow::AgregarAlArbol(QAction * a, QString text){
 }
 
 void MainWindow::CrearMatriz(int filas,int columnas,QString nombre,bool ok){
-    p->AgregarMatriz(filas,columnas,nombre,ok);
-    ui->proyecto->addWidget(p);
+    //p->AgregarMatriz(filas,columnas,nombre,ok);
+    //ui->proyecto->addWidget(p);
 }
 
 // Mostrar o ocultar la barra lateral
@@ -72,49 +75,63 @@ void MainWindow::on_actionArbol_triggered(){
 
 // nuevo proyecto
 void MainWindow::on_actionNuevo_Proyecto_triggered(){
-    Nuevo n(this);
+//    Nuevo n(this);
 
-    n.setWindowTitle("Nuevo Proyecto");
-    n.setWindowIcon(QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
-    n.exec();
-    ruta = n.ruta;
-    setWindowTitle(windowTitle()+" \t "+ruta);
+//    n.setWindowTitle("Nuevo Proyecto");
+//    n.setWindowIcon(QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
+//    n.exec();
+//    ruta = n.ruta;
+//    setWindowTitle(windowTitle()+" \t "+ruta);
 
-    if(n.ok){
+//    if(n.ok){
 
-        ArbolProyecto->setText(0,n.nombreProyecto);
-        ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
+//        ArbolProyecto->setText(0,n.nombreProyecto);
+//        ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
 
-        QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+//        QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
 
-        s->setText(0,n.nombreMatriz);
-        s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+//        s->setText(0,n.nombreMatriz);
+//        s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
 
-        ui->arbol->addTopLevelItem(ArbolProyecto);
+//        ui->arbol->addTopLevelItem(ArbolProyecto);
 
-        p->nombreProyecto = n.nombreProyecto;
+//        //p->nombreProyecto = n.nombreProyecto;
 
-        p->AgregarMatriz(n.filas,n.columnas,n.nombreMatriz,n.ok);
-        ui->proyecto->addWidget(p);
+//        //p->AgregarMatriz(n.filas,n.columnas,n.nombreMatriz,n.ok);
+//        //ui->proyecto->addWidget(p);
 
 
 
-        ui->ventanaArbol->setVisible(true);
-        ui->arbol->setVisible(true);
-        ui->actionEntre_Matrices->setEnabled(true);
-        ui->actionEntre_Escalar->setEnabled(true);
-        ui->actionTrigonometria->setEnabled(true);
-        ui->actionReaolver->setEnabled(true);
-        ui->actionImformacion->setEnabled(true);
-        ui->actionEstadistica->setEnabled(true);
-        ui->actionInterpolar->setEnabled(true);
-        ui->actionExtrapolar->setEnabled(true);
-        ui->actionGaficar->setEnabled(true);
-        ui->actionExtras->setEnabled(true);
-        ui->actionGuardar->setEnabled(true);
-        ui->actionGuardar_como->setEnabled(true);
-        ui->actionNuevo_Proyecto->setEnabled(false);
-    }
+//        ui->ventanaArbol->setVisible(true);
+//        ui->arbol->setVisible(true);
+//        ui->actionEntre_Matrices->setEnabled(true);
+//        ui->actionEntre_Escalar->setEnabled(true);
+//        ui->actionTrigonometria->setEnabled(true);
+//        ui->actionReaolver->setEnabled(true);
+//        ui->actionImformacion->setEnabled(true);
+//        ui->actionEstadistica->setEnabled(true);
+//        ui->actionInterpolar->setEnabled(true);
+//        ui->actionExtrapolar->setEnabled(true);
+//        ui->actionGaficar->setEnabled(true);
+//        ui->actionExtras->setEnabled(true);
+//        ui->actionGuardar->setEnabled(true);
+//        ui->actionGuardar_como->setEnabled(true);
+//        ui->actionNuevo_Proyecto->setEnabled(false);
+//    }
+
+    ArbolProyecto->setText(0,"Proyecto#1");
+    ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
+
+
+    Matriz *m = new Matriz();
+
+    m->SetNameItem("Matriz Nueva");
+
+    ui->area->addTab(m,m->GetNameItem());
+    ui->area->setCurrentIndex(ui->area->currentIndex()+1);
+
+    ui->arbol->addTopLevelItem(m->item);
+
 }
 
 void MainWindow::on_actionNuevo_Archivo_triggered(){
@@ -125,18 +142,9 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
     n.AbrirArchivo();
     n.exec();
     ruta = n.ruta;
-    setWindowTitle(windowTitle()+" \t "+ruta);
+    //setWindowTitle(windowTitle()+" \t "+ruta);
 
-    if(n.ok){
-        QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
 
-        s->setText(0,n.nombreMatriz);
-        s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
-        ui->arbol->addTopLevelItem(ArbolProyecto);
-        p->AgregarMatriz(n.filas,n.columnas,n.nombreMatriz,n.ok);
-        p->SetFilasColumnasSplinBox(n.filas,n.columnas);
-        ui->proyecto->addWidget(p);
-    }
 }
 
 void MainWindow::on_actionBarra_de_Herramientas_triggered()
@@ -151,9 +159,22 @@ void MainWindow::on_actionTerminal_triggered()
 }
 
 
-void MainWindow::on_actionCerrar_triggered()
-{
-    p->CerrarMatriz(ui->arbol);
+void MainWindow::on_actionCerrar_triggered(){
+
+    QMessageBox::StandardButton reply;
+    QMessageBox messageBox;
+
+    reply = messageBox.question(this, "Eliminar Objeto", "Estas Seguro que quieres eliminarlo?", QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes){
+        delete ui->arbol->currentItem();
+        ui->area->removeTab(ui->area->currentIndex());
+
+        QMessageBox::information(this,"Eliminar","El objeto se Elimino corectamente");
+    }
+    else{
+        QMessageBox::information(this,"Eliminar","El objeto no Elimino");
+    }
 }
 
 
@@ -163,26 +184,26 @@ void MainWindow::on_arbol_itemClicked(QTreeWidgetItem *item, int column){
 
 // Funciones
 void MainWindow::on_actionReaolver_triggered(){
-    AgregarAlArbol(ui->actionReaolver,p->CurrentIndexText());
-    CrearMatriz(10,10,"Resolver",true);
+//    AgregarAlArbol(ui->actionReaolver,p->CurrentIndexText());
+//    CrearMatriz(10,10,"Resolver",true);
 }
 
 void MainWindow::on_actionEstadistica_triggered(){
-    AgregarAlArbol(ui->actionEstadistica,p->CurrentIndexText());
-    CrearMatriz(10,10,"Estadistica",true);
+//    AgregarAlArbol(ui->actionEstadistica,p->CurrentIndexText());
+//    CrearMatriz(10,10,"Estadistica",true);
 }
 
 
 void MainWindow::on_actionEntre_Matrices_triggered(){
-    AgregarAlArbol(ui->actionEntre_Matrices,p->CurrentIndexText());
-    CrearMatriz(10,10,"EntreMatrices",true);
+//    AgregarAlArbol(ui->actionEntre_Matrices,p->CurrentIndexText());
+//    CrearMatriz(10,10,"EntreMatrices",true);
 }
 
 
 void MainWindow::on_actionEntre_Escalar_triggered()
 {
-    AgregarAlArbol(ui->actionEntre_Escalar,p->CurrentIndexText());
-    CrearMatriz(10,10,"EntreEscalar",true);
+//    AgregarAlArbol(ui->actionEntre_Escalar,p->CurrentIndexText());
+//    CrearMatriz(10,10,"EntreEscalar",true);
 }
 
 void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
@@ -198,10 +219,15 @@ void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
 
 
 void MainWindow::on_actionLaTex_triggered(){
-    AgregarAlArbol(ui->actionLaTex,"LaTex");
+//    AgregarAlArbol(ui->actionLaTex,"LaTex");
 
-    texto *t = new texto();
+//    texto *t = new texto();
 
-    p->AgregarTexto(t,"LaTex_"+p->CurrentIndexText());
+//    p->AgregarTexto(t,"LaTex_"+p->CurrentIndexText());
+}
+
+
+void MainWindow::on_arbol_itemActivated(QTreeWidgetItem *item, int column){
+
 }
 

@@ -54,5 +54,6 @@
         <file>iconos/cortar.png</file>
         <file>iconos/pegar.png</file>
         <file>iconos/rename.png</file>
+        <file>iconos/terminal.png</file>
     </qresource>
 </RCC>

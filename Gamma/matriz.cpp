@@ -1,66 +1,22 @@
 #include "matriz.h"
 #include "ui_matriz.h"
+#include<QTreeWidgetItem>
 
-matriz::matriz(QWidget *parent) :QWidget(parent),ui(new Ui::matriz){
+Matriz::Matriz(QWidget *parent) :QWidget(parent),ui(new Ui::Matriz){
     ui->setupUi(this);
-
-
+    item = new QTreeWidgetItem();
+    item->setIcon(0,QIcon(":/new/prefix1/iconos/matriz2.png"));
 }
 
-matriz::~matriz()
+Matriz::~Matriz()
 {
     delete ui;
 }
 
-void matriz::Crear(int filas, int columnas, QString nombre,bool vector){
-    this->filas = filas;
-    this->columnas = columnas;
-    this->nombre = nombre;
-
-    ui->m->setColumnCount(this->columnas);
-    ui->m->setRowCount(this->filas);
-    ui->v->setColumnCount(1);
-    ui->v->setRowCount(this->filas);
-    ui->v->setVisible(vector);
-    ui->cambioVector->setVisible(vector);
+void Matriz::SetNameItem(QString name){
+    this->item->setText(0,name);
 }
 
-void matriz::setCapas(int i){
-    ui->capas->setCurrentIndex(i);
+QString Matriz::GetNameItem(){
+    return this->item->text(0);
 }
-
-void matriz::AgregarValorMatriz(int i, int j, QString v){
-    ui->m->setItem(i,j,new QTableWidgetItem(v));
-}
-
-void matriz::AgregarValorVector(int j, QString v){
-    ui->v->setItem(0,j,new QTableWidgetItem(v));
-}
-
-void matriz::CrearRama(QTreeWidgetItem *padre, QIcon icono){
-    rama = new QTreeWidgetItem(padre);
-    rama->setText(0,this->nombre);
-    rama->setIcon(0,icono);
-}
-
-QString matriz::GetValor(int r, int c){
-    return ui->m->item(r,c)->text();
-}
-
-int matriz::GetFilas(){
-return ui->m->rowCount();
-}
-
-int matriz::GetColumnas(){
-return ui->m->columnCount();
-}
-
-void matriz::SetFilas(int r){
-    ui->m->setRowCount(r);
-}
-
-void matriz::SetColumnas(int c){
-    ui->m->setColumnCount(c);
-}
-
-

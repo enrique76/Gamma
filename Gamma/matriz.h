@@ -3,34 +3,27 @@
 
 #include <QWidget>
 #include<QTreeWidgetItem>
+#include<QIcon>
 
 namespace Ui {
-class matriz;
+class Matriz;
 }
 
-class matriz : public QWidget
+class Matriz : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit matriz(QWidget *parent = nullptr);
-    ~matriz();
-    void Crear(int,int,QString,bool);
-    void setCapas(int);
-    void AgregarValorMatriz(int,int,QString);
-    void AgregarValorVector(int,QString);
-    void CrearRama(QTreeWidgetItem *,QIcon);
-    QString GetValor(int,int);
-    int GetFilas();
-    int GetColumnas();
-    void SetFilas(int);
-    void SetColumnas(int);
+    explicit Matriz(QWidget *parent = nullptr);
+    ~Matriz();
+    void SetNameItem(QString);
+    QString GetNameItem();
+
+
 public:
-    Ui::matriz *ui;
-    int filas,columnas;
-    QString nombre;
-    bool vector;
-    QTreeWidgetItem *rama;
+    Ui::Matriz *ui;
+    QTreeWidgetItem *item;
+    const QIcon *icono = new QIcon(":/new/prefix1/iconos/matriz2.png");
 };
 
 #endif // MATRIZ_H
