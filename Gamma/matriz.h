@@ -20,6 +20,11 @@ public:
     void AgregarValorMatriz(int,int,QString);
     void AgregarValorVector(int,QString);
     void CrearRama(QTreeWidgetItem *,QIcon);
+    QString GetValor(int,int);
+    int GetFilas();
+    int GetColumnas();
+    void SetFilas(int);
+    void SetColumnas(int);
 public:
     Ui::matriz *ui;
     int filas,columnas;

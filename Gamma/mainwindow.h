@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QVector>
 #include "proyecto.h"
+#include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QAction>
 
@@ -45,10 +46,14 @@ private slots:
 
     void on_actionEntre_Escalar_triggered();
 
+    void ContexMenuTreeWidget(QContextMenuEvent *);
+
 public:
     Ui::MainWindow *ui;
     proyecto *p = new proyecto();
     QTreeWidgetItem *ArbolProyecto = new QTreeWidgetItem();
     QString ruta;
+    QVector<matriz> ms;
+    int pos = 0;
 };
 #endif // MAINWINDOW_H

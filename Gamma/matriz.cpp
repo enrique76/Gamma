@@ -42,3 +42,25 @@ void matriz::CrearRama(QTreeWidgetItem *padre, QIcon icono){
     rama->setText(0,this->nombre);
     rama->setIcon(0,icono);
 }
+
+QString matriz::GetValor(int r, int c){
+    return ui->m->item(r,c)->text();
+}
+
+int matriz::GetFilas(){
+return ui->m->rowCount();
+}
+
+int matriz::GetColumnas(){
+return ui->m->columnCount();
+}
+
+void matriz::SetFilas(int r){
+    ui->m->setRowCount(r);
+}
+
+void matriz::SetColumnas(int c){
+    ui->m->setColumnCount(c);
+}
+
+

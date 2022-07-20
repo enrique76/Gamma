@@ -24,14 +24,21 @@ public:
     void CerrarMatriz(QTreeWidget *);
     QString CurrentIndexText();
     void AgregarFigura(QString);
+    void SetValor(int,int,int,QString);
+    QString GetValor(int,int,int);
+    void SetFilasColumnasSplinBox(int,int);
+
 public:
     Ui::proyecto *ui;
     QVector<matriz *> matrices;
     QString nombreProyecto;
     QString nombreMatriz;
-
+    int pos = 0;
 private slots:
     void on_pushButton_8_clicked();
+    void on_filas_valueChanged(int arg1);
+    void on_columnas_valueChanged(int arg1);
+    void on_area_currentChanged(int index);
 };
 
 #endif // PROYECTO_H

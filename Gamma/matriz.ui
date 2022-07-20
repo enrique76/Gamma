@@ -49,6 +49,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <attribute name="horizontalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
             </widget>
            </item>
           </layout>

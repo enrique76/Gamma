@@ -24,6 +24,17 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->actionExtras->setEnabled(false);
     ui->actionGuardar->setEnabled(false);
     ui->actionGuardar_como->setEnabled(false);
+
+    // arbol
+
+    //QMenu *m = new QMenu();
+
+    ui->arbol->addAction(ui->actionCerrar);
+    ui->arbol->addAction(ui->actionRenombrar);
+    ui->arbol->addAction(ui->actionCopiar);
+    ui->arbol->addAction(ui->actionPegar);
+
+    ui->arbol->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 MainWindow::~MainWindow()
@@ -122,6 +133,7 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
         s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
         ui->arbol->addTopLevelItem(ArbolProyecto);
         p->AgregarMatriz(n.filas,n.columnas,n.nombreMatriz,n.ok);
+        p->SetFilasColumnasSplinBox(n.filas,n.columnas);
         ui->proyecto->addWidget(p);
     }
 }
@@ -145,7 +157,7 @@ void MainWindow::on_actionCerrar_triggered()
 
 
 void MainWindow::on_arbol_itemClicked(QTreeWidgetItem *item, int column){
-
+   qDebug()<<item->text(column);
 }
 
 // Funciones
@@ -170,5 +182,16 @@ void MainWindow::on_actionEntre_Escalar_triggered()
 {
     AgregarAlArbol(ui->actionEntre_Escalar);
     CrearMatriz(10,10,"EntreEscalar",true);
+}
+
+void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
+    QMenu *m = new QMenu();
+
+    m->addAction(ui->actionCerrar);
+    m->addAction(ui->actionRenombrar);
+    m->addAction(ui->actionCopiar);
+    m->addAction(ui->actionPegar);
+
+    m->exec(QCursor::pos());
 }
 

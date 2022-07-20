@@ -87,6 +87,9 @@
      <string>Matrices</string>
     </property>
     <addaction name="actionCerrar"/>
+    <addaction name="actionRenombrar"/>
+    <addaction name="actionCopiar"/>
+    <addaction name="actionPegar"/>
    </widget>
    <addaction name="menuArchivos"/>
    <addaction name="menuVer"/>
@@ -103,8 +106,50 @@
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
       <widget class="QTreeWidget" name="arbol">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+       </property>
+       <property name="tabKeyNavigation">
+        <bool>true</bool>
+       </property>
+       <property name="dragEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="dragDropOverwriteMode">
+        <bool>true</bool>
+       </property>
+       <property name="dragDropMode">
+        <enum>QAbstractItemView::NoDragDrop</enum>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::MultiSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectItems</enum>
+       </property>
        <property name="textElideMode">
         <enum>Qt::ElideMiddle</enum>
+       </property>
+       <property name="autoExpandDelay">
+        <number>1</number>
+       </property>
+       <property name="uniformRowHeights">
+        <bool>true</bool>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
        </property>
        <property name="animated">
         <bool>true</bool>
@@ -123,6 +168,22 @@
          <string/>
         </property>
        </column>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="terminal">
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QTextEdit" name="textoTerminal">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>
@@ -163,23 +224,6 @@
    <addaction name="separator"/>
    <addaction name="actionExtras"/>
    <addaction name="separator"/>
-   <addaction name="actionCerrar"/>
-  </widget>
-  <widget class="QDockWidget" name="terminal">
-   <attribute name="dockWidgetArea">
-    <number>8</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QTextEdit" name="textoTerminal">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <action name="actionNuevo_Proyecto">
    <property name="icon">
@@ -362,7 +406,34 @@
      <normaloff>:/new/prefix1/iconos/cerrarMatriz.png</normaloff>:/new/prefix1/iconos/cerrarMatriz.png</iconset>
    </property>
    <property name="text">
-    <string>Cerrar</string>
+    <string>Eliminar</string>
+   </property>
+  </action>
+  <action name="actionRenombrar">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/rename.png</normaloff>:/new/prefix1/iconos/rename.png</iconset>
+   </property>
+   <property name="text">
+    <string>Renombrar</string>
+   </property>
+  </action>
+  <action name="actionCopiar">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/cortar.png</normaloff>:/new/prefix1/iconos/cortar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copiar</string>
+   </property>
+  </action>
+  <action name="actionPegar">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/pegar.png</normaloff>:/new/prefix1/iconos/pegar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pegar</string>
    </property>
   </action>
  </widget>

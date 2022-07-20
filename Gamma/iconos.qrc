@@ -51,5 +51,8 @@
         <file>iconos/graficar.png</file>
         <file>iconos/cerrarMatriz.png</file>
         <file>iconos/OIP.jpg</file>
+        <file>iconos/cortar.png</file>
+        <file>iconos/pegar.png</file>
+        <file>iconos/rename.png</file>
     </qresource>
 </RCC>

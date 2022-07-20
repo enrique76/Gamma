@@ -54,6 +54,8 @@ void proyecto::AgregarMatriz(int filas,int columnas,QString nombre,bool vector){
 
     m->Crear(filas,columnas,nombre,vector);
     m->setCapas(0);
+//    ui->filas->setValue(filas);
+//    ui->columnas->setValue(columnas);
 
     ui->area->addTab(m,nombre);
     ui->area->setCurrentIndex(ui->area->currentIndex()+1);
@@ -90,6 +92,19 @@ void proyecto::AgregarFigura(QString nombre){
     matrices.append(m);
 }
 
+void proyecto::SetValor(int, int, int, QString){
+
+}
+
+QString proyecto::GetValor(int r, int c,int i){
+    return matrices.at(i)->GetValor(r,c);
+}
+
+void proyecto::SetFilasColumnasSplinBox(int r, int c){
+    ui->filas->setValue(r);
+    ui->columnas->setValue(c);
+}
+
 void proyecto::on_pushButton_8_clicked(){
     int z = ui->area->currentIndex();
     int f = matrices[z]->filas;
@@ -106,5 +121,20 @@ void proyecto::on_pushButton_8_clicked(){
             matrices[z]->AgregarValorVector(i,QString::number(v));
         }
     }
+}
+
+
+void proyecto::on_filas_valueChanged(int arg1){
+    matrices.at(this->pos)->SetFilas(arg1);
+}
+
+void proyecto::on_columnas_valueChanged(int arg1){
+    matrices.at(this->pos)->SetColumnas(arg1);
+}
+
+
+void proyecto::on_area_currentChanged(int index)
+{
+    this->pos = index;
 }
 
