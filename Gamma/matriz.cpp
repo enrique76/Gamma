@@ -4,6 +4,8 @@
 
 Matriz::Matriz(QWidget *parent) :QWidget(parent),ui(new Ui::Matriz){
     ui->setupUi(this);
+
+
 }
 
 Matriz::~Matriz()
@@ -21,5 +23,15 @@ QString Matriz::GetNameItem(){
 
 void Matriz::CreateItem(QTreeWidgetItem *p){
     item = new QTreeWidgetItem(p);
+    item->setFlags(item->flags()|Qt::ItemIsEditable);
     item->setIcon(0,QIcon(":/new/prefix1/iconos/matriz2.png"));
+}
+
+void Matriz::SetFilas(int i){
+    ui->m->setRowCount(i);
+}
+
+void Matriz::SetColumnas(int i)
+{
+    ui->m->setColumnCount(i);
 }

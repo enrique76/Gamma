@@ -21,6 +21,8 @@ public:
     void AgregarAlArbol(QString);
     void AgregarAlArbol(QAction *,QString);
     void CrearMatriz(int,int,QString,bool);
+    void AgregarMatriz(QString,int,int);
+    void EliminarMatriz(int);
 
 private slots:
     void on_actionArbol_triggered();
@@ -48,11 +50,27 @@ private slots:
 
     void on_actionLaTex_triggered();
 
+
+    void on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_arbol_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+
+    void on_actionRenombrar_triggered();
+
+    void on_arbol_windowIconTextChanged(const QString &iconText);
+
+    void on_arbol_windowTitleChanged(const QString &title);
+
+    void on_actionGuardar_triggered();
+
 public:
     Ui::MainWindow *ui;
     QTreeWidgetItem *ArbolProyecto = new QTreeWidgetItem();
+    QTreeWidgetItem *ArbolMatrices = new QTreeWidgetItem();
     QString ruta;
     //QVector<matriz> ms;
     int pos = 0;
+    QVector<Matriz *> matrices;
+    bool isSave = false;
 };
 #endif // MAINWINDOW_H

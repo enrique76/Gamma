@@ -26,7 +26,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="nombre"/>
+        <widget class="QLineEdit" name="nombre">
+         <property name="text">
+          <string>MyProyect</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -40,7 +44,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="nombreMatriz"/>
+        <widget class="QLineEdit" name="nombreMatriz">
+         <property name="text">
+          <string>A</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -58,6 +66,9 @@
          <property name="minimum">
           <number>1</number>
          </property>
+         <property name="value">
+          <number>10</number>
+         </property>
         </widget>
        </item>
        <item>
@@ -71,6 +82,9 @@
         <widget class="QSpinBox" name="columnas">
          <property name="minimum">
           <number>1</number>
+         </property>
+         <property name="value">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -93,6 +107,9 @@
       <widget class="QRadioButton" name="vector">
        <property name="text">
         <string>Vector Resultante</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTableWidget" name="tableWidget"/>
+      <widget class="QTableWidget" name="m"/>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -35,7 +35,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_2">
+        <widget class="QTableWidget" name="v">
          <property name="maximumSize">
           <size>
            <width>150</width>

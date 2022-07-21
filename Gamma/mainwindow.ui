@@ -18,10 +18,10 @@
     <normaloff>:/new/prefix1/iconos/matriz.png</normaloff>:/new/prefix1/iconos/matriz.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5">
+   <layout class="QGridLayout" name="gridLayout_6">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -217,7 +217,7 @@
                 <double>99999999999999991433150857216.000000000000000</double>
                </property>
                <property name="value">
-                <double>1.000000000000000</double>
+                <double>0.100000000000000</double>
                </property>
               </widget>
              </item>
@@ -292,7 +292,7 @@
         </item>
        </layout>
       </item>
-      <item>
+      <item row="1" column="0">
        <widget class="QTabWidget" name="area"/>
       </item>
      </layout>
@@ -363,8 +363,6 @@
     <property name="title">
      <string>Matrices</string>
     </property>
-    <addaction name="actionCerrar"/>
-    <addaction name="actionRenombrar"/>
     <addaction name="actionCopiar"/>
     <addaction name="actionPegar"/>
    </widget>
@@ -394,9 +392,6 @@
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
        </property>
-       <property name="editTriggers">
-        <set>QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
-       </property>
        <property name="tabKeyNavigation">
         <bool>true</bool>
        </property>
@@ -410,10 +405,10 @@
         <enum>QAbstractItemView::NoDragDrop</enum>
        </property>
        <property name="alternatingRowColors">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="selectionMode">
-        <enum>QAbstractItemView::MultiSelection</enum>
+        <enum>QAbstractItemView::SingleSelection</enum>
        </property>
        <property name="selectionBehavior">
         <enum>QAbstractItemView::SelectItems</enum>
@@ -428,7 +423,7 @@
         <bool>true</bool>
        </property>
        <property name="sortingEnabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="animated">
         <bool>true</bool>
@@ -447,11 +442,6 @@
          <string/>
         </property>
        </column>
-       <item>
-        <property name="text">
-         <string/>
-        </property>
-       </item>
       </widget>
      </item>
     </layout>
@@ -737,6 +727,7 @@
     <string>LaTex</string>
    </property>
   </action>
+  <zorder>ventanaArbol</zorder>
  </widget>
  <resources>
   <include location="iconos.qrc"/>

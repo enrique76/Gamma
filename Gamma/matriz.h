@@ -19,11 +19,12 @@ public:
     void SetNameItem(QString);
     QString GetNameItem();
     void CreateItem(QTreeWidgetItem *);
+    void SetFilas(int);
+    void SetColumnas(int);
 
 public:
     Ui::Matriz *ui;
     QTreeWidgetItem *item;
-    const QIcon *icono = new QIcon(":/new/prefix1/iconos/matriz2.png");
 };
 
 #endif // MATRIZ_H
