@@ -21,10 +21,14 @@ public:
     void CreateItem(QTreeWidgetItem *);
     void SetFilas(int);
     void SetColumnas(int);
+    void SetVectorVisible(bool);
 
 public:
     Ui::Matriz *ui;
     QTreeWidgetItem *item;
+    bool cv;
+private slots:
+    void on_ordenVector_clicked();
 };
 
 #endif // MATRIZ_H

@@ -34,25 +34,38 @@ void Nuevo::AbrirArchivo(){
     ui->descipcion->setVisible(false);
 }
 
+QString Nuevo::GetNameMatriz(){
+return ui->nombreMatriz->text();
+}
+
+QString Nuevo::GetNameProyect()
+{
+    return ui->nombre->text();
+}
+
+bool Nuevo::IsCreateVector()
+{
+    return ui->vector->isChecked();
+}
+
 void Nuevo::on_buttonBox_accepted(){
     nombreProyecto = ui->nombre->text();
-    nombreMatriz = ui->nombreMatriz->text();
-    descripccion = ui->descipcion->toPlainText();
-    ruta = ui->ruta->text();
 
+    nombreMatriz = ui->nombreMatriz->text();
+
+    descripccion = ui->descipcion->toPlainText();
+
+    ruta = ui->ruta->text();
     filas = ui->filas->value();
     columnas = ui->columnas->value();
-
     vector = !ui->vector->isChecked();
     ok = true;
-
     // creando la carpeta
 
     ruta+="/"+ui->nombre->text();
-
     QDir *directorio = new QDir();
-
     directorio->mkpath(ruta);
+    directorio->mkpath(ruta+"/Matrices");
 
     close();
 }

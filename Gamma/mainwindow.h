@@ -21,8 +21,10 @@ public:
     void AgregarAlArbol(QString);
     void AgregarAlArbol(QAction *,QString);
     void CrearMatriz(int,int,QString,bool);
-    void AgregarMatriz(QString,int,int);
+    void AgregarMatriz(QString,int,int,bool);
     void EliminarMatriz(int);
+    void GuardarMatrices();
+    void Cambio();
 
 private slots:
     void on_actionArbol_triggered();

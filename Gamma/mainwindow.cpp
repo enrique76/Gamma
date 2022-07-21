@@ -72,7 +72,7 @@ void MainWindow::CrearMatriz(int filas,int columnas,QString nombre,bool ok){
     //ui->proyecto->addWidget(p);
 }
 
-void MainWindow::AgregarMatriz(QString nombre, int f, int c){
+void MainWindow::AgregarMatriz(QString nombre, int f, int c, bool ok){
     Matriz *m = new Matriz();
 
     m->CreateItem(ArbolMatrices);
@@ -83,6 +83,7 @@ void MainWindow::AgregarMatriz(QString nombre, int f, int c){
 
     m->SetFilas(f);
     m->SetColumnas(c);
+    m->SetVectorVisible(ok);
 
     ui->area->addTab(m,m->GetNameItem());
     ui->area->setCurrentIndex(ui->area->currentIndex()+1);
@@ -111,10 +112,10 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     n.exec();
     ruta = n.ruta;
 
-    ArbolProyecto->setText(0,"Proyecto#1");
+    ArbolProyecto->setText(0,n.nombreProyecto);
     ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
 
-    AgregarMatriz("Matriz#"+QString::number(matrices.size()),n.filas,n.columnas);
+    AgregarMatriz(n.GetNameMatriz(),n.filas,n.columnas,n.IsCreateVector());
     ui->ventanaArbol->setVisible(true);
     ui->actionNuevo_Proyecto->setEnabled(false);
 
@@ -129,8 +130,9 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
     n.exec();
     ruta = n.ruta;
     //setWindowTitle(windowTitle()+" \t "+ruta);
+    //Cambio();
 
-    AgregarMatriz("Matriz#"+QString::number(matrices.size()),1,1);
+    AgregarMatriz(n.GetNameMatriz(),n.filas,n.columnas,n.IsCreateVector());
 
 }
 
@@ -138,7 +140,6 @@ void MainWindow::on_actionBarra_de_Herramientas_triggered()
 {
     ui->toolBar->setVisible(!ui->toolBar->isVisible());
 }
-
 
 void MainWindow::on_actionTerminal_triggered()
 {
@@ -150,15 +151,30 @@ qDebug()<<i;
     ui->area->removeTab(i);
     this->ArbolMatrices->removeChild(matrices.at(i)->item);
     matrices.removeAt(i);
+}
 
+void MainWindow::GuardarMatrices(){
+    for(int i=0;i<ArbolMatrices->childCount();i++){
+
+    }
+}
+
+void MainWindow::Cambio(){
+
+
+    if(this->isSave){
+        this->isSave = false;
+         ArbolProyecto->setText(0,ArbolProyecto->text(0));
+    }
+    else{
+        this->isSave = true;
+        ArbolProyecto->setText(0,ArbolProyecto->text(0).remove("*"));
+    }
 
 
 }
 
 void MainWindow::on_actionCerrar_triggered(){
-
-
-
     QMessageBox::StandardButton reply;
     QMessageBox messageBox;
 
@@ -215,7 +231,6 @@ void MainWindow::on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column){
     ui->area->setTabText(this->pos,ArbolMatrices->child(this->pos)->text(0));
 }
 
-
 void MainWindow::on_arbol_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous){
 
 }
@@ -225,19 +240,16 @@ void MainWindow::on_actionRenombrar_triggered(){
     //ui->area->setTabText(this->pos,ArbolProyecto->child(this->pos)->text(0));
 }
 
-
 void MainWindow::on_arbol_windowIconTextChanged(const QString &iconText){
 //    qDebug()<<iconText;
 //    ui->area->setTabText(this->pos,iconText);
 }
-
 
 void MainWindow::on_arbol_windowTitleChanged(const QString &title)
 {
     qDebug()<<title;
     ui->area->setTabText(this->pos,title);
 }
-
 
 void MainWindow::on_actionGuardar_triggered(){
 

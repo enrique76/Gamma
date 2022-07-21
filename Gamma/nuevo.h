@@ -16,6 +16,10 @@ public:
     ~Nuevo();
     void AgregarMatriz();
     void AbrirArchivo();
+    QString GetNameMatriz();
+    QString GetNameProyect();
+    bool IsCreateVector();
+
 
 private slots:
     void on_buttonBox_accepted();
