@@ -23,7 +23,7 @@ public:
     void CrearMatriz(int,int,QString,bool);
     void AgregarMatriz(QString,int,int,bool);
     void EliminarMatriz(int);
-    void GuardarMatrices();
+    void GuardarMatrices(QString);
     void Cambio();
 
 private slots:

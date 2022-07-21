@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "nuevo.h"
 #include "matriz.h"
+#include "rutas.h"
 #include<QTreeWidgetItem>
 #include<QTreeWidget>
 #include<QMessageBox>
@@ -13,21 +14,21 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
     // iniciando el proyecto
-    ui->actionLaTex->setVisible(false);
-    ui->ventanaArbol->setVisible(false);
-    ui->terminal->setVisible(false);
-    ui->actionEntre_Matrices->setEnabled(false);
-    ui->actionEntre_Escalar->setEnabled(false);
-    ui->actionTrigonometria->setEnabled(false);
-    ui->actionReaolver->setEnabled(false);
-    ui->actionImformacion->setEnabled(false);
-    ui->actionEstadistica->setEnabled(false);
-    ui->actionInterpolar->setEnabled(false);
-    ui->actionExtrapolar->setEnabled(false);
-    ui->actionGaficar->setEnabled(false);
-    ui->actionExtras->setEnabled(false);
-    ui->actionGuardar->setEnabled(false);
-    ui->actionGuardar_como->setEnabled(false);
+//    ui->actionLaTex->setVisible(false);
+   ui->ventanaArbol->setVisible(false);
+   ui->terminal->setVisible(false);
+//    ui->actionEntre_Matrices->setEnabled(false);
+//    ui->actionEntre_Escalar->setEnabled(false);
+//    ui->actionTrigonometria->setEnabled(false);
+//    ui->actionReaolver->setEnabled(false);
+//    ui->actionImformacion->setEnabled(false);
+//    ui->actionEstadistica->setEnabled(false);
+//    ui->actionInterpolar->setEnabled(false);
+//    ui->actionExtrapolar->setEnabled(false);
+//    ui->actionGaficar->setEnabled(false);
+//    ui->actionExtras->setEnabled(false);
+//    ui->actionGuardar->setEnabled(false);
+//    ui->actionGuardar_como->setEnabled(false);
 
     // arbol
 
@@ -110,7 +111,9 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     n.setWindowTitle("Nuevo Proyecto");
     n.setWindowIcon(QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
     n.exec();
-    ruta = n.ruta;
+    this->ruta = n.ruta;
+
+
 
     ArbolProyecto->setText(0,n.nombreProyecto);
     ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
@@ -128,7 +131,7 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
     n.AgregarMatriz();
     n.AbrirArchivo();
     n.exec();
-    ruta = n.ruta;
+    //ruta = n.ruta;
     //setWindowTitle(windowTitle()+" \t "+ruta);
     //Cambio();
 
@@ -153,7 +156,108 @@ qDebug()<<i;
     matrices.removeAt(i);
 }
 
-void MainWindow::GuardarMatrices(){
+void MainWindow::GuardarMatrices(QString r){
+    /*
+    QString ruta;
+    direccion d(this);
+    d.nombre("Abrir");
+    d.ver(false);
+    d.titulo("Ruta   ruta/nombre.extencion");
+    d.en_text("Desencriptar");
+    d.exec();
+    d.ruta(ruta);
+    //ruta = "C:/Users/enriq/Desktop/A.txt";
+
+
+    QFile a(ruta);
+    auto inicio = std::chrono::system_clock::now();
+
+    if(a.exists()){
+        a.open(QFile::ReadOnly | QFile::Text);
+
+        QTextStream out(&a);
+        QString texto = a.readAll();
+
+        QStringList tf = texto.split(',');
+        int tam = tf.size()-1;
+
+        // dandole tama;o a la matriz
+        int pfa,pca;
+        bool p = true;
+
+        pfa = pca = floor(sqrt(tam));
+
+        do{
+            if(((pfa*pca) != tam) && (p == true)){
+                pca++;
+                p = false;
+            }
+            else if(((pfa*pca) != tam) && (p == false)){
+                pfa--;
+                p = true;
+            }
+        }while((pfa*pca) != tam);
+        //
+        ui->fa->setValue(pfa);
+        ui->ca->setValue(pca);
+
+        ui->A->setRowCount(pfa);
+        ui->A->setColumnCount(pca);
+
+        x = 0;
+
+        if(d.en_checked()){
+            for(int i=0;i<fa;i++){
+                ui->A->setHorizontalHeaderItem(i,new QTableWidgetItem("x"+QString::number(i+1)));
+                ui->A->setColumnWidth(i,50);
+                for(int j=0;j<ca;j++){
+                    if(tf[x].count("\n") == 1){
+                        tf[x].remove("\n");
+                    }
+                    ui->A->setItem(i,j,new QTableWidgetItem(QString::number(tf[x].toDouble() / 2)));
+                    if(x == tam-1){
+                        x = 0;
+                    }
+                    else{
+                        x++;
+                    }
+                }
+            }
+        }
+        else{
+            for(int i=0;i<fa;i++){
+                ui->A->setHorizontalHeaderItem(i,new QTableWidgetItem("x"+QString::number(i+1)));
+                ui->A->setColumnWidth(i,50);
+                for(int j=0;j<ca;j++){
+                    if(tf[x].count("\n") == 1){
+                        tf[x].remove("\n");
+                    }
+                    ui->A->setItem(i,j,new QTableWidgetItem(tf[x]));
+                    if(x == tam-1){
+                        x = 0;
+                    }
+                    else{
+                        x++;
+                    }
+                }
+            }
+        }
+
+
+        a.flush();
+        a.close();
+    }
+    else{
+        QMessageBox::critical(this,"Abrir Archivo","El archivo no existe");
+    }
+    auto final = std::chrono::system_clock::now();
+    std::chrono::duration<float> duracion = final - inicio;
+    ui->tiempo->setText(QString::number(duracion.count()));
+    */
+
+
+
+
     for(int i=0;i<ArbolMatrices->childCount();i++){
 
     }
@@ -252,6 +356,14 @@ void MainWindow::on_arbol_windowTitleChanged(const QString &title)
 }
 
 void MainWindow::on_actionGuardar_triggered(){
+    rutas r(this);
 
+    r.SetRuta(this->ruta);
+    r.SetContex("Guardar");
+    r.SetIE(true);
+
+    r.exec();
+
+    GuardarMatrices("s");
 }
 

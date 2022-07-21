@@ -455,6 +455,9 @@
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
       <widget class="QTextEdit" name="textoTerminal">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="documentTitle">
         <string>Terminal</string>
        </property>

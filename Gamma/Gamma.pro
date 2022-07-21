@@ -12,17 +12,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matriz.cpp \
-    nuevo.cpp
+    nuevo.cpp \
+    rutas.cpp
 
 HEADERS += \
     mainwindow.h \
     matriz.h \
-    nuevo.h
+    nuevo.h \
+    rutas.h
 
 FORMS += \
     mainwindow.ui \
     matriz.ui \
-    nuevo.ui
+    nuevo.ui \
+    rutas.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
