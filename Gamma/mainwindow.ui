@@ -20,280 +20,329 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_6">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QPushButton" name="amarillo">
-            <property name="text">
-             <string/>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="amarillo">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/amarillo.png</normaloff>:/new/prefix1/iconos/amarillo.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="rojo">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/rojo.png</normaloff>:/new/prefix1/iconos/rojo.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="verde">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/verde.png</normaloff>:/new/prefix1/iconos/verde.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="naranja">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/naranja.png</normaloff>:/new/prefix1/iconos/naranja.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cafe">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/cafe.png</normaloff>:/new/prefix1/iconos/cafe.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="azul">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/azul.png</normaloff>:/new/prefix1/iconos/azul.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="morado">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/morado.png</normaloff>:/new/prefix1/iconos/morado.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="rosa">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="iconos.qrc">
+                <normaloff>:/new/prefix1/iconos/rosa.png</normaloff>:/new/prefix1/iconos/rosa.png</iconset>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Limites</string>
             </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/amarillo.png</normaloff>:/new/prefix1/iconos/amarillo.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Inferior</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="inferior">
+                 <property name="minimum">
+                  <number>-999999999</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>aux</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="auxiliar">
+                 <property name="decimals">
+                  <number>5</number>
+                 </property>
+                 <property name="minimum">
+                  <double>-999999999999999983222784.000000000000000</double>
+                 </property>
+                 <property name="maximum">
+                  <double>99999999999999991433150857216.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>0.100000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Superior</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="superior">
+                 <property name="minimum">
+                  <number>-999999999</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string>Dimenciones</string>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="rojo">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/rojo.png</normaloff>:/new/prefix1/iconos/rojo.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="verde">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/verde.png</normaloff>:/new/prefix1/iconos/verde.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="naranja">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/naranja.png</normaloff>:/new/prefix1/iconos/naranja.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="cafe">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/cafe.png</normaloff>:/new/prefix1/iconos/cafe.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="azul">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/azul.png</normaloff>:/new/prefix1/iconos/azul.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="morado">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/morado.png</normaloff>:/new/prefix1/iconos/morado.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="rosa">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="iconos.qrc">
-              <normaloff>:/new/prefix1/iconos/rosa.png</normaloff>:/new/prefix1/iconos/rosa.png</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="0" column="0">
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Filas</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="filas">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>Columnas</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="columnas">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
         </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Limites</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Inferior</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="inferior">
-               <property name="decimals">
-                <number>4</number>
-               </property>
-               <property name="minimum">
-                <double>-100000000000000000.000000000000000</double>
-               </property>
-               <property name="maximum">
-                <double>99999999999999991433150857216.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>1.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>aux</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="auxiliar">
-               <property name="decimals">
-                <number>5</number>
-               </property>
-               <property name="minimum">
-                <double>-999999999999999983222784.000000000000000</double>
-               </property>
-               <property name="maximum">
-                <double>99999999999999991433150857216.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>0.100000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Superior</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="superior">
-               <property name="decimals">
-                <number>5</number>
-               </property>
-               <property name="minimum">
-                <double>-999999999999999929757289024535551219930759168.000000000000000</double>
-               </property>
-               <property name="maximum">
-                <double>99999999999999991433150857216.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>10.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Dimenciones</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>Filas</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="filas">
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_8">
-               <property name="text">
-                <string>Columnas</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="columnas">
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="area"/>
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QTabWidget" name="area"/>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="tiempo">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="contexto_2">
+          <property name="text">
+           <string>Hola</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="isSave">
+          <property name="text">
+           <string>Save: False</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -359,18 +408,10 @@
      <string>Sobre</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuMatrices">
-    <property name="title">
-     <string>Matrices</string>
-    </property>
-    <addaction name="actionCopiar"/>
-    <addaction name="actionPegar"/>
-   </widget>
    <addaction name="menuArchivos"/>
    <addaction name="menuVer"/>
    <addaction name="menuFunciones"/>
    <addaction name="menuSobre"/>
-   <addaction name="menuMatrices"/>
   </widget>
   <widget class="QDockWidget" name="ventanaArbol">
    <attribute name="dockWidgetArea">
@@ -442,28 +483,6 @@
          <string/>
         </property>
        </column>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QDockWidget" name="terminal">
-   <attribute name="dockWidgetArea">
-    <number>8</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QTextEdit" name="textoTerminal">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="documentTitle">
-        <string>Terminal</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
     </layout>
@@ -728,6 +747,27 @@
    </property>
    <property name="text">
     <string>LaTex</string>
+   </property>
+  </action>
+  <action name="actionDuplicar">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/duplicar.png</normaloff>:/new/prefix1/iconos/duplicar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Duplicar</string>
+   </property>
+  </action>
+  <action name="actionRename_All">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/renameAll.png</normaloff>:/new/prefix1/iconos/renameAll.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rename All</string>
+   </property>
+   <property name="toolTip">
+    <string>Renombrar Todos</string>
    </property>
   </action>
   <zorder>ventanaArbol</zorder>

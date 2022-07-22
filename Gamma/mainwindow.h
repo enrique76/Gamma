@@ -6,6 +6,7 @@
 #include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QAction>
+#include<QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,9 +23,13 @@ public:
     void AgregarAlArbol(QAction *,QString);
     void CrearMatriz(int,int,QString,bool);
     void AgregarMatriz(QString,int,int,bool);
+    void AgregarMatriz(QString,QString,int,int,bool);
     void EliminarMatriz(int);
     void GuardarMatrices(QString);
+    void GuardarMatriz(int i);
     void Cambio();
+    void IniciarTiempo(float&);
+    void TerminarTiempo(float&);
 
 private slots:
     void on_actionArbol_triggered();
@@ -65,6 +70,18 @@ private slots:
 
     void on_actionGuardar_triggered();
 
+    void on_arbol_itemChanged(QTreeWidgetItem *item, int column);
+
+    void on_area_currentChanged(int index);
+
+    void on_amarillo_clicked();
+
+    void on_area_tabBarClicked(int index);
+
+    void on_actionCopiar_triggered();
+
+    void on_actionPegar_triggered();
+
 public:
     Ui::MainWindow *ui;
     QTreeWidgetItem *ArbolProyecto = new QTreeWidgetItem();
@@ -74,5 +91,8 @@ public:
     int pos = 0;
     QVector<Matriz *> matrices;
     bool isSave = false;
+    QMenu *menu;
+    Matriz *Cm = new Matriz();
+    bool cm = false;
 };
 #endif // MAINWINDOW_H

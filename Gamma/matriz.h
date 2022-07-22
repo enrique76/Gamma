@@ -22,13 +22,30 @@ public:
     void SetFilas(int);
     void SetColumnas(int);
     void SetVectorVisible(bool);
+    void SetRuta(QString);
+    QString GetRuta();
+    int GetFilas();
+    int GetColumnas();
+    QString GetValue(int,int);
+    void SetData(QString);
+    void SetIsSave(bool);
+    bool GetIsSave();
+    void SetData(int,int,int);
+    bool GetV();
+    void SetDataV(int,int);
+    void Copi(Matriz *);
+    QString GetDataV(int);
+
 
 public:
     Ui::Matriz *ui;
     QTreeWidgetItem *item;
     bool cv;
+    QString ruta;
+    bool is = false;
 private slots:
     void on_ordenVector_clicked();
+    void on_m_cellChanged(int row, int column);
 };
 
 #endif // MATRIZ_H

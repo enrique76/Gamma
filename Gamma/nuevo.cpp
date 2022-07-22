@@ -35,7 +35,7 @@ void Nuevo::AbrirArchivo(){
 }
 
 QString Nuevo::GetNameMatriz(){
-return ui->nombreMatriz->text();
+    return ui->nombreMatriz->text();
 }
 
 QString Nuevo::GetNameProyect()
@@ -46,6 +46,10 @@ QString Nuevo::GetNameProyect()
 bool Nuevo::IsCreateVector()
 {
     return ui->vector->isChecked();
+}
+
+QString Nuevo::GetRuta(){
+    return ui->ruta->text();
 }
 
 void Nuevo::on_buttonBox_accepted(){

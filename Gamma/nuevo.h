@@ -19,7 +19,7 @@ public:
     QString GetNameMatriz();
     QString GetNameProyect();
     bool IsCreateVector();
-
+    QString GetRuta();
 
 private slots:
     void on_buttonBox_accepted();

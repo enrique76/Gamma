@@ -56,5 +56,7 @@
         <file>iconos/rename.png</file>
         <file>iconos/terminal.png</file>
         <file>iconos/direcciones.png</file>
+        <file>iconos/duplicar.png</file>
+        <file>iconos/renameAll.png</file>
     </qresource>
 </RCC>
