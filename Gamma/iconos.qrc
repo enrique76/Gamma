@@ -54,5 +54,8 @@
         <file>iconos/cortar.png</file>
         <file>iconos/pegar.png</file>
         <file>iconos/rename.png</file>
+        <file>iconos/configuraciones.png</file>
+        <file>iconos/matematicas.png</file>
+        <file>iconos/importar.png</file>
     </qresource>
 </RCC>

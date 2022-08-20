@@ -31,7 +31,11 @@ void Nuevo::AbrirArchivo(){
     ui->nombre->setVisible(false);
     ui->label->setVisible(false);
     ui->label_4->setVisible(false);
-    ui->descipcion->setVisible(false);
+    //ui->descipcion->setVisible(false);
+}
+
+QString Nuevo::GetNombreMatriz(){
+    return ui->nombreMatriz->text();
 }
 
 void Nuevo::on_buttonBox_accepted(){

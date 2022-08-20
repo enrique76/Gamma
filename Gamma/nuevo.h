@@ -16,6 +16,8 @@ public:
     ~Nuevo();
     void AgregarMatriz();
     void AbrirArchivo();
+    QString GetNombreMatriz();
+    QString GetNombreProyecto();
 
 private slots:
     void on_buttonBox_accepted();

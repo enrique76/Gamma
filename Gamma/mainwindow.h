@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QVector>
-#include "proyecto.h"
 #include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QAction>
@@ -50,12 +49,23 @@ private slots:
 
     void on_actionLaTex_triggered();
 
+    void on_baseMatrices_tabBarClicked(int index);
+
+    void on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_baseMatrices_currentChanged(int index);
+
+    void on_actionGaficar_triggered();
+
 public:
     Ui::MainWindow *ui;
-    proyecto *p = new proyecto();
+    ///proyecto *p = new proyecto();
     QTreeWidgetItem *ArbolProyecto = new QTreeWidgetItem();
+    QTreeWidgetItem *Graficas = new QTreeWidgetItem();
+    QTreeWidgetItem *Configuraciones = new QTreeWidgetItem();
+    QTreeWidgetItem *Operaciones = new QTreeWidgetItem();
     QString ruta;
-    QVector<matriz> ms;
+    QVector<matriz *> ms;
     int pos = 0;
 };
 #endif // MAINWINDOW_H
