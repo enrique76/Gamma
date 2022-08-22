@@ -57,6 +57,10 @@ private slots:
 
     void on_actionGaficar_triggered();
 
+    void on_actionImportar_triggered();
+
+    void on_actionRenombrar_triggered();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();

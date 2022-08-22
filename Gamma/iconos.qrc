@@ -57,5 +57,6 @@
         <file>iconos/configuraciones.png</file>
         <file>iconos/matematicas.png</file>
         <file>iconos/importar.png</file>
+        <file>iconos/run.png</file>
     </qresource>
 </RCC>

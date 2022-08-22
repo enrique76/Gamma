@@ -4,6 +4,7 @@
 #include "texto.h"
 #include<QTreeWidgetItem>
 #include<QTreeWidget>
+#include"importar.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->actionAbrir->setEnabled(false);
     ui->actionImportar->setEnabled(false);
     ui->actionLaTex->setEnabled(false);
+    ui->actionNuevo_Archivo->setEnabled(false);
 
     // arbol
 
@@ -163,6 +165,8 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
         ui->actionExtras->setEnabled(true);
         ui->actionGuardar->setEnabled(true);
         ui->actionGuardar_como->setEnabled(true);
+        ui->actionNuevo_Archivo->setEnabled(true);
+        ui->actionImportar->setEnabled(true);
         ui->actionNuevo_Proyecto->setEnabled(false);
     }
 
@@ -224,7 +228,9 @@ void MainWindow::on_actionCerrar_triggered()
 
 
 void MainWindow::on_arbol_itemClicked(QTreeWidgetItem *item, int column){
-   //qDebug()<<item->text(column);
+   if(item->parent() == ArbolProyecto){
+       pos = ArbolProyecto->indexOfChild(item);
+   }
 }
 
 // Funciones
@@ -286,7 +292,7 @@ void MainWindow::on_baseMatrices_tabBarClicked(int index){
 void MainWindow::on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
     if(item->parent() == ArbolProyecto){
-        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(1);
         ui->base->setCurrentIndex(0);
         ui->baseMatrices->setCurrentIndex(ArbolProyecto->indexOfChild(item));
     }
@@ -314,5 +320,23 @@ void MainWindow::on_actionGaficar_triggered()
 
     a->setText(0,"Grafica "+ms.at(ui->baseMatrices->currentIndex())->nombre);
     a->setIcon(0,QIcon(":/new/prefix1/iconos/graficar.png"));
+}
+
+
+void MainWindow::on_actionImportar_triggered(){
+    importar *i = new importar();
+
+    i->setMatrices(ArbolProyecto);
+
+    for(int j=0;j>ArbolProyecto->childCount();j++){
+        qDebug()<<ArbolProyecto->child(j)->text(0);
+    }
+
+    i->exec();
+}
+
+
+void MainWindow::on_actionRenombrar_triggered(){
+    //ArbolProyecto->child(pos)-
 }
 
