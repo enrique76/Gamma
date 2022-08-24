@@ -18,6 +18,8 @@ public:
     void AbrirArchivo();
     QString GetNombreMatriz();
     QString GetNombreProyecto();
+    QString GetComentario();
+    bool GetV();
 
 private slots:
     void on_buttonBox_accepted();

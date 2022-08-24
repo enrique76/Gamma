@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "nuevo.h"
-#include "texto.h"
 #include<QTreeWidgetItem>
 #include<QTreeWidget>
 #include"importar.h"
+#include<QDateTime>
+#include<QMessageBox>
+#include<QDir>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -56,10 +58,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     Operaciones->setText(0,"Operaciones");
     Operaciones->setIcon(0,QIcon(":/new/prefix1/iconos/matematicas.png"));
 
+    Historial->setText(0,"Historial");
+    Historial->setIcon(0,QIcon(":/new/prefix1/iconos/historial.png"));
+
     ui->arbol->addTopLevelItem(ArbolProyecto);
     ui->arbol->addTopLevelItem(Graficas);
     ui->arbol->addTopLevelItem(Operaciones);
     ui->arbol->addTopLevelItem(Configuraciones);
+    ui->arbol->addTopLevelItem(Historial);
 
      //
 
@@ -68,6 +74,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
      //
 
      ui->base->setCurrentIndex(0);
+
+     AddHistorial("Inicio de Gamma");
+
+
 
 
 
@@ -112,7 +122,7 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     n.setWindowTitle("Nuevo Proyecto");
     n.setWindowIcon(QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
     n.exec();
-    ruta = n.ruta;
+    this->ruta = n.ruta;
     //setWindowTitle(windowTitle()+" \t "+ruta);
 
     if(n.ok){
@@ -124,6 +134,8 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 
         s->setText(0,n.nombreMatriz);
         s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+
+        s->setFlags(s->flags() | Qt::ItemIsEditable);
 
 
 
@@ -137,6 +149,8 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 
         ui->f->setValue(n.filas);
         ui->c->setValue(n.columnas);
+
+        nProyecto = n.nombreProyecto;
 
 
 
@@ -173,6 +187,26 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     //ui->toolBaMain->setVisible(false);
 
     ui->stackedWidget->setCurrentIndex(1);
+
+    QString t;
+
+    t += "Creacion de Proyecto: "+n.nombreProyecto;
+    t += "\n\n \t\t Matriz: "+n.nombreMatriz;
+    t += "\n\n \t\t Filas: "+QString::number(n.filas);
+    t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
+    t += "\n\n \t\t Ruta: "+n.ruta;
+    t += "\n\n \t\t Comentario: "+n.GetComentario();
+    t += "\n\n \t\t Vector: "+QString::number(n.GetV());
+
+    AddHistorial(t);
+
+    ui->cNombreProyecto->setText(n.nombreProyecto);
+    ui->cRuta->setText(this->ruta);
+    ui->CM->addItem(n.nombreMatriz);
+    ui->cNM->setText("0");
+    ui->CF->setText(QString::number(n.filas));
+    ui->CC->setText(QString::number(n.columnas));
+
 }
 
 void MainWindow::on_actionNuevo_Archivo_triggered(){
@@ -182,8 +216,7 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
     n.AgregarMatriz();
     n.AbrirArchivo();
     n.exec();
-    ruta = n.ruta;
-    setWindowTitle(windowTitle()+" \t "+ruta);
+    //setWindowTitle(windowTitle()+" \t "+ruta);
 
     if(n.ok){
         QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
@@ -191,6 +224,7 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
         s->setText(0,n.nombreMatriz);
         s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
        //ui->arbol->addTopLevelItem(ArbolProyecto);
+        s->setFlags(s->flags() | Qt::ItemIsEditable);
 
         matriz *m = new matriz();
 
@@ -207,6 +241,22 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
         ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
 
     }
+
+    QString t;
+
+    t += "Creacion de Matriz: "+n.nombreMatriz;
+    t += "\n\n \t\t Filas: "+QString::number(n.filas);
+    t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
+    t += "\n\n \t\t Ruta: "+this->ruta;
+    t += "\n\n \t\t Comentario: "+n.GetComentario();
+    t += "\n\n \t\t Vector: "+QString::number(n.GetV());
+
+    AddHistorial(t);
+
+    ui->cNombreProyecto->setText(n.nombreProyecto);
+    ui->cRuta->setText(this->ruta);
+    ui->CM->addItem(n.nombreMatriz);
+    ui->cNM->setText(QString::number(ui->cNM->text().toInt()+1));
 }
 
 void MainWindow::on_actionBarra_de_Herramientas_triggered()
@@ -230,6 +280,7 @@ void MainWindow::on_actionCerrar_triggered()
 void MainWindow::on_arbol_itemClicked(QTreeWidgetItem *item, int column){
    if(item->parent() == ArbolProyecto){
        pos = ArbolProyecto->indexOfChild(item);
+
    }
 }
 
@@ -299,6 +350,9 @@ void MainWindow::on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column)
     else if(item == Configuraciones){
         ui->stackedWidget->setCurrentIndex(2);
     }
+    else if(item == Historial){
+        ui->stackedWidget->setCurrentIndex(3);
+    }
 
 
 }
@@ -326,17 +380,137 @@ void MainWindow::on_actionGaficar_triggered()
 void MainWindow::on_actionImportar_triggered(){
     importar *i = new importar();
 
-    i->setMatrices(ArbolProyecto);
 
-    for(int j=0;j>ArbolProyecto->childCount();j++){
-        qDebug()<<ArbolProyecto->child(j)->text(0);
-    }
 
     i->exec();
+
+    if(i->getV()){
+        i->PararDatos(ms.at(ui->baseMatrices->currentIndex()),ui->f,ui->c);
+
+        // cambiar el nombre
+
+        ui->baseMatrices->setTabText(ui->baseMatrices->currentIndex(),ms.at(ui->baseMatrices->currentIndex())->getNombre());
+        ArbolProyecto->child(ui->baseMatrices->currentIndex())->setText(0,ms.at(ui->baseMatrices->currentIndex())->getNombre());
+
+        QString t;
+
+        t += "Importacion de Datos hacia "+ms.at(ui->baseMatrices->currentIndex())->nombre;
+        t += "\n\n \t\t Desde: "+i->getRuta();
+        t += "\n\n \t\t Filas: "+QString::number(i->getFilas());
+        t += "\n\n \t\t Columnas: "+QString::number(i->getColumnas());
+        t += "\n\n \t\t Ceparador: "+i->getCeparador();
+
+
+        AddHistorial(t);
+
+        ui->CM->clear();
+
+        for(int i=0;i<ArbolProyecto->childCount();i++){
+            ui->CM->addItem(ms.at(i)->getNombre());
+        }
+    }
+
 }
 
 
 void MainWindow::on_actionRenombrar_triggered(){
-    //ArbolProyecto->child(pos)-
+    //ArbolProyecto->child(pos)->setFlags(ArbolProyecto->flags() | Qt::ItemIsEditable);
+
+    //ArbolProyecto->child(pos)->
+
+//    connect(this, SIGNAL(itemChanged( ArbolProyecto->child(pos),0)),
+//            this, SLOT(!ArbolProyecto->child(pos)->flags()));
+}
+
+
+void MainWindow::on_arbol_itemChanged(QTreeWidgetItem *item, int column)
+{
+    //item->setFlags(ArbolProyecto->flags() & ~Qt::ItemIsEditable);
+
+    //qDebug()<<item->text(0);
+
+//    if(item->parent() == ArbolProyecto){
+//        ms.at(ArbolProyecto->indexOfChild(item))->SetNombre(item->text(column));
+
+//        ui->CM->clear();
+
+//        for(int i=0;i<ArbolProyecto->childCount();i++){
+//            ui->CM->addItem(ms.at(i)->getNombre());
+//        }
+//    }
+}
+
+void MainWindow::AddHistorial(QString t){
+    QString texto;
+
+    texto += "\n\n======================================================"+QDateTime::currentDateTime().toString()+"======================================================"+"\n \t >> ";
+
+    texto += t;
+
+    ui->historial->insertPlainText(texto);
+
+}
+
+
+void MainWindow::on_CM_activated(int index)
+{
+    ui->CF->setText(QString::number(ms.at(index)->GetFilas()));
+    ui->CC->setText(QString::number(ms.at(index)->GetColumnas()));
+}
+
+
+void MainWindow::on_stackedWidget_currentChanged(int arg1){
+    ui->CM->clear();
+
+    for(int i=0;i<ArbolProyecto->childCount();i++){
+        ui->CM->addItem(ms.at(i)->getNombre());
+    }
+
+    ui->CF->setText(QString::number(ms.at(0)->GetFilas()));
+    ui->CC->setText(QString::number(ms.at(0)->GetColumnas()));
+
+    ui->cNM->setText(QString::number(ms.size()));
+
+    ui->cNombreProyecto->setText(this->nProyecto);
+}
+
+
+void MainWindow::on_CM_currentIndexChanged(int index)
+{
+    ui->CF->setText(QString::number(ms.at(index)->GetFilas()));
+    ui->CC->setText(QString::number(ms.at(index)->GetColumnas()));
+}
+
+
+void MainWindow::on_cRuta_textChanged(const QString &arg1){
+//    QMessageBox::StandardButton reply;
+//      QMessageBox messageBox;
+
+//      reply = messageBox.question(this, "Cambiar", "Quiere Cambiar la ruta del proyecto?",
+//                                  QMessageBox::Yes | QMessageBox::No);
+//      if (reply == QMessageBox::Yes){
+//          QDir *directorio = new QDir();
+
+//          this->ruta = ui->cRuta->text();
+
+//          directorio->mkpath(ruta);
+//      }
+
+}
+
+
+void MainWindow::on_cNombreProyecto_editingFinished(){
+//    QMessageBox::StandardButton reply;
+//      QMessageBox messageBox;
+
+//      reply = messageBox.question(this, "Cambiar", "Quiere Cambiar el nombre del proyecto?",
+//                                  QMessageBox::Yes | QMessageBox::No);
+//      if (reply == QMessageBox::Yes){
+
+//         this->nProyecto = ui->cNombreProyecto->text();
+//      }
+//      else{
+//          ui->cNombreProyecto->setText(this->nProyecto);
+//      }
 }
 

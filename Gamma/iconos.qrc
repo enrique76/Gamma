@@ -58,5 +58,6 @@
         <file>iconos/matematicas.png</file>
         <file>iconos/importar.png</file>
         <file>iconos/run.png</file>
+        <file>iconos/historial.png</file>
     </qresource>
 </RCC>

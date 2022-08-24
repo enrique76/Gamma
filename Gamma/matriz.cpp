@@ -63,4 +63,22 @@ void matriz::SetColumnas(int c){
     ui->m->setColumnCount(c);
 }
 
+void matriz::SetNombre(QString t){
+    this->nombre = t;
+}
+
+QString matriz::getNombre()
+{
+    return this->nombre;
+}
+
+QString matriz::getComentario(){
+    return this->Comentario;
+}
+
+void matriz::setComentario(QString t)
+{
+    this->Comentario = t;
+}
+
 

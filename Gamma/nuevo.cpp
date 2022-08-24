@@ -38,6 +38,15 @@ QString Nuevo::GetNombreMatriz(){
     return ui->nombreMatriz->text();
 }
 
+QString Nuevo::GetComentario(){
+    return ui->descipcion->toPlainText();
+}
+
+bool Nuevo::GetV()
+{
+    return ui->vector->isChecked();
+}
+
 void Nuevo::on_buttonBox_accepted(){
     nombreProyecto = ui->nombre->text();
     nombreMatriz = ui->nombreMatriz->text();

@@ -61,6 +61,20 @@ private slots:
 
     void on_actionRenombrar_triggered();
 
+    void on_arbol_itemChanged(QTreeWidgetItem *item, int column);
+
+    void AddHistorial(QString);
+
+    void on_CM_activated(int index);
+
+    void on_stackedWidget_currentChanged(int arg1);
+
+    void on_CM_currentIndexChanged(int index);
+
+    void on_cRuta_textChanged(const QString &arg1);
+
+    void on_cNombreProyecto_editingFinished();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();
@@ -68,8 +82,10 @@ public:
     QTreeWidgetItem *Graficas = new QTreeWidgetItem();
     QTreeWidgetItem *Configuraciones = new QTreeWidgetItem();
     QTreeWidgetItem *Operaciones = new QTreeWidgetItem();
+    QTreeWidgetItem *Historial = new QTreeWidgetItem();
     QString ruta;
     QVector<matriz *> ms;
     int pos = 0;
+    QString nProyecto;
 };
 #endif // MAINWINDOW_H

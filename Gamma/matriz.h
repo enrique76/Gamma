@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include<QTreeWidgetItem>
+#include<QTableWidget>
 
 namespace Ui {
 class matriz;
@@ -25,12 +26,18 @@ public:
     int GetColumnas();
     void SetFilas(int);
     void SetColumnas(int);
+    void SetNombre(QString);
+    QString getNombre();
+    QString getComentario();
+    void setComentario(QString);
+
 public:
     Ui::matriz *ui;
     int filas,columnas;
     QString nombre;
     bool vector;
     QTreeWidgetItem *rama;
+    QString Comentario;
 };
 
 #endif // MATRIZ_H
