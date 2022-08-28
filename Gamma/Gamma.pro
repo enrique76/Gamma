@@ -13,19 +13,22 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matriz.cpp \
-    nuevo.cpp
+    nuevo.cpp \
+    retiquetas.cpp
 
 HEADERS += \
     importar.h \
     mainwindow.h \
     matriz.h \
-    nuevo.h
+    nuevo.h \
+    retiquetas.h
 
 FORMS += \
     importar.ui \
     mainwindow.ui \
     matriz.ui \
-    nuevo.ui
+    nuevo.ui \
+    retiquetas.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

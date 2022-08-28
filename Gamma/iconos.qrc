@@ -28,7 +28,6 @@
         <file>iconos/matriz.png</file>
         <file>iconos/matriz2.png</file>
         <file>iconos/matriz3.png</file>
-        <file>iconos/matriz4.png</file>
         <file>iconos/matrizdecamino.png</file>
         <file>iconos/morado.png</file>
         <file>iconos/naranja.png</file>
@@ -42,7 +41,6 @@
         <file>iconos/rosa.png</file>
         <file>iconos/ruta.png</file>
         <file>iconos/salvar.png</file>
-        <file>iconos/TP02-Enunciado-1C-2022.pdf</file>
         <file>iconos/trigonometria.png</file>
         <file>iconos/una.png</file>
         <file>iconos/verde.png</file>
@@ -59,5 +57,6 @@
         <file>iconos/importar.png</file>
         <file>iconos/run.png</file>
         <file>iconos/historial.png</file>
+        <file>iconos/barra-de-desplazamiento.png</file>
     </qresource>
 </RCC>

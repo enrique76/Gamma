@@ -30,6 +30,12 @@ public:
     QString getNombre();
     QString getComentario();
     void setComentario(QString);
+    QString MinH();
+    QString MaxH();
+    QString MinV();
+    QString MaxV();
+    void setHL(QStringList);
+    void setVL(QStringList);
 
 public:
     Ui::matriz *ui;
@@ -38,6 +44,7 @@ public:
     bool vector;
     QTreeWidgetItem *rama;
     QString Comentario;
+    QStringList h,v;
 };
 
 #endif // MATRIZ_H

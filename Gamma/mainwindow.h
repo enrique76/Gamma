@@ -18,9 +18,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void AgregarAlArbol(QString);
-    void AgregarAlArbol(QAction *, QString);
-    void CrearMatriz(int,int,QString,bool);
 
 private slots:
     void on_actionArbol_triggered();
@@ -49,7 +46,6 @@ private slots:
 
     void on_actionLaTex_triggered();
 
-    void on_baseMatrices_tabBarClicked(int index);
 
     void on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
@@ -60,8 +56,6 @@ private slots:
     void on_actionImportar_triggered();
 
     void on_actionRenombrar_triggered();
-
-    void on_arbol_itemChanged(QTreeWidgetItem *item, int column);
 
     void AddHistorial(QString);
 
@@ -74,6 +68,10 @@ private slots:
     void on_cRuta_textChanged(const QString &arg1);
 
     void on_cNombreProyecto_editingFinished();
+
+    void on_actionRenombrar_Etiquetas_triggered();
+
+    void on_actionRenombrar_Matrices_triggered();
 
 public:
     Ui::MainWindow *ui;

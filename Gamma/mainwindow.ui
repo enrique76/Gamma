@@ -490,8 +490,8 @@ hr { height: 1px; border-width: 0; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1051</width>
-             <height>368</height>
+             <width>1194</width>
+             <height>358</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_14">
@@ -672,7 +672,7 @@ hr { height: 1px; border-width: 0; }
      <x>0</x>
      <y>0</y>
      <width>1348</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivos">
@@ -733,8 +733,11 @@ hr { height: 1px; border-width: 0; }
     </property>
     <addaction name="actionCerrar"/>
     <addaction name="actionRenombrar"/>
+    <addaction name="actionRenombrar_Matrices"/>
+    <addaction name="actionRenombrar_Etiquetas"/>
     <addaction name="actionCopiar"/>
     <addaction name="actionPegar"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuArchivos"/>
    <addaction name="menuVer"/>
@@ -770,7 +773,7 @@ hr { height: 1px; border-width: 0; }
         <bool>true</bool>
        </property>
        <attribute name="headerVisible">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
        <column>
         <property name="text">
@@ -1067,6 +1070,24 @@ hr { height: 1px; border-width: 0; }
    </property>
    <property name="text">
     <string>Importar</string>
+   </property>
+  </action>
+  <action name="actionRenombrar_Etiquetas">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/barra-de-desplazamiento.png</normaloff>:/new/prefix1/iconos/barra-de-desplazamiento.png</iconset>
+   </property>
+   <property name="text">
+    <string>Renombrar Etiquetas</string>
+   </property>
+  </action>
+  <action name="actionRenombrar_Matrices">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/rename.png</normaloff>:/new/prefix1/iconos/rename.png</iconset>
+   </property>
+   <property name="text">
+    <string>Renombrar Matrices</string>
    </property>
   </action>
  </widget>

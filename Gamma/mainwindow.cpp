@@ -7,6 +7,7 @@
 #include<QDateTime>
 #include<QMessageBox>
 #include<QDir>
+#include"retiquetas.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -39,8 +40,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     ui->arbol->addAction(ui->actionCerrar);
     ui->arbol->addAction(ui->actionRenombrar);
+    ui->arbol->addAction(ui->actionRenombrar_Matrices);
     ui->arbol->addAction(ui->actionCopiar);
     ui->arbol->addAction(ui->actionPegar);
+    ui->arbol->addAction(ui->actionRenombrar_Etiquetas);
 
     ui->arbol->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -88,31 +91,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::AgregarAlArbol(QString nombre){
-//    QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
-
-//    s->setText(0,nombre);
-//    s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
-//    ui->arbol->addTopLevelItem(ArbolProyecto);
-}
-
-void MainWindow::AgregarAlArbol(QAction * a, QString text){
-//    QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
-
-//    s->setText(0,a->text()+"_"+text);
-//    s->setIcon(0,a->icon());
-//    ui->arbol->addTopLevelItem(ArbolProyecto);
-}
-
-void MainWindow::CrearMatriz(int filas,int columnas,QString nombre,bool ok){
-    //p->AgregarMatriz(filas,columnas,nombre,ok);
-   // ui->proyecto->addWidget(p);
-}
-
 // Mostrar o ocultar la barra lateral
 void MainWindow::on_actionArbol_triggered(){
 
-    ui->ventanaArbol->setVisible(!ui->arbol->isVisible());
+    //ui->ventanaArbol->setVisible(!ui->arbol->isVisible());
 }
 
 // nuevo proyecto
@@ -156,6 +138,8 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 
         ui->baseMatrices->addTab(ms.at(ms.size()-1),n.GetNombreMatriz());
 
+
+
 //        p->nombreProyecto = n.nombreProyecto;
 
 //        p->AgregarMatriz();
@@ -182,30 +166,34 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
         ui->actionNuevo_Archivo->setEnabled(true);
         ui->actionImportar->setEnabled(true);
         ui->actionNuevo_Proyecto->setEnabled(false);
+
+        ui->stackedWidget->setCurrentIndex(1);
+
+        QString t;
+
+        t += "Creacion de Proyecto: "+n.nombreProyecto;
+        t += "\n\n \t\t Matriz: "+n.nombreMatriz;
+        t += "\n\n \t\t Filas: "+QString::number(n.filas);
+        t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
+        t += "\n\n \t\t Etiquetas-Filas: "+m->MinH()+"..."+m->MaxH();
+        t += "\n\n \t\t Etiquetas-Columnas: "+m->MinV()+"..."+m->MaxV();
+        t += "\n\n \t\t Ruta: "+n.ruta;
+        t += "\n\n \t\t Comentario: "+n.GetComentario();
+        t += "\n\n \t\t Vector: "+QString::number(n.GetV());
+
+        AddHistorial(t);
+
+        ui->cNombreProyecto->setText(n.nombreProyecto);
+        ui->cRuta->setText(this->ruta);
+        ui->CM->addItem(n.nombreMatriz);
+        ui->cNM->setText("0");
+        ui->CF->setText(QString::number(n.filas));
+        ui->CC->setText(QString::number(n.columnas));
     }
 
     //ui->toolBaMain->setVisible(false);
 
-    ui->stackedWidget->setCurrentIndex(1);
 
-    QString t;
-
-    t += "Creacion de Proyecto: "+n.nombreProyecto;
-    t += "\n\n \t\t Matriz: "+n.nombreMatriz;
-    t += "\n\n \t\t Filas: "+QString::number(n.filas);
-    t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
-    t += "\n\n \t\t Ruta: "+n.ruta;
-    t += "\n\n \t\t Comentario: "+n.GetComentario();
-    t += "\n\n \t\t Vector: "+QString::number(n.GetV());
-
-    AddHistorial(t);
-
-    ui->cNombreProyecto->setText(n.nombreProyecto);
-    ui->cRuta->setText(this->ruta);
-    ui->CM->addItem(n.nombreMatriz);
-    ui->cNM->setText("0");
-    ui->CF->setText(QString::number(n.filas));
-    ui->CC->setText(QString::number(n.columnas));
 
 }
 
@@ -240,23 +228,27 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
         ui->baseMatrices->addTab(ms.at(ms.size()-1),n.GetNombreMatriz());
         ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
 
+        QString t;
+
+        t += "Creacion de Matriz: "+n.nombreMatriz;
+        t += "\n\n \t\t Filas: "+QString::number(n.filas);
+        t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
+        t += "\n\n \t\t Etiquetas-Filas: "+m->MinH()+"..."+m->MaxH();
+        t += "\n\n \t\t Etiquetas-Columnas: "+m->MinV()+"..."+m->MaxV();
+        t += "\n\n \t\t Ruta: "+this->ruta;
+        t += "\n\n \t\t Comentario: "+n.GetComentario();
+        t += "\n\n \t\t Vector: "+QString::number(n.GetV());
+
+        AddHistorial(t);
+
+        ui->cNombreProyecto->setText(n.nombreProyecto);
+        ui->cRuta->setText(this->ruta);
+        ui->CM->addItem(n.nombreMatriz);
+        ui->cNM->setText(QString::number(ui->cNM->text().toInt()+1));
+
     }
 
-    QString t;
 
-    t += "Creacion de Matriz: "+n.nombreMatriz;
-    t += "\n\n \t\t Filas: "+QString::number(n.filas);
-    t += "\n\n \t\t Columnas: "+QString::number(n.columnas);
-    t += "\n\n \t\t Ruta: "+this->ruta;
-    t += "\n\n \t\t Comentario: "+n.GetComentario();
-    t += "\n\n \t\t Vector: "+QString::number(n.GetV());
-
-    AddHistorial(t);
-
-    ui->cNombreProyecto->setText(n.nombreProyecto);
-    ui->cRuta->setText(this->ruta);
-    ui->CM->addItem(n.nombreMatriz);
-    ui->cNM->setText(QString::number(ui->cNM->text().toInt()+1));
 }
 
 void MainWindow::on_actionBarra_de_Herramientas_triggered()
@@ -267,7 +259,7 @@ void MainWindow::on_actionBarra_de_Herramientas_triggered()
 
 void MainWindow::on_actionTerminal_triggered()
 {
-    ui->terminal->setVisible(!ui->terminal->isVisible());
+    //ui->terminal->setVisible(!ui->terminal->isVisible());
 }
 
 
@@ -297,21 +289,18 @@ void MainWindow::on_actionReaolver_triggered(){
 }
 
 void MainWindow::on_actionEstadistica_triggered(){
-    //AgregarAlArbol(ui->actionEstadistica,p->CurrentIndexText());
-    CrearMatriz(10,10,"Estadistica",true);
+
 }
 
 
 void MainWindow::on_actionEntre_Matrices_triggered(){
-    //AgregarAlArbol(ui->actionEntre_Matrices,p->CurrentIndexText());
-    CrearMatriz(10,10,"EntreMatrices",true);
+
 }
 
 
 void MainWindow::on_actionEntre_Escalar_triggered()
 {
-   // AgregarAlArbol(ui->actionEntre_Escalar,p->CurrentIndexText());
-    CrearMatriz(10,10,"EntreEscalar",true);
+
 }
 
 void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
@@ -321,6 +310,7 @@ void MainWindow::ContexMenuTreeWidget(QContextMenuEvent *e){
     m->addAction(ui->actionRenombrar);
     m->addAction(ui->actionCopiar);
     m->addAction(ui->actionPegar);
+    m->addAction(ui->actionRenombrar_Etiquetas);
 
     m->exec(QCursor::pos());
 }
@@ -335,9 +325,6 @@ void MainWindow::on_actionLaTex_triggered(){
 }
 
 
-void MainWindow::on_baseMatrices_tabBarClicked(int index){
-
-}
 
 
 void MainWindow::on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column)
@@ -414,31 +401,14 @@ void MainWindow::on_actionImportar_triggered(){
 
 
 void MainWindow::on_actionRenombrar_triggered(){
-    //ArbolProyecto->child(pos)->setFlags(ArbolProyecto->flags() | Qt::ItemIsEditable);
+//    ArbolProyecto->child(pos)->setFlags(ArbolProyecto->flags() | Qt::ItemIsEditable);
 
-    //ArbolProyecto->child(pos)->
+//    ArbolProyecto->child(pos)->
 
-//    connect(this, SIGNAL(itemChanged( ArbolProyecto->child(pos),0)),
-//            this, SLOT(!ArbolProyecto->child(pos)->flags()));
+
 }
 
 
-void MainWindow::on_arbol_itemChanged(QTreeWidgetItem *item, int column)
-{
-    //item->setFlags(ArbolProyecto->flags() & ~Qt::ItemIsEditable);
-
-    //qDebug()<<item->text(0);
-
-//    if(item->parent() == ArbolProyecto){
-//        ms.at(ArbolProyecto->indexOfChild(item))->SetNombre(item->text(column));
-
-//        ui->CM->clear();
-
-//        for(int i=0;i<ArbolProyecto->childCount();i++){
-//            ui->CM->addItem(ms.at(i)->getNombre());
-//        }
-//    }
-}
 
 void MainWindow::AddHistorial(QString t){
     QString texto;
@@ -459,26 +429,26 @@ void MainWindow::on_CM_activated(int index)
 }
 
 
-void MainWindow::on_stackedWidget_currentChanged(int arg1){
-    ui->CM->clear();
+void MainWindow::on_stackedWidget_currentChanged(int arg1){ /// this
+//    ui->CM->clear();
 
-    for(int i=0;i<ArbolProyecto->childCount();i++){
-        ui->CM->addItem(ms.at(i)->getNombre());
-    }
+//    for(int i=0;i<ArbolProyecto->childCount();i++){
+//        ui->CM->addItem(ms.at(i)->getNombre());
+//    }
 
-    ui->CF->setText(QString::number(ms.at(0)->GetFilas()));
-    ui->CC->setText(QString::number(ms.at(0)->GetColumnas()));
+////    ui->CF->setText(QString::number(ms.at(0)->GetFilas()));
+////    ui->CC->setText(QString::number(ms.at(0)->GetColumnas()));
 
-    ui->cNM->setText(QString::number(ms.size()));
+//    ui->cNM->setText(QString::number(ms.size()));
 
-    ui->cNombreProyecto->setText(this->nProyecto);
+//    ui->cNombreProyecto->setText(this->nProyecto);
 }
 
 
 void MainWindow::on_CM_currentIndexChanged(int index)
 {
-    ui->CF->setText(QString::number(ms.at(index)->GetFilas()));
-    ui->CC->setText(QString::number(ms.at(index)->GetColumnas()));
+//    ui->CF->setText(QString::number(ms.at(index)->GetFilas()));
+//    ui->CC->setText(QString::number(ms.at(index)->GetColumnas()));
 }
 
 
@@ -512,5 +482,74 @@ void MainWindow::on_cNombreProyecto_editingFinished(){
 //      else{
 //          ui->cNombreProyecto->setText(this->nProyecto);
 //      }
+}
+
+
+void MainWindow::on_actionRenombrar_Etiquetas_triggered()
+{
+    rEtiquetas e(this);
+
+    e.setTitle("Renombrar Etiquetas");
+    e.setIcon(ui->actionRenombrar_Etiquetas->icon());
+
+    e.setF(ms.at(ui->baseMatrices->currentIndex())->GetFilas());
+    e.setC(ms.at(ui->baseMatrices->currentIndex())->GetColumnas());
+
+    e.exec();
+
+    QStringList h,v;
+
+    if(e.getV()){
+        e.getListH(h);
+
+        //qDebug()<<h;
+        ms.at(ui->baseMatrices->currentIndex())->setHL(h);
+
+        e.getListV(v);
+
+       // qDebug()<<v;
+
+       ms.at(ui->baseMatrices->currentIndex())->setVL(v);
+    }
+}
+
+
+void MainWindow::on_actionRenombrar_Matrices_triggered(){
+    rEtiquetas e(this);
+
+    e.setTitle("Renombrar Matrices");
+    e.setIcon(ui->actionRenombrar_Matrices->icon());
+
+    e.setF(ArbolProyecto->childCount());
+
+
+    e.setE(true);
+
+    e.exec();
+
+    QStringList n;
+
+    if(e.getV()){
+        e.getListH(n);
+
+        int aux = ArbolProyecto->childCount();
+
+        // arbol
+
+        // matrices
+
+        // basematrices
+
+        for(int i=0;i<aux;i++){
+            ArbolProyecto->child(i)->setText(0,n.at(i));
+
+            ms.at(i)->SetNombre(n.at(i));
+
+            ui->baseMatrices->setTabText(i,n.at(i));
+        }
+
+    }
+
+
 }
 

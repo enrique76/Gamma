@@ -48,26 +48,60 @@ bool Nuevo::GetV()
 }
 
 void Nuevo::on_buttonBox_accepted(){
-    nombreProyecto = ui->nombre->text();
-    nombreMatriz = ui->nombreMatriz->text();
-    descripccion = ui->descipcion->toPlainText();
-    ruta = ui->ruta->text();
+    if(ui->nombre->text().isEmpty() || ui->nombreMatriz->text().isEmpty() || ui->ruta->text().isEmpty()){
+        if(ui->label_5->isVisible()){
+            QMessageBox::critical(this,"Crear Proyecto","Los siguientes Datos son Obligatorios: \n\n Nombre del Proyecto \n Nombre de la Matriz \n Ruta");
+        }
+        else {
+            if(ui->nombreMatriz->text().isEmpty()){
+                QMessageBox::critical(this,"Crear Archivo","El nombre de la matriz no es opccional");
+            }
+            else{
+                nombreProyecto = ui->nombre->text();
+                nombreMatriz = ui->nombreMatriz->text();
+                descripccion = ui->descipcion->toPlainText();
+                ruta = ui->ruta->text();
 
-    filas = ui->filas->value();
-    columnas = ui->columnas->value();
+                filas = ui->filas->value();
+                columnas = ui->columnas->value();
 
-    vector = !ui->vector->isChecked();
-    ok = true;
+                vector = !ui->vector->isChecked();
+                ok = true;
 
-    // creando la carpeta
+                // creando la carpeta
 
-    ruta+="/"+ui->nombre->text();
+                ruta+="/"+ui->nombre->text();
 
-    QDir *directorio = new QDir();
+                QDir *directorio = new QDir();
 
-    directorio->mkpath(ruta);
+                directorio->mkpath(ruta);
 
-    close();
+                close();
+            }
+        }
+    }
+    else{
+        nombreProyecto = ui->nombre->text();
+        nombreMatriz = ui->nombreMatriz->text();
+        descripccion = ui->descipcion->toPlainText();
+        ruta = ui->ruta->text();
+
+        filas = ui->filas->value();
+        columnas = ui->columnas->value();
+
+        vector = !ui->vector->isChecked();
+        ok = true;
+
+        // creando la carpeta
+
+        ruta+="/"+ui->nombre->text();
+
+        QDir *directorio = new QDir();
+
+        directorio->mkpath(ruta);
+
+        close();
+    }
 }
 
 

@@ -23,6 +23,18 @@ void matriz::Crear(int filas, int columnas, QString nombre,bool vector){
     ui->v->setRowCount(this->filas);
     ui->v->setVisible(vector);
     ui->cambioVector->setVisible(vector);
+
+    for(int i=0;i<columnas;i++){
+        this->v<<QString::number(i);
+    }
+
+    ui->m->setVerticalHeaderLabels(this->v);
+
+    for(int i=0;i<filas;i++){
+        this->h<<QString::number(i);
+    }
+
+    ui->m->setHorizontalHeaderLabels(this->h);
 }
 
 void matriz::setCapas(int i){
@@ -79,6 +91,33 @@ QString matriz::getComentario(){
 void matriz::setComentario(QString t)
 {
     this->Comentario = t;
+}
+
+QString matriz::MinH(){
+    return this->h.at(0);
+}
+
+QString matriz::MaxH()
+{
+    return this->h.at(this->h.size()-1);
+}
+
+QString matriz::MinV()
+{
+    return this->v.at(0);
+}
+
+QString matriz::MaxV()
+{
+    return this->v.at(this->v.size()-1);
+}
+
+void matriz::setHL(QStringList l){
+    ui->m->setHorizontalHeaderLabels(l);
+}
+
+void matriz::setVL(QStringList l){
+    ui->m->setVerticalHeaderLabels(l);
 }
 
 
