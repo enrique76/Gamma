@@ -35,6 +35,12 @@ void matriz::Crear(int filas, int columnas, QString nombre,bool vector){
     }
 
     ui->m->setHorizontalHeaderLabels(this->h);
+
+    for(int i=0;i<filas;i++){
+        for(int j=0;j<columnas;j++){
+            ui->m->setItem(i,j,new QTableWidgetItem(0));
+        }
+    }
 }
 
 void matriz::setCapas(int i){
@@ -118,6 +124,20 @@ void matriz::setHL(QStringList l){
 
 void matriz::setVL(QStringList l){
     ui->m->setVerticalHeaderLabels(l);
+}
+
+void matriz::Copy(QTableWidget *t){
+    t->setRowCount(ui->m->rowCount());
+    t->setColumnCount(ui->m->columnCount());
+
+    t->setHorizontalHeaderLabels(this->h);
+    t->setVerticalHeaderLabels(this->v);
+
+    for(int i=0;i<ui->m->rowCount();i++){
+        for(int j=0;j<ui->m->columnCount();j++){
+            t->setItem(i,j,new QTableWidgetItem(ui->m->item(i,j)->text()));
+        }
+    }
 }
 
 

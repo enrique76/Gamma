@@ -73,6 +73,12 @@ private slots:
 
     void on_actionRenombrar_Matrices_triggered();
 
+    void on_actionInformacion_triggered();
+
+    void on_f_valueChanged(int arg1);
+
+    void on_c_valueChanged(int arg1);
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();

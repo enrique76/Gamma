@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->actionEntre_Escalar->setEnabled(false);
     ui->actionTrigonometria->setEnabled(false);
     ui->actionReaolver->setEnabled(false);
-    ui->actionImformacion->setEnabled(false);
+    ui->actionInformacion->setEnabled(false);
     ui->actionEstadistica->setEnabled(false);
     ui->actionInterpolar->setEnabled(false);
     ui->actionExtrapolar->setEnabled(false);
@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->arbol->addAction(ui->actionCopiar);
     ui->arbol->addAction(ui->actionPegar);
     ui->arbol->addAction(ui->actionRenombrar_Etiquetas);
+    ui->arbol->addAction(ui->actionInformacion);
 
     ui->arbol->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -155,7 +156,7 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
         ui->actionEntre_Escalar->setEnabled(true);
         ui->actionTrigonometria->setEnabled(true);
         ui->actionReaolver->setEnabled(true);
-        ui->actionImformacion->setEnabled(true);
+        ui->actionInformacion->setEnabled(true);
         ui->actionEstadistica->setEnabled(true);
         ui->actionInterpolar->setEnabled(true);
         ui->actionExtrapolar->setEnabled(true);
@@ -551,5 +552,36 @@ void MainWindow::on_actionRenombrar_Matrices_triggered(){
     }
 
 
+}
+
+void MainWindow::on_actionInformacion_triggered(){
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->base->setCurrentIndex(1);
+    ui->baseSalidas->setCurrentIndex(2);
+
+    ms.at(ui->baseMatrices->currentIndex())->Copy(ui->tableWidget);
+
+    ui->iNombre->setText(ms.at(ui->baseMatrices->currentIndex())->getNombre());
+    //ui->iRuta->setText(ms.at(ui->baseMatrices->currentIndex()))
+
+    ui->iFilas->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->GetFilas()));
+    ui->iColumnas->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->GetColumnas()));
+
+    ui->iComentario->setText(ms.at(ui->baseMatrices->currentIndex())->getComentario());
+}
+
+
+void MainWindow::on_f_valueChanged(int arg1){
+    //ms.at(ui->baseMatrices->currentIndex())->SetFilas(arg1);
+    qDebug()<<arg1;
+
+
+}
+
+
+void MainWindow::on_c_valueChanged(int arg1)
+{
+    //ms.at(ui->baseMatrices->currentIndex())->SetColumnas(arg1);
+    qDebug()<<arg1;
 }
 

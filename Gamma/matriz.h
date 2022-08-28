@@ -36,6 +36,7 @@ public:
     QString MaxV();
     void setHL(QStringList);
     void setVL(QStringList);
+    void Copy(QTableWidget *);
 
 public:
     Ui::matriz *ui;

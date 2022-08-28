@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1348</width>
-    <height>736</height>
+    <width>1455</width>
+    <height>970</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -28,7 +28,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_3">
        <layout class="QGridLayout" name="gridLayout_10">
@@ -442,7 +442,7 @@ hr { height: 1px; border-width: 0; }
             <item row="0" column="0">
              <widget class="QStackedWidget" name="baseSalidas">
               <property name="currentIndex">
-               <number>1</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="page_2">
                <layout class="QGridLayout" name="gridLayout_12">
@@ -469,6 +469,442 @@ hr { height: 1px; border-width: 0; }
                  <string>GRaficar</string>
                 </property>
                </widget>
+              </widget>
+              <widget class="QWidget" name="page_7">
+               <layout class="QGridLayout" name="gridLayout_18">
+                <item row="0" column="0">
+                 <layout class="QHBoxLayout" name="horizontalLayout_29">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_11">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                      <item>
+                       <widget class="QLabel" name="label_18">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>150</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>150</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">border-image: url(:/new/prefix1/iconos/informacion.png);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_16">
+                        <property name="font">
+                         <font>
+                          <pointsize>20</pointsize>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Informacion</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <item>
+                       <widget class="QGroupBox" name="groupBox_3">
+                        <property name="title">
+                         <string>Informacion</string>
+                        </property>
+                        <layout class="QGridLayout" name="gridLayout_16">
+                         <item row="0" column="0">
+                          <layout class="QHBoxLayout" name="horizontalLayout_17">
+                           <item>
+                            <layout class="QVBoxLayout" name="verticalLayout_7">
+                             <item>
+                              <layout class="QVBoxLayout" name="verticalLayout_6">
+                               <item>
+                                <layout class="QVBoxLayout" name="verticalLayout_5">
+                                 <item>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                                   <item>
+                                    <widget class="QLabel" name="label_20">
+                                     <property name="text">
+                                      <string>Nombre:</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="iNombre">
+                                     <property name="text">
+                                      <string>TextLabel</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                 <item>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                                   <item>
+                                    <widget class="QLabel" name="label_21">
+                                     <property name="text">
+                                      <string>Ruta</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="iRuta">
+                                     <property name="text">
+                                      <string>TextLabel</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                 <item>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                                   <item>
+                                    <widget class="QLabel" name="label_22">
+                                     <property name="text">
+                                      <string>Filas</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="iFilas">
+                                     <property name="text">
+                                      <string>TextLabel</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                 <item>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_15">
+                                   <item>
+                                    <widget class="QLabel" name="label_23">
+                                     <property name="text">
+                                      <string>Columnas</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="iColumnas">
+                                     <property name="text">
+                                      <string>TextLabel</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                                 <item>
+                                  <widget class="QLabel" name="label_34">
+                                   <property name="text">
+                                    <string>Vector</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="iVector">
+                                   <property name="text">
+                                    <string>TextLabel</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="QGroupBox" name="groupBox_6">
+                             <property name="minimumSize">
+                              <size>
+                               <width>180</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>180</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="title">
+                              <string>Comentario</string>
+                             </property>
+                             <layout class="QGridLayout" name="gridLayout_15">
+                              <item row="0" column="0">
+                               <widget class="QTextEdit" name="iComentario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>150</width>
+                                  <height>0</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>150</width>
+                                  <height>150</height>
+                                 </size>
+                                </property>
+                                <property name="readOnly">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QGroupBox" name="groupBox_4">
+                        <property name="title">
+                         <string>Propiedades</string>
+                        </property>
+                        <layout class="QGridLayout" name="gridLayout_17">
+                         <item row="0" column="0">
+                          <layout class="QHBoxLayout" name="horizontalLayout_28">
+                           <item>
+                            <layout class="QVBoxLayout" name="verticalLayout_8">
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_18">
+                               <item>
+                                <widget class="QLabel" name="label_24">
+                                 <property name="text">
+                                  <string>Determinante</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iDeterminante">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_19">
+                               <item>
+                                <widget class="QLabel" name="label_25">
+                                 <property name="text">
+                                  <string>Maximo</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iMaximo">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_20">
+                               <item>
+                                <widget class="QLabel" name="label_33">
+                                 <property name="text">
+                                  <string>Minimo</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iMinimo">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_21">
+                               <item>
+                                <widget class="QLabel" name="label_39">
+                                 <property name="text">
+                                  <string>Tiangular</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="Triangular">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_22">
+                               <item>
+                                <widget class="QLabel" name="label_28">
+                                 <property name="text">
+                                  <string>Sumatoria</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iSumatoria">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QVBoxLayout" name="verticalLayout_9">
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_23">
+                               <item>
+                                <widget class="QLabel" name="label_37">
+                                 <property name="text">
+                                  <string>Media</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iMedia">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_24">
+                               <item>
+                                <widget class="QLabel" name="label_26">
+                                 <property name="text">
+                                  <string>Mediana</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iMediana">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_25">
+                               <item>
+                                <widget class="QLabel" name="label_27">
+                                 <property name="text">
+                                  <string>Moda</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iModa">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_26">
+                               <item>
+                                <widget class="QLabel" name="label_35">
+                                 <property name="text">
+                                  <string>Varianza</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iVarianza">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_27">
+                               <item>
+                                <widget class="QLabel" name="label_38">
+                                 <property name="text">
+                                  <string>Desviacion E:</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLabel" name="iDE">
+                                 <property name="text">
+                                  <string>sd</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                         <item row="0" column="1">
+                          <widget class="QLabel" name="label_64">
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupBox_7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>600</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="title">
+                     <string>Matriz</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_19">
+                     <item row="0" column="0">
+                      <widget class="QTableWidget" name="tableWidget"/>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </widget>
              </widget>
             </item>
@@ -671,7 +1107,7 @@ hr { height: 1px; border-width: 0; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1348</width>
+     <width>1455</width>
      <height>25</height>
     </rect>
    </property>
@@ -709,7 +1145,6 @@ hr { height: 1px; border-width: 0; }
     <addaction name="separator"/>
     <addaction name="actionReaolver"/>
     <addaction name="separator"/>
-    <addaction name="actionImformacion"/>
     <addaction name="separator"/>
     <addaction name="actionEstadistica"/>
     <addaction name="separator"/>
@@ -738,6 +1173,7 @@ hr { height: 1px; border-width: 0; }
     <addaction name="actionCopiar"/>
     <addaction name="actionPegar"/>
     <addaction name="separator"/>
+    <addaction name="actionInformacion"/>
    </widget>
    <addaction name="menuArchivos"/>
    <addaction name="menuVer"/>
@@ -833,7 +1269,7 @@ hr { height: 1px; border-width: 0; }
    <addaction name="separator"/>
    <addaction name="actionTrigonometria"/>
    <addaction name="separator"/>
-   <addaction name="actionImformacion"/>
+   <addaction name="actionInformacion"/>
    <addaction name="separator"/>
    <addaction name="actionInterpolar"/>
    <addaction name="actionExtrapolar"/>
@@ -939,15 +1375,6 @@ hr { height: 1px; border-width: 0; }
    </property>
    <property name="toolTip">
     <string>Resolver</string>
-   </property>
-  </action>
-  <action name="actionImformacion">
-   <property name="icon">
-    <iconset resource="iconos.qrc">
-     <normaloff>:/new/prefix1/iconos/informacion.png</normaloff>:/new/prefix1/iconos/informacion.png</iconset>
-   </property>
-   <property name="text">
-    <string>Imformacion</string>
    </property>
   </action>
   <action name="actionEstadistica">
@@ -1088,6 +1515,15 @@ hr { height: 1px; border-width: 0; }
    </property>
    <property name="text">
     <string>Renombrar Matrices</string>
+   </property>
+  </action>
+  <action name="actionInformacion">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/informacion.png</normaloff>:/new/prefix1/iconos/informacion.png</iconset>
+   </property>
+   <property name="text">
+    <string>Informacion</string>
    </property>
   </action>
  </widget>
