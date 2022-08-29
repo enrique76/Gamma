@@ -79,6 +79,8 @@ private slots:
 
     void on_c_valueChanged(int arg1);
 
+    void on_pushButton_clicked();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();

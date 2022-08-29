@@ -8,11 +8,12 @@
 #include<QMessageBox>
 #include<QDir>
 #include"retiquetas.h"
+#include<time.h>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 
-
+    srand(time(NULL));
 
     // iniciando el proyecto
     ui->ventanaArbol->setVisible(false);
@@ -583,5 +584,26 @@ void MainWindow::on_c_valueChanged(int arg1)
 {
     //ms.at(ui->baseMatrices->currentIndex())->SetColumnas(arg1);
     qDebug()<<arg1;
+}
+
+
+void MainWindow::on_pushButton_clicked(){
+    if(ui->li->value() < ui->ls->value()){
+        int f = ms.at(ui->baseMatrices->currentIndex())->GetFilas();
+        int c = ms.at(ui->baseMatrices->currentIndex())->GetColumnas();
+
+        int aux;
+
+        for(int i=0;i<f;i++){
+            for(int j=0;j<c;j++){
+                aux = ui->li->value() + rand()%(ui->ls->value());
+
+                ms.at(ui->baseMatrices->currentIndex())->AgregarValorMatriz(i,j,QString::number(aux));
+            }
+        }
+    }
+    else{
+        QMessageBox::critical(this,"Error","El limite inferior debe ser mas pequeño que el limite superior");
+    }
 }
 
