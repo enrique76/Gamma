@@ -447,7 +447,7 @@ hr { height: 1px; border-width: 0; }
               <item row="0" column="0">
                <widget class="QStackedWidget" name="baseSalidas">
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="baseSalidasPage1">
                  <layout class="QGridLayout" name="gridLayout_12">
@@ -988,18 +988,15 @@ hr { height: 1px; border-width: 0; }
                               </layout>
                              </widget>
                             </item>
-                            <item>
-                             <spacer name="verticalSpacer">
-                              <property name="orientation">
-                               <enum>Qt::Vertical</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
+                            <item alignment="Qt::AlignHCenter">
+                             <widget class="QTextEdit" name="historialOperaciones">
+                              <property name="maximumSize">
                                <size>
-                                <width>20</width>
-                                <height>40</height>
+                                <width>300</width>
+                                <height>16777215</height>
                                </size>
                               </property>
-                             </spacer>
+                             </widget>
                             </item>
                            </layout>
                           </item>

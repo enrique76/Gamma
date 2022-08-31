@@ -859,6 +859,7 @@ void MainWindow::on_actionEntre_Escalar_triggered(){
     }
 
     int index = ui->baseMatrices->currentIndex();
+    ui->historialOperaciones->clear();
 
     int f = ms.at(index)->GetFilas();
     int c = ms.at(index)->GetColumnas();
@@ -925,12 +926,13 @@ void MainWindow::on_terminarOperaciones_clicked()
 void MainWindow::on_Operaciones_currentChanged(int index){
     if(index == 3){
         ui->MatricesEscalar->clear();
+
         for(int i=0;i<ArbolProyecto->childCount();i++){
 
             ui->MatricesEscalar->addItem(ArbolProyecto->child(i)->text(0));
 
         }
-
+        ui->historialOperaciones->clear();
         int index = ui->baseMatrices->currentIndex();
 
         int f = ms.at(index)->GetFilas();
@@ -997,6 +999,8 @@ void MainWindow::on_MatricesEscalar_activated(int index){
 
 void MainWindow::on_baseSalidas_currentChanged(int arg1){
     if(arg1 == 1){
+        ui->historialOperaciones->clear();
+
         int index = ui->baseMatrices->currentIndex();
 
         int f = ms.at(index)->GetFilas();
@@ -1084,9 +1088,44 @@ void MainWindow::on_pushButton_9_clicked(){
 
     t += "Operacion : "+this->nOperacion;
     t += "\n\n \t\t Ruta : "+m->getRuta();
+    t += "\n\n \t\t Pasos:";
+    t += "\n\n \t\t"+ui->historialOperaciones->toPlainText();
 
     AddHistorial(t);
 
+}
+
+void MainWindow::on_MatricesEscalar_currentIndexChanged(int index)
+{
+//    ui->historialOperaciones->clear();
+
+//    int f = ms.at(index)->GetFilas();
+//    int c = ms.at(index)->GetColumnas();
+
+//    ui->resultado->setRowCount(f);
+//    ui->resultado->setColumnCount(c);
+//    ui->resultadoV->setRowCount(f);
+//    ui->resultadoV->setColumnCount(1);
+
+//    QStringList h,v;
+
+//    h = ms.at(index)->getHL();
+//    v = ms.at(index)->getVL();
+
+//    ui->resultado->setHorizontalHeaderLabels(h);
+//    ui->resultado->setVerticalHeaderLabels(v);
+
+//    ui->resultadoV->setVisible(ms.at(index)->getVector());
+
+//    for(int i=0;i<f;i++){
+//        for(int j=0;j<c;j++){
+//            ui->resultado->setItem(i,j,new QTableWidgetItem(ms.at(index)->GetValor(i,j)));
+//        }
+
+//        if(ms.at(index)->getVector()){
+//            ui->resultadoV->setItem(i,0,new QTableWidgetItem(ms.at(index)->GetValor(i)));
+//        }
+//    }
 }
 
 // operaciones Escalar
@@ -1097,12 +1136,12 @@ void MainWindow::on_masEscalar_clicked(){
 
     InicioProceso();
 
-
+    ui->historialOperaciones->setText(ui->historialOperaciones->toPlainText()+"\n \t >>m + "+QString::number(ui->escalar->value()));
 
     int a = ui->MatricesEscalar->currentIndex();
     double e = ui->escalar->value();
 
-    this->nOperacion = QString::number(e) + " + " + ms.at(a)->getNombre();
+    this->nOperacion = "Suma_Escalar("+ms.at(a)->getNombre()+")";
 
     int f = ui->resultado->rowCount();
     int c = ui->resultado->columnCount();
@@ -1129,10 +1168,12 @@ void MainWindow::on_masEscalar_clicked(){
 void MainWindow::on_menosEscalar_clicked(){
     InicioProceso();
 
+    ui->historialOperaciones->setText(ui->historialOperaciones->toPlainText()+"\n \t >>m - "+QString::number(ui->escalar->value()));
+
     int a = ui->MatricesEscalar->currentIndex();
     double e = ui->escalar->value();
 
-    this->nOperacion =  ms.at(a)->getNombre() + " - " + QString::number(e);
+    this->nOperacion =  "Resta_Escalar("+ms.at(a)->getNombre()+")";
 
     int f = ui->resultado->rowCount();
     int c = ui->resultado->columnCount();
@@ -1161,7 +1202,9 @@ void MainWindow::on_porEscalar_clicked(){
     int a = ui->MatricesEscalar->currentIndex();
     double e = ui->escalar->value();
 
-    this->nOperacion = QString::number(e) + " * " + ms.at(a)->getNombre();
+    ui->historialOperaciones->setText(ui->historialOperaciones->toPlainText()+"\n \t >>m * "+QString::number(ui->escalar->value()));
+
+    this->nOperacion = this->nOperacion =  "Producto_Escalar("+ms.at(a)->getNombre()+")";
 
 
     int f = ui->resultado->rowCount();
@@ -1189,10 +1232,12 @@ void MainWindow::on_sobreEscalar_clicked(){
     if(ui->escalar->value() != 0){
         InicioProceso();
 
+        ui->historialOperaciones->setText(ui->historialOperaciones->toPlainText()+"\n \t >>m / "+QString::number(ui->escalar->value()));
+
         int a = ui->MatricesEscalar->currentIndex();
         double e = ui->escalar->value();
 
-        this->nOperacion =  ms.at(a)->getNombre() + " / " + QString::number(e);
+        this->nOperacion =  "Divicion_Escalar("+ms.at(a)->getNombre()+")";
 
         int f = ui->resultado->rowCount();
         int c = ui->resultado->columnCount();
@@ -1217,6 +1262,9 @@ void MainWindow::on_sobreEscalar_clicked(){
         QMessageBox::critical(this,"Error","No se puede dividir sobre 0");
     }
 }
+
+
+
 
 
 

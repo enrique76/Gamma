@@ -118,6 +118,8 @@ private slots:
 
     void on_pushButton_9_clicked();
 
+    void on_MatricesEscalar_currentIndexChanged(int index);
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();
