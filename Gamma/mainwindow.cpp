@@ -723,6 +723,11 @@ void MainWindow::on_actionInformacion_triggered(){
     ui->iColumnas->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->GetColumnas()));
 
     ui->iComentario->setText(ms.at(ui->baseMatrices->currentIndex())->getComentario());
+
+    //ui->iDeterminante->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->getDeterminante()));
+    ui->iMaximo->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->getMaximo()));
+    ui->iMinimo->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->getMinimo()));
+    ui->iSumatoria->setText(QString::number(ms.at(ui->baseMatrices->currentIndex())->getSumatoria()));
 }
 
 

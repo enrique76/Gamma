@@ -183,4 +183,190 @@ QString matriz::getRuta()
     return this->ruta;
 }
 
+void matriz::setDeterminante(){
+
+//    double *vaux,*nDet,**a;
+//    int nM = 0;
+//    double t = 0;
+
+//    // darles tamaño
+
+//   vaux = new double[this->filas];
+//    nDet = new double[this->filas+1];
+//    a = new double*[this->filas]; // copia
+
+//    for(int i=0;i<this->filas;i++){
+//        a[i] = new double[this->filas];
+//    }
+
+//    double **d,**aux;
+
+//    // darles tamaño
+
+//    d = new double*[this->filas];
+//    aux = new double*[this->filas];
+
+//    for(int i=0;i<this->filas;i++){
+//        d[i] = new double[this->filas + 2];
+//        aux[i] = new double[2];
+//    }
+
+//    // pasar datos
+
+//    for(int i=0;i<this->filas;i++){
+//        for(int j=0;j<this->filas;j++){
+//            a[i][j] = ui->m->item(i,j)->text().toDouble();
+//        }
+//    }
+
+//    // principal
+//    for(int i=0;i<this->filas;i++){
+//        for(int j=0;j<this->filas;j++){
+//            vaux[j] = a[j][i];
+//        }
+
+//        nM++;
+
+//        // declaramos las matrices dinamicas
+
+
+
+//        // aux
+
+//        for(int i=0;i<this->filas;i++){
+//            for(int j=0;j<2;j++){
+//                aux[i][j] = a[i][j];
+//            }
+//        }
+
+//        // d
+
+//        for(int i=0;i<this->filas;i++){
+//            for(int j=0;j<this->filas+2;j++){
+//                if(j < this->filas){
+//                   d[i][j] = a[i][j];
+//                }
+//                else{
+//                    d[i][j] = aux[i][j-this->filas];
+//                }
+//            }
+//        }
+
+//        int z = 0;
+//        double mul = 1;
+//        double p1 = 0,p2 = 0;
+
+//        for(int i=0;i<this->filas;i++){
+//            for(int j=0;j<this->filas;j++){
+//                mul *= d[j][j+z];
+//            }
+
+//            z++;
+//            p1 += mul;
+//            mul = 1;
+//        }
+
+//        z = this->filas+1;
+
+//        for(int i=0;i<this->filas;i++){
+//            for(int j=0;j<this->filas;j++){
+//                mul*=d[j][z];
+//                z--;
+//            }
+
+//            z+=2;
+//            p2+=mul;
+//            mul = 1;
+//        }
+
+//        nDet[nM] = p1 - p2;
+
+//        for(int j=0;j<this->filas;i++){
+//            a[j][i] = vaux[j];
+//        }
+
+//    }
+
+//    // eliminar memoria
+
+//    for(int i=0;i<this->filas;i++){
+//        delete[] d[i];
+//        delete[] aux[i];
+//    }
+
+//    delete[] d;
+//    delete[] aux;
+
+
+
+//    // liberar memoria a
+
+//    for(int i=0;i<this->filas;i++){
+//        delete[] a[i];
+//    }
+
+//    delete[] a;
+
+//    this->determinante = nDet[0];
+
+}
+
+double matriz::getDeterminante(){
+    this->setDeterminante();
+
+    return this->determinante;
+}
+
+void matriz::setMaximo(){
+    this->maximo = ui->m->item(0,0)->text().toDouble();
+
+    for(int i=0;i<this->filas;i++){
+        for(int j=0;j<this->columnas;j++){
+            if(ui->m->item(i,j)->text().toDouble() > this->maximo){
+                this->maximo = ui->m->item(i,j)->text().toDouble();
+            }
+        }
+    }
+}
+
+double matriz::getMaximo(){
+    this->setMaximo();
+
+    return this->maximo;
+}
+
+void matriz::setMinimo(){
+    this->minimo = ui->m->item(0,0)->text().toDouble();
+
+    for(int i=0;i<this->filas;i++){
+        for(int j=0;j<this->columnas;j++){
+            if(ui->m->item(i,j)->text().toDouble() < this->minimo){
+                this->minimo = ui->m->item(i,j)->text().toDouble();
+            }
+        }
+    }
+}
+
+double matriz::getMinimo(){
+    this->setMinimo();
+
+    return this->minimo;
+}
+
+void matriz::setSumatoria(){
+    this->sumatoria = 0;
+
+    for(int i=0;i<this->filas;i++){
+        for(int j=0;i<this->columnas;j++){
+            this->sumatoria += ui->m->item(i,j)->text().toDouble();
+        }
+    }
+}
+
+double matriz::getSumatoria(){
+    this->setSumatoria();
+
+    return this->sumatoria;
+}
+
 

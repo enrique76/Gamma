@@ -43,6 +43,14 @@ public:
     void Copy(QTableWidget *);
     void setRuta(QString);
     QString getRuta();
+    void setDeterminante();
+    double getDeterminante();
+    void setMaximo();
+    double getMaximo();
+    void setMinimo();
+    double getMinimo();
+    void setSumatoria();
+    double getSumatoria();
 
 public:
     Ui::matriz *ui;
@@ -53,6 +61,9 @@ public:
     QString Comentario;
     QStringList h,v;
     QString ruta;
+    double determinante,maximo,minimo,sumatoria,media,mediana,varianza,desviacion;
+    QString Triangualar;
+    QVector<double> moda;
 };
 
 #endif // MATRIZ_H
