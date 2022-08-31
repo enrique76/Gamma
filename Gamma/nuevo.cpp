@@ -100,6 +100,13 @@ void Nuevo::on_buttonBox_accepted(){
 
         directorio->mkpath(ruta);
 
+//        directorio->mkpath(ruta+"/Matrices");
+//        directorio->mkpath(ruta+"/Graficas");
+//        directorio->mkpath(ruta+"/Configuracion");
+//        directorio->mkpath(ruta+"/Operaciones");
+//        directorio->mkpath(ruta+"/Historial");
+
+
         close();
     }
 }

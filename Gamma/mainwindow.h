@@ -6,6 +6,7 @@
 #include "matriz.h"
 #include<QTreeWidgetItem>
 #include<QAction>
+#include<chrono>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void GuardarMatriz(int );
+    void irOperaciones();
+    void irMatrices();
+    void InicioProceso();
+    void Proceso(double);
+    void FinalProceso();
 
 private slots:
     void on_actionArbol_triggered();
@@ -81,6 +88,36 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_actionGuardar_triggered();
+
+
+    void on_actionInterpolar_triggered();
+
+    void on_actionExtrapolar_triggered();
+
+    void on_actionExtras_triggered();
+
+    void on_actionTrigonometria_triggered();
+
+
+    void on_terminarOperaciones_clicked();
+
+    void on_Operaciones_currentChanged(int index);
+
+    void on_masEscalar_clicked();
+
+    void on_MatricesEscalar_activated(int index);
+
+    void on_baseSalidas_currentChanged(int arg1);
+
+    void on_menosEscalar_clicked();
+
+    void on_porEscalar_clicked();
+
+    void on_sobreEscalar_clicked();
+
+    void on_pushButton_9_clicked();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();
@@ -93,5 +130,8 @@ public:
     QVector<matriz *> ms;
     int pos = 0;
     QString nProyecto;
+    std::chrono::system_clock::time_point inicio,final;
+    std::chrono::duration<float> duracion;
+    QString nOperacion;
 };
 #endif // MAINWINDOW_H

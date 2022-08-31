@@ -1,5 +1,6 @@
 #include "matriz.h"
 #include "ui_matriz.h"
+#include<QDir>
 
 matriz::matriz(QWidget *parent) :QWidget(parent),ui(new Ui::matriz){
     ui->setupUi(this);
@@ -23,6 +24,7 @@ void matriz::Crear(int filas, int columnas, QString nombre,bool vector){
     ui->v->setRowCount(this->filas);
     ui->v->setVisible(vector);
     ui->cambioVector->setVisible(vector);
+    this->vector = vector;
 
     for(int i=0;i<columnas;i++){
         this->v<<QString::number(i);
@@ -65,6 +67,10 @@ QString matriz::GetValor(int r, int c){
     return ui->m->item(r,c)->text();
 }
 
+QString matriz::GetValor(int i){
+    return ui->v->item(i,0)->text();
+}
+
 int matriz::GetFilas(){
 return ui->m->rowCount();
 }
@@ -79,6 +85,11 @@ void matriz::SetFilas(int r){
 
 void matriz::SetColumnas(int c){
     ui->m->setColumnCount(c);
+}
+
+bool matriz::getVector()
+{
+    return this->vector;
 }
 
 void matriz::SetNombre(QString t){
@@ -126,6 +137,26 @@ void matriz::setVL(QStringList l){
     ui->m->setVerticalHeaderLabels(l);
 }
 
+QStringList matriz::getHL(){
+    QStringList l;
+
+    for(int i=0;i<ui->m->columnCount();i++){
+        l<<ui->m->horizontalHeaderItem(i)->text();
+    }
+
+    return l;
+}
+
+QStringList matriz::getVL(){
+    QStringList l;
+
+    for(int i=0;i<ui->m->rowCount();i++){
+        l<<ui->m->verticalHeaderItem(i)->text();
+    }
+
+    return l;
+}
+
 void matriz::Copy(QTableWidget *t){
     t->setRowCount(ui->m->rowCount());
     t->setColumnCount(ui->m->columnCount());
@@ -138,6 +169,18 @@ void matriz::Copy(QTableWidget *t){
             t->setItem(i,j,new QTableWidgetItem(ui->m->item(i,j)->text()));
         }
     }
+}
+
+void matriz::setRuta(QString r){
+    this->ruta = r+"/"+this->nombre;
+    QDir *directorio = new QDir();
+
+    directorio->mkpath(this->ruta);
+}
+
+QString matriz::getRuta()
+{
+    return this->ruta;
 }
 
 

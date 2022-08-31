@@ -22,10 +22,12 @@ public:
     void AgregarValorVector(int,QString);
     void CrearRama(QTreeWidgetItem *,QIcon);
     QString GetValor(int,int);
+    QString GetValor(int);
     int GetFilas();
     int GetColumnas();
     void SetFilas(int);
     void SetColumnas(int);
+    bool getVector();
     void SetNombre(QString);
     QString getNombre();
     QString getComentario();
@@ -36,7 +38,11 @@ public:
     QString MaxV();
     void setHL(QStringList);
     void setVL(QStringList);
+    QStringList getHL();
+    QStringList getVL();
     void Copy(QTableWidget *);
+    void setRuta(QString);
+    QString getRuta();
 
 public:
     Ui::matriz *ui;
@@ -46,6 +52,7 @@ public:
     QTreeWidgetItem *rama;
     QString Comentario;
     QStringList h,v;
+    QString ruta;
 };
 
 #endif // MATRIZ_H
