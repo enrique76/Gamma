@@ -472,6 +472,24 @@ hr { height: 1px; border-width: 0; }
                       <property name="currentIndex">
                        <number>3</number>
                       </property>
+                      <property name="elideMode">
+                       <enum>Qt::ElideNone</enum>
+                      </property>
+                      <property name="usesScrollButtons">
+                       <bool>true</bool>
+                      </property>
+                      <property name="documentMode">
+                       <bool>false</bool>
+                      </property>
+                      <property name="tabsClosable">
+                       <bool>false</bool>
+                      </property>
+                      <property name="movable">
+                       <bool>false</bool>
+                      </property>
+                      <property name="tabBarAutoHide">
+                       <bool>false</bool>
+                      </property>
                       <widget class="QWidget" name="tab_2">
                        <attribute name="icon">
                         <iconset resource="iconos.qrc">
@@ -507,15 +525,21 @@ hr { height: 1px; border-width: 0; }
                        <attribute name="title">
                         <string>Entre Escalar</string>
                        </attribute>
-                       <layout class="QGridLayout" name="gridLayout_25">
+                       <layout class="QGridLayout" name="gridLayout_26">
                         <item row="0" column="0">
-                         <layout class="QHBoxLayout" name="horizontalLayout_39">
+                         <layout class="QHBoxLayout" name="horizontalLayout_32">
                           <item>
                            <layout class="QVBoxLayout" name="verticalLayout_14">
                             <item>
                              <layout class="QHBoxLayout" name="horizontalLayout_38">
                               <item>
                                <widget class="QGroupBox" name="groupBox_8">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>100</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
                                 <property name="title">
                                  <string>Matrices</string>
                                 </property>
@@ -528,6 +552,12 @@ hr { height: 1px; border-width: 0; }
                               </item>
                               <item>
                                <widget class="QGroupBox" name="groupBox_10">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>200</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
                                 <property name="title">
                                  <string>Operador  X</string>
                                 </property>
@@ -552,6 +582,12 @@ hr { height: 1px; border-width: 0; }
                             </item>
                             <item>
                              <widget class="QGroupBox" name="groupBox_9">
+                              <property name="maximumSize">
+                               <size>
+                                <width>300</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
                               <property name="title">
                                <string>Operaciones</string>
                               </property>
@@ -954,7 +990,7 @@ hr { height: 1px; border-width: 0; }
                                     </widget>
                                    </item>
                                    <item>
-                                    <widget class="QPushButton" name="Impar">
+                                    <widget class="QPushButton" name="Multiplo">
                                      <property name="minimumSize">
                                       <size>
                                        <width>50</width>
@@ -974,7 +1010,7 @@ hr { height: 1px; border-width: 0; }
                                       </font>
                                      </property>
                                      <property name="text">
-                                      <string>ImPar</string>
+                                      <string>Mul</string>
                                      </property>
                                      <property name="flat">
                                       <bool>true</bool>
@@ -988,14 +1024,29 @@ hr { height: 1px; border-width: 0; }
                               </layout>
                              </widget>
                             </item>
-                            <item alignment="Qt::AlignHCenter">
-                             <widget class="QTextEdit" name="historialOperaciones">
+                            <item>
+                             <widget class="QGroupBox" name="groupBox_11">
                               <property name="maximumSize">
                                <size>
                                 <width>300</width>
                                 <height>16777215</height>
                                </size>
                               </property>
+                              <property name="title">
+                               <string>Historial </string>
+                              </property>
+                              <layout class="QGridLayout" name="gridLayout_25">
+                               <item row="0" column="0">
+                                <widget class="QTextEdit" name="historialOperaciones">
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
                              </widget>
                             </item>
                            </layout>
@@ -1062,32 +1113,138 @@ hr { height: 1px; border-width: 0; }
                         <string>Extras</string>
                        </attribute>
                       </widget>
+                      <widget class="QWidget" name="tab_8">
+                       <attribute name="icon">
+                        <iconset resource="iconos.qrc">
+                         <normaloff>:/new/prefix1/iconos/intersect.png</normaloff>:/new/prefix1/iconos/intersect.png</iconset>
+                       </attribute>
+                       <attribute name="title">
+                        <string>Matriz Global </string>
+                       </attribute>
+                       <widget class="QGroupBox" name="groupBox_14">
+                        <property name="geometry">
+                         <rect>
+                          <x>313</x>
+                          <y>42</y>
+                          <width>731</width>
+                          <height>481</height>
+                         </rect>
+                        </property>
+                        <property name="title">
+                         <string>Matriz</string>
+                        </property>
+                        <layout class="QGridLayout" name="gridLayout_29">
+                         <item row="0" column="0">
+                          <layout class="QHBoxLayout" name="horizontalLayout_35">
+                           <item>
+                            <widget class="QTableWidget" name="MatrizGlobal">
+                             <attribute name="verticalHeaderVisible">
+                              <bool>false</bool>
+                             </attribute>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QTableWidget" name="vGlobal">
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <attribute name="verticalHeaderVisible">
+                              <bool>false</bool>
+                             </attribute>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                       <widget class="QWidget" name="">
+                        <property name="geometry">
+                         <rect>
+                          <x>70</x>
+                          <y>40</y>
+                          <width>175</width>
+                          <height>241</height>
+                         </rect>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_17">
+                         <item>
+                          <layout class="QVBoxLayout" name="verticalLayout_16">
+                           <item>
+                            <widget class="QGroupBox" name="groupBox_13">
+                             <property name="title">
+                              <string>Matrices Utilizadas</string>
+                             </property>
+                             <layout class="QGridLayout" name="gridLayout_27">
+                              <item row="0" column="0">
+                               <widget class="QLineEdit" name="MatricesUtilizadas"/>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QGroupBox" name="groupBox_12">
+                             <property name="title">
+                              <string>Matrices para Utilizar</string>
+                             </property>
+                             <layout class="QGridLayout" name="gridLayout_28">
+                              <item row="0" column="0">
+                               <widget class="QComboBox" name="MatricesParaUtilizar"/>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_33">
+                             <item>
+                              <widget class="QPushButton" name="AgregarMatrice">
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="iconos.qrc">
+                                 <normaloff>:/new/prefix1/iconos/anadir.png</normaloff>:/new/prefix1/iconos/anadir.png</iconset>
+                               </property>
+                               <property name="flat">
+                                <bool>true</bool>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="QuitarMatrice">
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="iconos.qrc">
+                                 <normaloff>:/new/prefix1/iconos/menos.png</normaloff>:/new/prefix1/iconos/menos.png</iconset>
+                               </property>
+                               <property name="flat">
+                                <bool>true</bool>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="pushButton_11">
+                           <property name="text">
+                            <string>Crear MAtriz Globar</string>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="iconos.qrc">
+                             <normaloff>:/new/prefix1/iconos/intersect.png</normaloff>:/new/prefix1/iconos/intersect.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </widget>
                      </widget>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_40">
-                      <item>
-                       <widget class="QPushButton" name="pushButton_10">
-                        <property name="text">
-                         <string>Guardar</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_9">
-                        <property name="text">
-                         <string>Pasar</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="terminarOperaciones">
-                        <property name="text">
-                         <string>Continuar</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
                     </item>
                    </layout>
                   </item>
@@ -1531,6 +1688,31 @@ hr { height: 1px; border-width: 0; }
                 </widget>
                </widget>
               </item>
+              <item row="1" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_40">
+                <item>
+                 <widget class="QPushButton" name="pushButton_10">
+                  <property name="text">
+                   <string>Guardar</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_9">
+                  <property name="text">
+                   <string>Pasar</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="terminarOperaciones">
+                  <property name="text">
+                   <string>Continuar</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
              </layout>
             </widget>
            </widget>
@@ -1726,7 +1908,23 @@ hr { height: 1px; border-width: 0; }
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_30">
         <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QProgressBar" name="progressBar">
+          <property name="maximum">
+           <number>100</number>
+          </property>
           <property name="value">
            <number>0</number>
           </property>
@@ -1737,7 +1935,7 @@ hr { height: 1px; border-width: 0; }
            <bool>false</bool>
           </property>
           <property name="format">
-           <string>%p.00%</string>
+           <string>%p.00000%</string>
           </property>
          </widget>
         </item>
@@ -1780,19 +1978,6 @@ hr { height: 1px; border-width: 0; }
            <string/>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <widget class="QLabel" name="estado">
@@ -1861,6 +2046,7 @@ hr { height: 1px; border-width: 0; }
     <addaction name="actionExtras"/>
     <addaction name="separator"/>
     <addaction name="actionLaTex"/>
+    <addaction name="actionMatriz_Global"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
@@ -1969,6 +2155,7 @@ hr { height: 1px; border-width: 0; }
    <addaction name="actionEstadistica"/>
    <addaction name="actionGaficar"/>
    <addaction name="separator"/>
+   <addaction name="actionMatriz_Global"/>
    <addaction name="actionEntre_Matrices"/>
    <addaction name="actionEntre_Escalar"/>
    <addaction name="separator"/>
@@ -2229,6 +2416,15 @@ hr { height: 1px; border-width: 0; }
    </property>
    <property name="text">
     <string>Informacion</string>
+   </property>
+  </action>
+  <action name="actionMatriz_Global">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/intersect.png</normaloff>:/new/prefix1/iconos/intersect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Matriz Global</string>
    </property>
   </action>
  </widget>

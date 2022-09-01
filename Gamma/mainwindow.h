@@ -25,6 +25,7 @@ public:
     void InicioProceso();
     void Proceso(double);
     void FinalProceso();
+    void MatrizGlobal();
 
 private slots:
     void on_actionArbol_triggered();
@@ -119,6 +120,28 @@ private slots:
     void on_pushButton_9_clicked();
 
     void on_MatricesEscalar_currentIndexChanged(int index);
+
+    void on_actionMatriz_Global_triggered();
+
+    void on_Operaciones_tabBarClicked(int index);
+
+    void on_AgregarMatrice_clicked();
+
+    void on_QuitarMatrice_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_elevadoEscalar_clicked();
+
+    void on_Escalarelevado_clicked();
+
+    void on_EscalarMenos_clicked();
+
+    void on_EscalarSobre_clicked();
+
+    void on_Par_clicked();
 
 public:
     Ui::MainWindow *ui;

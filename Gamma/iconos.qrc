@@ -58,5 +58,8 @@
         <file>iconos/run.png</file>
         <file>iconos/historial.png</file>
         <file>iconos/barra-de-desplazamiento.png</file>
+        <file>iconos/intersect.png</file>
+        <file>iconos/anadir.png</file>
+        <file>iconos/menos.png</file>
     </qresource>
 </RCC>
