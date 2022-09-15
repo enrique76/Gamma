@@ -2176,8 +2176,8 @@ hr { height: 1px; border-width: 0; }
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>391</width>
-               <height>305</height>
+               <width>435</width>
+               <height>311</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_14">
@@ -2443,7 +2443,7 @@ hr { height: 1px; border-width: 0; }
      <x>0</x>
      <y>0</y>
      <width>1568</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivos">
@@ -2596,10 +2596,9 @@ hr { height: 1px; border-width: 0; }
     <bool>false</bool>
    </attribute>
    <addaction name="actionNuevo_Proyecto"/>
+   <addaction name="actionAbrir"/>
    <addaction name="actionNuevo_Archivo"/>
    <addaction name="actionImportar"/>
-   <addaction name="actionAbrir"/>
-   <addaction name="actionAbri_Archivo"/>
    <addaction name="separator"/>
    <addaction name="actionGuardar"/>
    <addaction name="separator"/>

@@ -14,6 +14,8 @@
 #include<QFile>
 #include<QFontDialog>
 #include<QColorDialog>
+#include<QFileDialog>
+#include<QDir>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -21,24 +23,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     srand(time(NULL));
 
     // iniciando el proyecto
-    ui->ventanaArbol->setVisible(false);
-    ui->terminal->setVisible(false);
-    ui->actionEntre_Matrices->setEnabled(false);
-    ui->actionEntre_Escalar->setEnabled(false);
-    ui->actionTrigonometria->setEnabled(false);
-    ui->actionReaolver->setEnabled(false);
-    ui->actionInformacion->setEnabled(false);
-    ui->actionEstadistica->setEnabled(false);
-    ui->actionInterpolar->setEnabled(false);
-    ui->actionExtrapolar->setEnabled(false);
-    ui->actionGaficar->setEnabled(false);
-    ui->actionExtras->setEnabled(false);
-    ui->actionGuardar->setEnabled(false);
-    ui->actionAbri_Archivo->setEnabled(false);
-    ui->actionAbrir->setEnabled(false);
-    ui->actionImportar->setEnabled(false);
-    ui->actionLaTex->setEnabled(false);
-    ui->actionNuevo_Archivo->setEnabled(false);
+
+    Inicio();
 
     // arbol
 
@@ -100,121 +86,148 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::Inicio(){
+    ui->ventanaArbol->setVisible(false);
+    ui->terminal->setVisible(false);
+    ui->actionEntre_Matrices->setEnabled(false);
+    ui->actionEntre_Escalar->setEnabled(false);
+    ui->actionTrigonometria->setEnabled(false);
+    ui->actionReaolver->setEnabled(false);
+    ui->actionInformacion->setEnabled(false);
+    ui->actionEstadistica->setEnabled(false);
+    ui->actionInterpolar->setEnabled(false);
+    ui->actionExtrapolar->setEnabled(false);
+    ui->actionGaficar->setEnabled(false);
+    ui->actionExtras->setEnabled(false);
+    ui->actionGuardar->setEnabled(false);
+    ui->actionAbri_Archivo->setEnabled(false);
+    ui->actionImportar->setEnabled(false);
+    ui->actionLaTex->setEnabled(false);
+    ui->actionNuevo_Archivo->setEnabled(false);
+    ui->actionMatriz_Global->setEnabled(false);
+    ui->actionMatriz_de_Rigidez->setEnabled(false);
+    ui->actionFunete->setEnabled(false);
+    ui->actionColor->setEnabled(false);
+}
+
+void MainWindow::Final(){
+    ui->ventanaArbol->setVisible(true);
+    ui->actionEntre_Matrices->setEnabled(true);
+    ui->actionEntre_Escalar->setEnabled(true);
+    ui->actionTrigonometria->setEnabled(true);
+    ui->actionReaolver->setEnabled(true);
+    ui->actionInformacion->setEnabled(true);
+    ui->actionEstadistica->setEnabled(true);
+    ui->actionInterpolar->setEnabled(true);
+    ui->actionExtrapolar->setEnabled(true);
+    ui->actionGaficar->setEnabled(true);
+    ui->actionExtras->setEnabled(true);
+    ui->actionGuardar->setEnabled(true);
+    ui->actionAbri_Archivo->setEnabled(true);
+    ui->actionImportar->setEnabled(true);
+    ui->actionLaTex->setEnabled(true);
+    ui->actionNuevo_Archivo->setEnabled(true);
+    ui->actionMatriz_Global->setEnabled(true);
+    ui->actionMatriz_de_Rigidez->setEnabled(true);
+    ui->actionFunete->setEnabled(true);
+    ui->actionColor->setEnabled(true);
+
+
+}
+
 void MainWindow::GuardarMatriz(int z){
 
-    if(ms.at(z)->getVector()){
-        QFile a(ms.at(z)->getRuta()+"/"+ms.at(z)->getNombre()+".txt");
-        QFile v(ms.at(z)->getRuta()+"/v.txt");
-        QFile hl(ms.at(z)->getRuta()+"/hl.txt");
-        QFile vl(ms.at(z)->getRuta()+"/vl.txt");
+    QFile a(ms.at(z)->getRuta()+"/"+ms.at(z)->getNombre()+".txt");
+    QFile hl(ms.at(z)->getRuta()+"/hl.txt");
+    QFile vl(ms.at(z)->getRuta()+"/vl.txt");
+    QFile cm(ms.at(z)->getRuta()+"/mColor.txt");
 
-        a.open(QFile::WriteOnly | QFile::Text);
+
+    hl.open(QFile::WriteOnly | QFile::Text);
+    vl.open(QFile::WriteOnly | QFile::Text);
+    a.open(QFile::WriteOnly | QFile::Text);
+    cm.open(QFile::WriteOnly | QFile::Text);
+
+
+    QTextStream out(&a);
+    QTextStream outh(&hl);
+    QTextStream outv(&vl);
+    QTextStream outCM(&cm);
+
+
+    QString texto;
+    QString textoCM;
+
+
+    QStringList H,V;
+
+    H = ms.at(z)->getHL();
+    V = ms.at(z)->getVL();
+
+    for(int i=0;i<ms.at(z)->GetFilas();i++){
+        for(int j=0;j<ms.at(z)->GetColumnas();j++){
+            texto += ms.at(z)->GetValor(i,j)+",";
+            textoCM += ms.at(z)->getColor(i,j)+",";
+        }
+
+        texto += "\n";
+        out<<texto;
+        texto.clear();
+
+        textoCM += "\n";
+        outCM<<textoCM;
+        textoCM.clear();
+    }
+
+    a.flush();
+    a.close();
+    cm.flush();
+    cm.close();
+
+    for(int i=0;i<H.size();i++){
+        outh<<H.at(i)+",";
+    }
+
+    hl.flush();
+    hl.close();
+
+    for(int i=0;i<V.size();i++){
+        outv<<V.at(i)+",";
+    }
+
+    vl.flush();
+    vl.close();
+
+    if(ms.at(z)->getVector()){
+
+        QFile v(ms.at(z)->getRuta()+"/v.txt");
+        QFile cv(ms.at(z)->getRuta()+"/vColor.txt");
+
+
+
         v.open(QFile::WriteOnly | QFile::Text);
-        hl.open(QFile::WriteOnly | QFile::Text);
-        vl.open(QFile::WriteOnly | QFile::Text);
+        cv.open(QFile::WriteOnly | QFile::Text);
 
         //qDebug()<<a.fileName();
-
-        QTextStream out(&a);
         QTextStream out2(&v);
-        QTextStream outh(&hl);
-        QTextStream outv(&vl);
+        QTextStream outCV(&cv);
 
-        QString texto;
+        QString textoCV;
         QString texto2;
-        QStringList H,V;
-
-        H = ms.at(z)->getHL();
-        V = ms.at(z)->getVL();
-
-
-        //qDebug()<<H;
-        //qDebug()<<V;
 
         for(int i=0;i<ms.at(z)->GetFilas();i++){
-            for(int j=0;j<ms.at(z)->GetColumnas();j++){
-                texto += ms.at(z)->GetValor(i,j)+",";
-            }
-
             texto2 += ms.at(z)->GetValor(i)+",";
-
-            texto += "\n";
-            out<<texto;
             out2<<texto2;
 
-            texto.clear();
+            textoCV += ms.at(z)->getColor(i,0)+",";
+            outCV <<textoCV;
         }
 
         v.flush();
         v.close();
-        a.flush();
-        a.close();
-
-        for(int i=0;i<H.size();i++){
-            outh<<H.at(i)+",";
-        }
-
-        hl.flush();
-        hl.close();
-
-        for(int i=0;i<V.size();i++){
-            outv<<V.at(i)+",";
-        }
-
-        vl.flush();
-        vl.close();
+        cv.flush();
+        cv.close();
     }
-    else{
-        QFile a(ms.at(z)->getRuta()+"/"+ms.at(z)->getNombre()+".txt");
-        QFile hl(ms.at(z)->getRuta()+"/hl.txt");
-        QFile vl(ms.at(z)->getRuta()+"/vl.txt");
-
-        a.open(QFile::WriteOnly | QFile::Text);
-        hl.open(QFile::WriteOnly | QFile::Text);
-        vl.open(QFile::WriteOnly | QFile::Text);
-
-        //qDebug()<<a.fileName();
-
-        QTextStream out(&a);
-        QTextStream outh(&hl);
-        QTextStream outv(&vl);
-
-        QString texto;
-        QStringList H,V;
-
-        H = ms.at(z)->getHL();
-        V = ms.at(z)->getVL();
-
-        for(int i=0;i<ms.at(z)->GetFilas();i++){
-            for(int j=0;j<ms.at(z)->GetColumnas();j++){
-                texto += ms.at(z)->GetValor(i,j)+",";
-            }
-
-            texto += "\n";
-            out<<texto;
-
-            texto.clear();
-        }
-
-        a.flush();
-        a.close();
-
-        for(int i=0;i<H.size();i++){
-            outh<<H.at(i)+",";
-        }
-
-        hl.flush();
-        hl.close();
-
-        for(int i=0;i<V.size();i++){
-            outv<<V.at(i)+",";
-        }
-
-        vl.flush();
-        vl.close();
-    }
-
-
 }
 
 void MainWindow::irOperaciones()
@@ -261,6 +274,91 @@ void MainWindow::on_actionArbol_triggered(){
     //ui->ventanaArbol->setVisible(!ui->arbol->isVisible());
 }
 
+// abrir proyecto
+
+void MainWindow::on_actionAbrir_triggered(){
+    this->ruta = QFileDialog::getExistingDirectory(this,"Abrir Proyecto",QDir::homePath());
+
+    QFile r(this->ruta);
+
+    r.open(QFile::WriteOnly);
+
+    if(r.exists()){
+        QStringList cn1 = QDir(this->ruta).entryList();
+
+        if(cn1.contains("Matrices")){
+            QStringList cn2 = QDir(this->ruta+"/Matrices").entryList();
+
+            // MATRICES PROYECTO/MATRICES/A
+
+            irMatrices();
+            Final();
+
+            for(int i=2;i<cn2.size();i++){
+                qDebug()<<"\n\n"<<cn2.at(i)<<" \t "<<i-2;
+
+
+
+                    QFile m(this->ruta+"/Matrices/"+cn2.at(i)+"/"+cn2.at(i)+".txt");
+
+                    m.open(QFile::ReadOnly | QFile::Text);
+
+
+
+                    QString tm = m.readAll();
+
+                    int f = tm.count("\n");
+                    int c = (tm.count(",")/f);
+
+                    matriz *mc = new matriz();
+
+                    mc->Crear(f,c,cn2.at(i),false);
+
+                    int aux = 0 ;
+
+                    tm.replace("\n",",");
+
+                    QStringList t = tm.split(",");
+
+                    qDebug()<<t;
+
+                    for(int iF=0;iF<f;iF++){
+                        for(int iC=0;iC<c;iC++){
+                            mc->AgregarValorMatriz(iF,iC,t.at(aux));
+                            aux++;
+                        }
+                    }
+
+                    // vector
+
+                    // hl
+
+                    // vl
+
+                    // mc
+
+                    // vc
+
+                    ms.push_back(mc);
+
+                    ui->baseMatrices->addTab(mc,mc->getNombre());
+
+
+                    QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+
+                    s->setText(0,mc->getNombre());
+                    s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+            }
+
+
+            ui->baseMatrices->setCurrentIndex(0);
+        }
+    }
+    else{
+        QMessageBox::critical(this,"Abrir","La carpeta no tiene todo lo necesario \n para iniciar un proyecto Gamma");
+    }
+}
+
 // nuevo proyecto
 void MainWindow::on_actionNuevo_Proyecto_triggered(){
     Nuevo n(this);
@@ -273,8 +371,9 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 
     if(n.ok){
 
-//        ArbolProyecto->setText(0,n.nombreProyecto);
-//        ArbolProyecto->setIcon(0,QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
+
+        ui->baseMatrices->clear();
+        ms.clear();
 
         QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
 
@@ -315,23 +414,7 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
 
 
 
-        ui->ventanaArbol->setVisible(true);
-        ui->arbol->setVisible(true);
-        ui->actionEntre_Matrices->setEnabled(true);
-        ui->actionEntre_Escalar->setEnabled(true);
-        ui->actionTrigonometria->setEnabled(true);
-        ui->actionReaolver->setEnabled(true);
-        ui->actionInformacion->setEnabled(true);
-        ui->actionEstadistica->setEnabled(true);
-        ui->actionInterpolar->setEnabled(true);
-        ui->actionExtrapolar->setEnabled(true);
-        ui->actionGaficar->setEnabled(true);
-        ui->actionExtras->setEnabled(true);
-        ui->actionGuardar->setEnabled(true);
-        ui->actionGuardar_como->setEnabled(true);
-        ui->actionNuevo_Archivo->setEnabled(true);
-        ui->actionImportar->setEnabled(true);
-        ui->actionNuevo_Proyecto->setEnabled(false);
+        Final();
 
         ui->stackedWidget->setCurrentIndex(1);
 
@@ -1153,6 +1236,8 @@ void MainWindow::on_pushButton_9_clicked(){
 
         m->Crear(ui->resultado->rowCount(),ui->resultado->columnCount(),this->nOperacion,ui->resultadoV->isVisible());
 
+        //m->setComentario(ui->historial->toPlainText());
+
         m->setRuta(this->ruta+"/Operaciones");
 
         this->nOperacion = "Escalar";
@@ -1221,6 +1306,7 @@ void MainWindow::on_pushButton_9_clicked(){
         bool v = ui->vResultado_entre_Matrices->isVisible();
 
         m->Crear(f,c,this->nOperacion,v);
+        //m->setComentario(ui->historialOperacionesMatriz->toPlainText());
 
         // agregar datos
 
@@ -1696,6 +1782,8 @@ void MainWindow::VerBotonesOperaciones(bool v){
     ui->pushButton_9->setVisible(v);
 }
 
+
+
 void MainWindow::on_AgregarMatrice_clicked(){
     if(!ui->MatricesUtilizadas->text().contains(ui->MatricesParaUtilizar->currentText())){
         ui->MatricesUtilizadas->setText(ui->MatricesUtilizadas->text()+ui->MatricesParaUtilizar->currentText()+",");
@@ -2083,4 +2171,7 @@ void MainWindow::on_actionColor_triggered(){
 
     }
 }
+
+
+
 

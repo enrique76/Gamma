@@ -27,6 +27,8 @@ public:
     void FinalProceso();
     void MatrizGlobal();
     void VerBotonesOperaciones(bool);
+    void Inicio();
+    void Final();
 
 private slots:
     void on_actionArbol_triggered();
@@ -161,6 +163,8 @@ private slots:
     void on_actionFunete_triggered();
 
     void on_actionColor_triggered();
+
+    void on_actionAbrir_triggered();
 
 public:
     Ui::MainWindow *ui;

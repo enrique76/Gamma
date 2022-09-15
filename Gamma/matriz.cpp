@@ -411,6 +411,10 @@ QString matriz::getColor(int i, int j){
     return ui->m->item(i,j)->background().color().name();
 }
 
+QString matriz::getFuente(int i, int j){
+    return ui->m->item(i,j)->font().toString();
+}
+
 void matriz::on_m_itemEntered(QTableWidgetItem *item)
 {
     its.push_back(item);
