@@ -81,10 +81,15 @@ return ui->m->columnCount();
 
 void matriz::SetFilas(int r){
     ui->m->setRowCount(r);
+    this->filas = r;
+    if(this->getVector()){
+        ui->v->setRowCount(r);
+    }
 }
 
 void matriz::SetColumnas(int c){
     ui->m->setColumnCount(c);
+    this->columnas = c;
 }
 
 bool matriz::getVector()
@@ -369,4 +374,51 @@ double matriz::getSumatoria(){
     return this->sumatoria;
 }
 
+void matriz::setFuente(QFont f){
+    for(int i=0;i<this->GetFilas();i++){
+        for(int j=0;j<this->GetColumnas();j++){
+            ui->m->item(i,j)->setFont(f);
+        }
+
+        if(this->getVector()){
+            ui->v->item(i,0)->setFont(f);
+        }
+    }
+}
+
+void matriz::setColor(QColor c){
+    if(its.size() == 0){
+        for(int i=0;i<this->GetFilas();i++){
+            for(int j=0;j<this->GetColumnas();j++){
+                ui->m->item(i,j)->setBackground(QBrush(c));
+            }
+
+            if(this->getVector()){
+                ui->v->item(i,0)->setBackground(QBrush(c));
+            }
+        }
+    }
+    else{
+        for(int i=0;i<its.size();i++){
+            its.at(i)->setBackground(QBrush(c));
+        }
+    }
+
+
+}
+
+QString matriz::getColor(int i, int j){
+    return ui->m->item(i,j)->background().color().name();
+}
+
+void matriz::on_m_itemEntered(QTableWidgetItem *item)
+{
+    its.push_back(item);
+}
+
+
+void matriz::on_m_cellClicked(int row, int column)
+{
+    its.clear();
+}
 

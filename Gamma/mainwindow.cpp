@@ -12,6 +12,8 @@
 #include<chrono>
 #include<QTextStream>
 #include<QFile>
+#include<QFontDialog>
+#include<QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -512,6 +514,7 @@ void MainWindow::on_arbol_itemDoubleClicked(QTreeWidgetItem *item, int column)
     else if(item == Operaciones){
         irOperaciones();
         ui->Operaciones->setCurrentIndex(0);
+        VerBotonesOperaciones(false);
     }
 
 
@@ -734,7 +737,7 @@ void MainWindow::on_actionInformacion_triggered(){
 
 void MainWindow::on_f_valueChanged(int arg1){
     //ms.at(ui->baseMatrices->currentIndex())->SetFilas(arg1);
-    qDebug()<<arg1;
+    //qDebug()<<arg1;
 
 
 }
@@ -743,7 +746,7 @@ void MainWindow::on_f_valueChanged(int arg1){
 void MainWindow::on_c_valueChanged(int arg1)
 {
     //ms.at(ui->baseMatrices->currentIndex())->SetColumnas(arg1);
-    qDebug()<<arg1;
+    //qDebug()<<arg1;
 }
 
 // Amarillo - Valores Aleatorios
@@ -849,29 +852,53 @@ void MainWindow::on_actionGuardar_triggered(){
     FinalProceso();
 }
 
+void MainWindow::on_f_editingFinished()
+{
+    ms.at(ui->baseMatrices->currentIndex())->SetFilas(ui->f->value());
+}
+
+
+void MainWindow::on_c_editingFinished()
+{
+    ms.at(ui->baseMatrices->currentIndex())->SetColumnas(ui->c->value());
+}
+
 
 // Operaciones
 
 
 void MainWindow::on_actionEstadistica_triggered(){
     irOperaciones();
-
+    VerBotonesOperaciones(false);
     ui->Operaciones->setCurrentIndex(0);
 }
 
 void MainWindow::on_actionGaficar_triggered()
 {
    irOperaciones();
+   VerBotonesOperaciones(false);
    ui->Operaciones->setCurrentIndex(1);
 }
 
 void MainWindow::on_actionEntre_Matrices_triggered(){
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(2);
+
+    ui->MatricesParaUtilizarMatriz->clear();
+    ui->MatricesUtilizadasMatris->clear();
+
+    for(int i=0;i<ArbolProyecto->childCount();i++){
+
+        ui->MatricesParaUtilizarMatriz->addItem(ArbolProyecto->child(i)->text(0));
+
+    }
+    ui->historialOperacionesMatriz->clear();
 }
 
 void MainWindow::on_actionEntre_Escalar_triggered(){
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(3);
     ui->MatricesEscalar->clear();
     for(int i=0;i<ArbolProyecto->childCount();i++){
@@ -918,32 +945,43 @@ void MainWindow::on_actionEntre_Escalar_triggered(){
 void MainWindow::on_actionTrigonometria_triggered()
 {
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(4);
 }
 
 void MainWindow::on_actionInterpolar_triggered()
 {
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(5);
 }
 
 void MainWindow::on_actionExtrapolar_triggered()
 {
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(6);
 }
 
 void MainWindow::on_actionExtras_triggered()
 {
     irOperaciones();
+    VerBotonesOperaciones(true);
     ui->Operaciones->setCurrentIndex(7);
 }
 
 void MainWindow::on_actionMatriz_Global_triggered(){
     irOperaciones();
+    VerBotonesOperaciones(false);
     ui->Operaciones->setCurrentIndex(8);
 
     MatrizGlobal();
+}
+
+void MainWindow::on_actionMatriz_de_Rigidez_triggered(){
+    irOperaciones();
+    VerBotonesOperaciones(true);
+    ui->Operaciones->setCurrentIndex(9);
 }
 
 void MainWindow::on_terminarOperaciones_clicked()
@@ -952,7 +990,27 @@ void MainWindow::on_terminarOperaciones_clicked()
 }
 
 void MainWindow::on_Operaciones_tabBarClicked(int index){
-    if(index == 3){
+    if(index == 0){ // probabilidad y estadistica
+        VerBotonesOperaciones(false);
+    }
+    else if(index == 1){ // grafica
+        VerBotonesOperaciones(false);
+    }
+    else if(index == 2){ // entre matrices
+        VerBotonesOperaciones(true);
+        ui->MatricesParaUtilizarMatriz->clear();
+        ui->MatricesUtilizadasMatris->clear();
+
+        for(int i=0;i<ArbolProyecto->childCount();i++){
+
+            ui->MatricesParaUtilizarMatriz->addItem(ArbolProyecto->child(i)->text(0));
+
+        }
+        ui->historialOperacionesMatriz->clear();
+
+    }
+    else if(index == 3){ // escalar
+        VerBotonesOperaciones(true);
         ui->MatricesEscalar->clear();
 
         for(int i=0;i<ArbolProyecto->childCount();i++){
@@ -991,8 +1049,26 @@ void MainWindow::on_Operaciones_tabBarClicked(int index){
             }
         }
     }
-    else if(index == 8){
+    else if(index == 4){ // trigonometria
+        VerBotonesOperaciones(true);
+
+    }
+    else if(index == 5){ // interpolacion
+        VerBotonesOperaciones(true);
+
+    }
+    else if(index == 6){ // extrapolacion
+        VerBotonesOperaciones(true);
+    }
+    else if(index == 7){ // extras
+        VerBotonesOperaciones(true);
+    }
+    else if(index == 8){ // matriz global
         MatrizGlobal();
+        VerBotonesOperaciones(false);
+    }
+    else if(index == 9){ // matrizz de rigidez
+        VerBotonesOperaciones(false);
     }
 }
 
@@ -1070,63 +1146,122 @@ void MainWindow::on_baseSalidas_currentChanged(int arg1){
 
 void MainWindow::on_pushButton_9_clicked(){
 
-    irMatrices();
+    if(ui->Operaciones->currentIndex() == 3){
+        irMatrices();
 
-    matriz *m = new matriz();
+        matriz *m = new matriz();
 
-    m->Crear(ui->resultado->rowCount(),ui->resultado->columnCount(),this->nOperacion,ui->resultadoV->isVisible());
+        m->Crear(ui->resultado->rowCount(),ui->resultado->columnCount(),this->nOperacion,ui->resultadoV->isVisible());
 
-    m->setRuta(this->ruta+"/Operaciones");
+        m->setRuta(this->ruta+"/Operaciones");
 
+        this->nOperacion = "Escalar";
 
+        ui->f->setValue(ui->resultado->rowCount());
+        ui->c->setValue(ui->resultado->columnCount());
 
-    ui->f->setValue(ui->resultado->rowCount());
-    ui->c->setValue(ui->resultado->columnCount());
+        QStringList h,v;
 
-    QStringList h,v;
-
-    for(int i=0;i<ui->resultado->rowCount();i++){
-        h << ui->resultado->horizontalHeaderItem(i)->text();
-    }
-
-    m->setHL(h);
-
-    for(int i=0;i<ui->resultado->columnCount();i++){
-        v << ui->resultado->verticalHeaderItem(i)->text();
-    }
-
-    m->setVL(v);
-
-    for(int i=0;i<ui->resultado->rowCount();i++){
-        for(int j=0;j<ui->resultado->columnCount();j++){
-            m->AgregarValorMatriz(i,j,ui->resultado->item(i,j)->text());
+        for(int i=0;i<ui->resultado->rowCount();i++){
+            h << ui->resultado->horizontalHeaderItem(i)->text();
         }
 
-        if(ui->resultadoV->isVisible()){
-            m->AgregarValorVector(i,ui->resultadoV->item(i,0)->text());
+        m->setHL(h);
+
+        for(int i=0;i<ui->resultado->columnCount();i++){
+            v << ui->resultado->verticalHeaderItem(i)->text();
         }
+
+        m->setVL(v);
+
+        for(int i=0;i<ui->resultado->rowCount();i++){
+            for(int j=0;j<ui->resultado->columnCount();j++){
+                m->AgregarValorMatriz(i,j,ui->resultado->item(i,j)->text());
+            }
+
+            if(ui->resultadoV->isVisible()){
+                m->AgregarValorVector(i,ui->resultadoV->item(i,0)->text());
+            }
+        }
+
+
+
+        ui->baseMatrices->addTab(m,nOperacion);
+        ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
+
+        // Agregar a Arbol
+
+        QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+
+        s->setText(0,this->nOperacion);
+        s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+
+        QString t;
+
+        t += "Operacion : "+this->nOperacion;
+        t += "\n\n \t\t Ruta : "+m->getRuta();
+        t += "\n\n \t\t Pasos:";
+        t += "\n\n \t\t"+ui->historialOperaciones->toPlainText();
+
+        AddHistorial(t);
+
+        m->setComentario(t);
+
+        ms.push_back(m);
+    }
+    else if(ui->Operaciones->currentIndex() == 2){
+        irMatrices();
+
+        this->nOperacion = "Entre_Matrices";
+
+        matriz *m = new matriz();
+
+        int f = ui->mResultado_entre_Matrices->rowCount();
+        int c = ui->mResultado_entre_Matrices->columnCount();
+        bool v = ui->vResultado_entre_Matrices->isVisible();
+
+        m->Crear(f,c,this->nOperacion,v);
+
+        // agregar datos
+
+        for(int i=0;i<f;i++){
+            for(int j=0;j<c;j++){
+                m->AgregarValorMatriz(i,j,ui->mResultado_entre_Matrices->item(i,j)->text());
+            }
+
+            // verctor
+
+            if(v){
+                m->AgregarValorVector(i,ui->vResultado_entre_Matrices->item(i,0)->text());
+            }
+        }
+
+
+
+        ui->baseMatrices->addTab(m,this->nOperacion);
+        ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
+
+        // agregar al arbol
+
+        QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+        s->setText(0,this->nOperacion);
+        s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+
+        QString t;
+
+        t += "Operacion : "+this->nOperacion;
+        t += "\n\n \t\t Ruta : "+m->getRuta();
+        t += "\n\n \t\t Pasos:";
+        t += "\n\n \t\t"+ui->historialOperacionesMatriz->toPlainText();
+
+        AddHistorial(t);
+
+        m->setComentario(t);
+
+        ms.push_back(m);
     }
 
-    ms.push_back(m);
 
-    ui->baseMatrices->addTab(m,nOperacion);
-    ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
-
-    // Agregar a Arbol
-
-    QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
-
-    s->setText(0,this->nOperacion);
-    s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
-
-    QString t;
-
-    t += "Operacion : "+this->nOperacion;
-    t += "\n\n \t\t Ruta : "+m->getRuta();
-    t += "\n\n \t\t Pasos:";
-    t += "\n\n \t\t"+ui->historialOperaciones->toPlainText();
-
-    AddHistorial(t);
 
 }
 
@@ -1555,6 +1690,12 @@ void MainWindow::MatrizGlobal(){
 
 }
 
+void MainWindow::VerBotonesOperaciones(bool v){
+    ui->terminarOperaciones->setVisible(v);
+    ui->pushButton_10->setVisible(v);
+    ui->pushButton_9->setVisible(v);
+}
+
 void MainWindow::on_AgregarMatrice_clicked(){
     if(!ui->MatricesUtilizadas->text().contains(ui->MatricesParaUtilizar->currentText())){
         ui->MatricesUtilizadas->setText(ui->MatricesUtilizadas->text()+ui->MatricesParaUtilizar->currentText()+",");
@@ -1713,18 +1854,233 @@ void MainWindow::on_pushButton_11_clicked(){
 }
 
 
+void MainWindow::on_MatricesParaUtilizarMatriz_currentTextChanged(const QString &arg1){
+    if(!ui->MatricesUtilizadasMatris->text().contains(ui->MatricesParaUtilizarMatriz->currentText())){
+        ui->MatricesUtilizadasMatris->setText(ui->MatricesUtilizadasMatris->text()+ui->MatricesParaUtilizarMatriz->currentText()+",");
+        //ui->MatricesParaUtilizarMatriz->removeItem(ui->MatricesParaUtilizarMatriz->currentIndex());
+    }
+}
 
 
+void MainWindow::on_QuitarMatrice_2_clicked(){
+    if(ui->MatricesUtilizadasMatris->text().contains(ui->MatricesParaUtilizarMatriz->currentText())){
+        //int i = ui->MatricesUtilizadas->text().indexOf(ui->MatricesParaUtilizar->currentText());
 
 
+        QString t = ui->MatricesUtilizadasMatris->text().remove(ui->MatricesParaUtilizarMatriz->currentText()+",");
+
+        ui->MatricesUtilizadasMatris->setText(t);
+    }
+}
+
+// Operacione entre Matrices
+
+// +m
+
+void MainWindow::on_masMatriz_clicked(){
+    QStringList m = ui->MatricesUtilizadasMatris->text().split(",");
+    m.remove(m.size()-1);
+
+    qDebug()<<m;
+
+    int n = m.size();
+
+    //qDebug()<<n;
+
+    bool V = true;
+
+    QVector<int> indices;
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(this->ms.at(j)->getNombre() == m[i]){
+                indices.push_back(j);
+                j = n;
+            }
+        }
+    }
+
+    qDebug()<<indices;
+
+    //qDebug()<<indices;
+
+    if(V){
+        //InicioProceso();
+        int f = this->ms.at(indices.at(0))->GetFilas();
+        int c = this->ms.at(indices.at(0))->GetFilas();
+        bool v = ms.at(indices.at(0))->getVector();
+
+        ui->mResultado_entre_Matrices->setColumnCount(c);
+        ui->mResultado_entre_Matrices->setRowCount(f);
+
+        ui->vResultado_entre_Matrices->setVisible(v);
+        ui->vResultado_entre_Matrices->setColumnCount(1);
+        ui->vResultado_entre_Matrices->setRowCount(f);
+
+        for(int i=0;i<f;i++){
+            for(int j=0;j<c;j++){
+                ui->mResultado_entre_Matrices->setItem(i,j,new QTableWidgetItem("0"));
+            }
+
+            if(v){
+                ui->vResultado_entre_Matrices->setItem(i,0,new QTableWidgetItem("0"));
+            }
+        }
+
+        QString t = "+m(";
+
+        for(int z=0;z<n;z++){
+
+            //qDebug()<<ms.at(indices.at(z))->getNombre();
+
+            for(int i=0;i<f;i++){
+                for(int j=0;j<c;j++){
 
 
+                    double v1 = ui->mResultado_entre_Matrices->item(i,j)->text().toDouble();
+                    double v2 = ms.at(indices.at(z))->GetValor(i,j).toDouble();
+
+                    ui->mResultado_entre_Matrices->setItem(i,j,new QTableWidgetItem(QString::number(v1+v2)));
+
+                    Proceso(z*f*c);
+                }
+
+                //vector
+
+                if(ms.at(indices.at(z))->getVector()){
+
+                    double v1 = ui->vResultado_entre_Matrices->item(i,0)->text().toDouble();
+                    double v2 = ms.at(indices.at(z))->GetValor(i).toDouble();
+
+                    ui->vResultado_entre_Matrices->setItem(i,0,new QTableWidgetItem(QString::number(v1+v2)));
+               }
+           }
+
+            t+= ms.at(indices.at(z))->getNombre()+",";
+
+       }
 
 
+        t += ")";
+
+        ui->historialOperacionesMatriz->setText(ui->historialOperacionesMatriz->toPlainText() +"\n" + t);
+
+        FinalProceso();
+
+        //QMessageBox::information(this,"Suma","Todo Bien");
+    }
+}
 
 
+void MainWindow::on_menosMatriz_clicked(){
+    QStringList m = ui->MatricesUtilizadasMatris->text().split(",");
+    m.remove(m.size()-1);
 
 
+    int n = m.size();
+
+    //qDebug()<<n;
+
+    bool V = true;
+
+    QVector<int> indices;
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(this->ms.at(j)->getNombre() == m[i]){
+                indices.push_back(j);
+                j = n;
+            }
+        }
+    }
+
+    if(V){
+        //InicioProceso();
+        int f = this->ms.at(indices.at(0))->GetFilas();
+        int c = this->ms.at(indices.at(0))->GetFilas();
+        bool v = ms.at(indices.at(0))->getVector();
+
+        ui->mResultado_entre_Matrices->setColumnCount(c);
+        ui->mResultado_entre_Matrices->setRowCount(f);
+
+        ui->vResultado_entre_Matrices->setVisible(v);
+        ui->vResultado_entre_Matrices->setColumnCount(1);
+        ui->vResultado_entre_Matrices->setRowCount(f);
+
+        for(int i=0;i<f;i++){
+            for(int j=0;j<c;j++){
+                ui->mResultado_entre_Matrices->setItem(i,j,new QTableWidgetItem("0"));
+            }
+
+            if(v){
+                ui->vResultado_entre_Matrices->setItem(i,0,new QTableWidgetItem("0"));
+            }
+        }
+
+        QString t = "-m(";
+
+        for(int z=0;z<n;z++){
+
+            //qDebug()<<ms.at(indices.at(z))->getNombre();
+
+            for(int i=0;i<f;i++){
+                for(int j=0;j<c;j++){
 
 
+                    double v1 = ui->mResultado_entre_Matrices->item(i,j)->text().toDouble();
+                    double v2 = ms.at(indices.at(z))->GetValor(i,j).toDouble();
+
+                    ui->mResultado_entre_Matrices->setItem(i,j,new QTableWidgetItem(QString::number(v1-v2)));
+
+                    Proceso(z*f*c);
+                }
+
+                //vector
+
+                if(ms.at(indices.at(z))->getVector()){
+
+                    double v1 = ui->vResultado_entre_Matrices->item(i,0)->text().toDouble();
+                    double v2 = ms.at(indices.at(z))->GetValor(i).toDouble();
+
+                    ui->vResultado_entre_Matrices->setItem(i,0,new QTableWidgetItem(QString::number(v1-v2)));
+               }
+           }
+
+            t+= ms.at(indices.at(z))->getNombre()+",";
+
+       }
+
+
+        t += ")";
+
+        ui->historialOperacionesMatriz->setText(ui->historialOperacionesMatriz->toPlainText() +"\n" + t);
+
+        FinalProceso();
+    }
+}
+
+void MainWindow::on_actionFunete_triggered(){
+
+    if(ArbolProyecto->childCount() > 0){
+        bool ok;
+        QFont fuente = QFontDialog::getFont(&ok);
+
+        if(ok){
+            ms.at(ui->baseMatrices->currentIndex())->setFuente(fuente);
+        }
+    }
+
+}
+
+
+void MainWindow::on_actionColor_triggered(){
+    if(ArbolProyecto->childCount() > 0){
+
+        QColor c = QColorDialog::getColor(Qt::white,this);
+
+
+            ms.at(ui->baseMatrices->currentIndex())->setColor(c);
+
+    }
+}
 

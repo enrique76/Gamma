@@ -61,5 +61,8 @@
         <file>iconos/intersect.png</file>
         <file>iconos/anadir.png</file>
         <file>iconos/menos.png</file>
+        <file>iconos/haz.png</file>
+        <file>iconos/paleta.png</file>
+        <file>iconos/tipografia.png</file>
     </qresource>
 </RCC>

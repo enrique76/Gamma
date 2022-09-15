@@ -51,6 +51,8 @@ public:
     double getMinimo();
     void setSumatoria();
     double getSumatoria();
+    void setFuente(QFont);
+    void setColor(QColor);
 
 public:
     Ui::matriz *ui;
@@ -64,6 +66,10 @@ public:
     double determinante,maximo,minimo,sumatoria,media,mediana,varianza,desviacion;
     QString Triangualar;
     QVector<double> moda;
+    QVector<QTableWidgetItem *> its;
+private slots:
+    void on_m_itemEntered(QTableWidgetItem *item);
+    void on_m_cellClicked(int row, int column);
 };
 
 #endif // MATRIZ_H

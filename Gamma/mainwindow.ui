@@ -470,7 +470,7 @@ hr { height: 1px; border-width: 0; }
                        <enum>QTabWidget::Triangular</enum>
                       </property>
                       <property name="currentIndex">
-                       <number>3</number>
+                       <number>2</number>
                       </property>
                       <property name="elideMode">
                        <enum>Qt::ElideNone</enum>
@@ -516,6 +516,442 @@ hr { height: 1px; border-width: 0; }
                        <attribute name="title">
                         <string>Entre Matrices</string>
                        </attribute>
+                       <layout class="QGridLayout" name="gridLayout_35">
+                        <item row="0" column="0">
+                         <layout class="QHBoxLayout" name="horizontalLayout_44">
+                          <item>
+                           <layout class="QVBoxLayout" name="verticalLayout_20">
+                            <item>
+                             <layout class="QHBoxLayout" name="horizontalLayout_43">
+                              <item>
+                               <widget class="QGroupBox" name="groupBox_16">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>300</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
+                                <property name="title">
+                                 <string>Operaciones</string>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_31">
+                                 <item row="0" column="0">
+                                  <layout class="QVBoxLayout" name="verticalLayout_18">
+                                   <item>
+                                    <layout class="QHBoxLayout" name="horizontalLayout_39">
+                                     <item>
+                                      <widget class="QPushButton" name="masMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>+m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_3">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="menosMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>-m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_10">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="porMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>*m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_11">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="soblreMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>/m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <widget class="Line" name="line_34">
+                                     <property name="orientation">
+                                      <enum>Qt::Horizontal</enum>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="horizontalLayout_41">
+                                     <item>
+                                      <widget class="QPushButton" name="elevadoMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>^m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_12">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="raizMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>14</pointsize>
+                                         <bold>false</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>^1/m</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_16">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="logaridmoMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>Lm</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="Line" name="line_23">
+                                       <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QPushButton" name="parMatriz">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>50</width>
+                                         <height>50</height>
+                                        </size>
+                                       </property>
+                                       <property name="font">
+                                        <font>
+                                         <pointsize>20</pointsize>
+                                         <bold>true</bold>
+                                        </font>
+                                       </property>
+                                       <property name="text">
+                                        <string>Par</string>
+                                       </property>
+                                       <property name="flat">
+                                        <bool>true</bool>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <widget class="Line" name="line_35">
+                                     <property name="orientation">
+                                      <enum>Qt::Horizontal</enum>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <layout class="QVBoxLayout" name="verticalLayout_19">
+                                <item>
+                                 <widget class="QGroupBox" name="groupBox_17">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>16777215</height>
+                                   </size>
+                                  </property>
+                                  <property name="title">
+                                   <string>Matrices Utilizadas</string>
+                                  </property>
+                                  <layout class="QGridLayout" name="gridLayout_32">
+                                   <item row="0" column="0">
+                                    <widget class="QLineEdit" name="MatricesUtilizadasMatris"/>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QGroupBox" name="groupBox_18">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>16777215</height>
+                                   </size>
+                                  </property>
+                                  <property name="title">
+                                   <string>Matrices para Utilizar</string>
+                                  </property>
+                                  <layout class="QGridLayout" name="gridLayout_33">
+                                   <item row="0" column="0">
+                                    <widget class="QComboBox" name="MatricesParaUtilizarMatriz"/>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <layout class="QHBoxLayout" name="horizontalLayout_42">
+                                  <item>
+                                   <widget class="QPushButton" name="QuitarMatrice_2">
+                                    <property name="maximumSize">
+                                     <size>
+                                      <width>150</width>
+                                      <height>16777215</height>
+                                     </size>
+                                    </property>
+                                    <property name="text">
+                                     <string/>
+                                    </property>
+                                    <property name="icon">
+                                     <iconset resource="iconos.qrc">
+                                      <normaloff>:/new/prefix1/iconos/menos.png</normaloff>:/new/prefix1/iconos/menos.png</iconset>
+                                    </property>
+                                    <property name="flat">
+                                     <bool>true</bool>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                 </layout>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                            <item alignment="Qt::AlignHCenter">
+                             <widget class="QGroupBox" name="groupBox_19">
+                              <property name="maximumSize">
+                               <size>
+                                <width>300</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
+                              <property name="title">
+                               <string>Historial </string>
+                              </property>
+                              <layout class="QGridLayout" name="gridLayout_34">
+                               <item row="0" column="0">
+                                <widget class="QTextEdit" name="historialOperacionesMatriz">
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <widget class="QGroupBox" name="groupBox_15">
+                            <property name="title">
+                             <string>Resultado</string>
+                            </property>
+                            <layout class="QGridLayout" name="gridLayout_30">
+                             <item row="0" column="0">
+                              <layout class="QHBoxLayout" name="horizontalLayout_36">
+                               <item>
+                                <widget class="QTableWidget" name="mResultado_entre_Matrices"/>
+                               </item>
+                               <item>
+                                <widget class="QTableWidget" name="vResultado_entre_Matrices">
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>100</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
                       </widget>
                       <widget class="QWidget" name="Escalar">
                        <attribute name="icon">
@@ -1160,7 +1596,7 @@ hr { height: 1px; border-width: 0; }
                          </item>
                         </layout>
                        </widget>
-                       <widget class="QWidget" name="">
+                       <widget class="QWidget" name="layoutWidget">
                         <property name="geometry">
                          <rect>
                           <x>70</x>
@@ -1243,6 +1679,15 @@ hr { height: 1px; border-width: 0; }
                          </item>
                         </layout>
                        </widget>
+                      </widget>
+                      <widget class="QWidget" name="tab_9">
+                       <attribute name="icon">
+                        <iconset resource="iconos.qrc">
+                         <normaloff>:/new/prefix1/iconos/haz.png</normaloff>:/new/prefix1/iconos/haz.png</iconset>
+                       </attribute>
+                       <attribute name="title">
+                        <string>Matriz de Rigidez </string>
+                       </attribute>
                       </widget>
                      </widget>
                     </item>
@@ -1731,8 +2176,8 @@ hr { height: 1px; border-width: 0; }
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>435</width>
-               <height>311</height>
+               <width>391</width>
+               <height>305</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_14">
@@ -1998,7 +2443,7 @@ hr { height: 1px; border-width: 0; }
      <x>0</x>
      <y>0</y>
      <width>1568</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivos">
@@ -2047,6 +2492,7 @@ hr { height: 1px; border-width: 0; }
     <addaction name="separator"/>
     <addaction name="actionLaTex"/>
     <addaction name="actionMatriz_Global"/>
+    <addaction name="actionMatriz_de_Rigidez"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
@@ -2066,11 +2512,19 @@ hr { height: 1px; border-width: 0; }
     <addaction name="separator"/>
     <addaction name="actionInformacion"/>
    </widget>
+   <widget class="QMenu" name="menuEstilo">
+    <property name="title">
+     <string>Estilo</string>
+    </property>
+    <addaction name="actionColor"/>
+    <addaction name="actionFunete"/>
+   </widget>
    <addaction name="menuArchivos"/>
    <addaction name="menuVer"/>
    <addaction name="menuFunciones"/>
    <addaction name="menuSobre"/>
    <addaction name="menuMatrices"/>
+   <addaction name="menuEstilo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="ventanaArbol">
@@ -2151,11 +2605,13 @@ hr { height: 1px; border-width: 0; }
    <addaction name="separator"/>
    <addaction name="actionArbol"/>
    <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionReaolver"/>
    <addaction name="actionEstadistica"/>
    <addaction name="actionGaficar"/>
    <addaction name="separator"/>
    <addaction name="actionMatriz_Global"/>
+   <addaction name="actionMatriz_de_Rigidez"/>
    <addaction name="actionEntre_Matrices"/>
    <addaction name="actionEntre_Escalar"/>
    <addaction name="separator"/>
@@ -2168,8 +2624,12 @@ hr { height: 1px; border-width: 0; }
    <addaction name="separator"/>
    <addaction name="actionExtras"/>
    <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionLaTex"/>
    <addaction name="separator"/>
+   <addaction name="separator"/>
+   <addaction name="actionColor"/>
+   <addaction name="actionFunete"/>
   </widget>
   <action name="actionNuevo_Proyecto">
    <property name="icon">
@@ -2425,6 +2885,33 @@ hr { height: 1px; border-width: 0; }
    </property>
    <property name="text">
     <string>Matriz Global</string>
+   </property>
+  </action>
+  <action name="actionMatriz_de_Rigidez">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/haz.png</normaloff>:/new/prefix1/iconos/haz.png</iconset>
+   </property>
+   <property name="text">
+    <string>Matriz de Rigidez </string>
+   </property>
+  </action>
+  <action name="actionColor">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/paleta.png</normaloff>:/new/prefix1/iconos/paleta.png</iconset>
+   </property>
+   <property name="text">
+    <string>Color</string>
+   </property>
+  </action>
+  <action name="actionFunete">
+   <property name="icon">
+    <iconset resource="iconos.qrc">
+     <normaloff>:/new/prefix1/iconos/tipografia.png</normaloff>:/new/prefix1/iconos/tipografia.png</iconset>
+   </property>
+   <property name="text">
+    <string>Funete</string>
    </property>
   </action>
  </widget>

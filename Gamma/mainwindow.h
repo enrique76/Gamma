@@ -26,6 +26,7 @@ public:
     void Proceso(double);
     void FinalProceso();
     void MatrizGlobal();
+    void VerBotonesOperaciones(bool);
 
 private slots:
     void on_actionArbol_triggered();
@@ -142,6 +143,24 @@ private slots:
     void on_EscalarSobre_clicked();
 
     void on_Par_clicked();
+
+    void on_f_editingFinished();
+
+    void on_c_editingFinished();
+
+    void on_actionMatriz_de_Rigidez_triggered();
+
+    void on_MatricesParaUtilizarMatriz_currentTextChanged(const QString &arg1);
+
+    void on_QuitarMatrice_2_clicked();
+
+    void on_masMatriz_clicked();
+
+    void on_menosMatriz_clicked();
+
+    void on_actionFunete_triggered();
+
+    void on_actionColor_triggered();
 
 public:
     Ui::MainWindow *ui;
