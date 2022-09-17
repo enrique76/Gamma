@@ -72,9 +72,7 @@ void Nuevo::on_buttonBox_accepted(){
 
                 ruta+="/"+ui->nombre->text();
 
-                QDir *directorio = new QDir();
 
-                directorio->mkpath(ruta);
 
                 close();
             }
@@ -96,9 +94,7 @@ void Nuevo::on_buttonBox_accepted(){
 
         ruta+="/"+ui->nombre->text();
 
-        QDir *directorio = new QDir();
 
-        directorio->mkpath(ruta);
 
 //        directorio->mkpath(ruta+"/Matrices");
 //        directorio->mkpath(ruta+"/Graficas");

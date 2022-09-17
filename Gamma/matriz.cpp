@@ -43,6 +43,16 @@ void matriz::Crear(int filas, int columnas, QString nombre,bool vector){
             ui->m->setItem(i,j,new QTableWidgetItem(0));
         }
     }
+
+    for(int i=0;i<this->filas;i++){
+        for(int j=0;j<this->columnas;j++){
+            ui->m->setItem(i,j,new QTableWidgetItem("0"));
+        }
+
+        if(ui->v->isVisible()){
+            ui->v->setItem(i,0,new QTableWidgetItem("0"));
+        }
+    }
 }
 
 void matriz::setCapas(int i){
@@ -178,9 +188,9 @@ void matriz::Copy(QTableWidget *t){
 
 void matriz::setRuta(QString r){
     this->ruta = r+"/"+this->nombre;
-    QDir *directorio = new QDir();
+//    QDir *directorio = new QDir();
 
-    directorio->mkpath(this->ruta);
+//    directorio->mkpath(this->ruta);
 }
 
 QString matriz::getRuta()
@@ -407,12 +417,26 @@ void matriz::setColor(QColor c){
 
 }
 
+void matriz::setColor(QColor c, int i, int j){
+    ui->m->item(i,j)->setBackground(QBrush(c));
+}
+
+void matriz::setColor(QColor c, int i){
+    ui->v->item(i,0)->setBackground(QBrush(c));
+}
+
 QString matriz::getColor(int i, int j){
     return ui->m->item(i,j)->background().color().name();
 }
 
 QString matriz::getFuente(int i, int j){
     return ui->m->item(i,j)->font().toString();
+}
+
+void matriz::setVector(bool v){
+    ui->v->setVisible(v);
+    ui->cambioVector->setVisible(v);
+    this->vector = v;
 }
 
 void matriz::on_m_itemEntered(QTableWidgetItem *item)

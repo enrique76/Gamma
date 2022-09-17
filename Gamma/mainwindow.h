@@ -7,6 +7,7 @@
 #include<QTreeWidgetItem>
 #include<QAction>
 #include<chrono>
+#include<QDir>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -166,6 +167,9 @@ private slots:
 
     void on_actionAbrir_triggered();
 
+
+    void on_actionReiniciar_triggered();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();
@@ -181,5 +185,6 @@ public:
     std::chrono::system_clock::time_point inicio,final;
     std::chrono::duration<float> duracion;
     QString nOperacion;
+    QDir *directorio = new QDir();
 };
 #endif // MAINWINDOW_H

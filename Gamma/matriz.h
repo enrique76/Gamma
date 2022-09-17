@@ -53,8 +53,11 @@ public:
     double getSumatoria();
     void setFuente(QFont);
     void setColor(QColor);
+    void setColor(QColor,int,int);
+    void setColor(QColor,int);
     QString getColor(int,int);
     QString getFuente(int,int);
+    void setVector(bool);
 
 public:
     Ui::matriz *ui;

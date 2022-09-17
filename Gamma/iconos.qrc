@@ -64,5 +64,6 @@
         <file>iconos/haz.png</file>
         <file>iconos/paleta.png</file>
         <file>iconos/tipografia.png</file>
+        <file>iconos/reciclar.png</file>
     </qresource>
 </RCC>

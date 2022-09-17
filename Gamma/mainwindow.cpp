@@ -228,6 +228,25 @@ void MainWindow::GuardarMatriz(int z){
         cv.flush();
         cv.close();
     }
+
+
+        QFile c(ms.at(z)->getRuta()+"/c.txt");
+
+        c.open(QFile::WriteOnly | QFile::Text);
+
+        QTextStream outc(&c);
+
+        QString tc;
+
+        tc += ms.at(z)->getComentario();
+
+        outc<<tc;
+
+        c.flush();
+        c.close();
+
+
+
 }
 
 void MainWindow::irOperaciones()
@@ -279,6 +298,7 @@ void MainWindow::on_actionArbol_triggered(){
 void MainWindow::on_actionAbrir_triggered(){
     this->ruta = QFileDialog::getExistingDirectory(this,"Abrir Proyecto",QDir::homePath());
 
+
     QFile r(this->ruta);
 
     r.open(QFile::WriteOnly);
@@ -307,6 +327,7 @@ void MainWindow::on_actionAbrir_triggered(){
 
                     QString tm = m.readAll();
 
+
                     int f = tm.count("\n");
                     int c = (tm.count(",")/f);
 
@@ -320,24 +341,173 @@ void MainWindow::on_actionAbrir_triggered(){
 
                     QStringList t = tm.split(",");
 
-                    qDebug()<<t;
-
                     for(int iF=0;iF<f;iF++){
                         for(int iC=0;iC<c;iC++){
+                            if(t.at(aux) == ""){
+                                t.remove(aux);
+                            }
                             mc->AgregarValorMatriz(iF,iC,t.at(aux));
                             aux++;
                         }
                     }
 
+                    m.flush();
+                    m.close();
+
                     // vector
+
+                    QFile v(this->ruta+"/Matrices/"+cn2.at(i)+"/v.txt");
+
+                    v.open(QFile::ReadOnly | QFile::Text);
+
+                    if(v.exists()){
+                        mc->setVector(true);
+
+                        tm = v.readAll();
+
+                        tm.replace("\n",",");
+
+                        aux = 0;
+
+                        t = tm.split(",");
+
+                        for(int iF=0;iF<f;iF++){
+                            if(t.at(aux) == ""){
+                                t.remove(aux);
+                            }
+
+                            mc->AgregarValorVector(iF,t.at(aux));
+                            aux++;
+                        }
+                    }
+
+                    v.flush();
+                    v.close();
 
                     // hl
 
+                        QFile hl(this->ruta+"/Matrices/"+cn2.at(i)+"/hl.txt");
+
+                        hl.open(QFile::ReadOnly | QFile::Text);
+
+                        if(hl.exists()){
+                            tm = hl.readAll();
+
+                            tm.replace("\n",",");
+
+                            t = tm.split(",");
+
+                            for(int g=0;g<t.size();g++){
+                                if(t.at(g) == ""){
+                                    t.remove(g);
+                                }
+                            }
+
+                            mc->setHL(t);
+                        }
+
+                        hl.flush();
+                        hl.close();
+
                     // vl
+
+                        QFile vl(this->ruta+"/Matrices/"+cn2.at(i)+"/hl.txt");
+
+                        vl.open(QFile::ReadOnly | QFile::Text);
+
+                        if(vl.exists()){
+                            tm = vl.readAll();
+
+                            tm.replace("\n",",");
+
+                            t = tm.split(",");
+
+                            for(int g=0;g<t.size();g++){
+                                if(t.at(g) == ""){
+                                    t.remove(g);
+                                }
+                            }
+
+                            mc->setVL(t);
+                        }
+
+                        vl.flush();
+                        vl.close();
 
                     // mc
 
+                        QFile cm(this->ruta+"/Matrices/"+cn2.at(i)+"/mColor.txt");
+
+                        cm.open(QFile::ReadOnly | QFile::Text);
+
+                        if(cm.exists()){
+                            tm = cm.readAll();
+
+                            tm.replace("\n",",");
+
+                            aux = 0;
+
+                            t = tm.split(",");
+
+                            for(int iF=0;iF<mc->GetFilas();iF++){
+                              for(int iC=0;iC<mc->GetColumnas();iC++){
+                                  if(t.at(aux) == ""){
+                                      t.remove(aux);
+                                  }
+
+                                  mc->setColor(QColor(t.at(aux)),iF,iC);
+                              }
+                            }
+
+                            cm.flush();
+                            cm.close();
+                        }
+
                     // vc
+
+                        QFile cv(this->ruta+"/Matrices/"+cn2.at(i)+"/vColor.txt");
+
+                        cv.open(QFile::ReadOnly | QFile::Text);
+
+                        if(cv.exists()){
+                            tm = cv.readAll();
+
+                            tm.replace("\n",",");
+
+                            aux = 0;
+
+                            t = tm.split(",");
+
+                            for(int iF=0;iF<mc->GetFilas();iF++){
+
+                                  if(t.at(aux) == ""){
+                                      t.remove(aux);
+                                  }
+
+                                  mc->setColor(QColor(t.at(aux)),iF);
+
+                            }
+
+                            cv.flush();
+                            cv.close();
+                        }
+
+                    // comentario - c
+
+                        QFile comentario(this->ruta+"/Matrices/"+cn2.at(i)+"/c.txt");
+
+                        comentario.open(QFile::ReadOnly | QFile::Text);
+
+                        if(comentario.exists()){
+                            tm = comentario.readAll();
+
+                            mc->setComentario(tm);
+
+                            comentario.flush();
+                            comentario.close();
+                        }
+
+
 
                     ms.push_back(mc);
 
@@ -367,7 +537,10 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
     n.setWindowIcon(QIcon(":/new/prefix1/iconos/agregar-carpeta.png"));
     n.exec();
     this->ruta = n.ruta;
-    //setWindowTitle(windowTitle()+" \t "+ruta);
+
+
+    //directorio->mkpath(this->ruta);
+
 
     if(n.ok){
 
@@ -391,6 +564,9 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
         m->Crear(n.filas,n.columnas,n.nombreMatriz,n.GetV());
 
         m->setRuta(this->ruta+"/Matrices");
+
+        m->setComentario(n.GetComentario());
+
 
         ms.push_back(m);
 
@@ -469,6 +645,7 @@ void MainWindow::on_actionNuevo_Archivo_triggered(){
 
         m->Crear(n.filas,n.columnas,n.nombreMatriz,n.GetV());
         m->setRuta(this->ruta+"/Matrices");
+        m->setComentario(n.GetComentario());
 
         ms.push_back(m);
 
@@ -927,6 +1104,8 @@ void MainWindow::on_actionGuardar_triggered(){
 
     for(int i=0;i<ms.size();i++){
         //qDebug()<<"#"<<i;
+        directorio->mkpath(ms.at(i)->getRuta());
+        //qDebug()<<ms.at(i)->getRuta();
         GuardarMatriz(i);
 
         Proceso(ms.size());
@@ -2172,6 +2351,42 @@ void MainWindow::on_actionColor_triggered(){
     }
 }
 
+void MainWindow::on_actionReiniciar_triggered(){
+    QMessageBox::StandardButton reply;
+    QMessageBox messageBox;
+
+      reply = messageBox.question(this, "Reiniciar Proyecto", "Seguro que quiere Reiniciar el Proyecto",QMessageBox::Yes | QMessageBox::No);
+      if (reply == QMessageBox::Yes){
+
+          // base matrices
+
+//            for(int i=0;i<ui->baseMatrices->count();i++){
+//                ui->baseMatrices->removeTab(i);
+//            }
+
+          // ms
+
+          ms.clear();
+
+          // Arbol
+
+          for(int i=0;i<ArbolProyecto->childCount();i++){
+              ArbolProyecto->removeChild(ArbolProyecto->child(i));
+
+          }
+
+          // Graficas
+
+//          for(int i=0;i<Graficas->childCount();i++){
+//              Graficas->removeChild(Graficas->child(i));
+//          }
+
+          // operaciones
+
+          // Historial
+            ui->historial->clear();
 
 
+      }
+}
 
