@@ -75,6 +75,8 @@ public:
 private slots:
     void on_m_itemEntered(QTableWidgetItem *item);
     void on_m_cellClicked(int row, int column);
+    void on_m_cellChanged(int row, int column);
+    void on_m_itemChanged(QTableWidgetItem *item);
 };
 
 #endif // MATRIZ_H

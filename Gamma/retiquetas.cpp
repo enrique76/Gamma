@@ -82,7 +82,6 @@ void rEtiquetas::on_buttonBox_accepted(){
     }
     else{
 
-        if(this->E){
             if(ui->manual1->text().isEmpty()){
                 QMessageBox::critical(this,"Error","Faltan Datos");
             }
@@ -92,9 +91,9 @@ void rEtiquetas::on_buttonBox_accepted(){
                 }
                 else{
                     this->h = ui->manual1->text().split(ui->separador->currentText());
-                    //this->v = ui->manual2->text().split(ui->separador->currentText());
+                    this->v = ui->manual2->text().split(ui->separador->currentText());
 
-                    if((this->h.size() != this->f)){
+                    if((this->h.size() != this->f) || (this->v.size() != this->c)){
                         QMessageBox::critical(this,"Error","El texto ingresado no coincide con la matriz");
                     }
                     else{
@@ -103,10 +102,7 @@ void rEtiquetas::on_buttonBox_accepted(){
                     }
                 }
             }
-        }
-        else{
 
-        }
     }
 }
 

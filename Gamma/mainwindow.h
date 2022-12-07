@@ -170,6 +170,24 @@ private slots:
 
     void on_actionReiniciar_triggered();
 
+    void on_agregarMR_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_tMR_cellClicked(int row, int column);
+
+    void on_actionVariables_triggered();
+
+    void on_addVariable_clicked();
+
+    void on_viewVariables_cellClicked(int row, int column);
+
+    void on_deleteVariable_clicked();
+
+    void on_actionFunciones_triggered();
+
+    void on_actionMatrices_triggered();
+
 public:
     Ui::MainWindow *ui;
     ///proyecto *p = new proyecto();
@@ -180,11 +198,13 @@ public:
     QTreeWidgetItem *Historial = new QTreeWidgetItem();
     QString ruta;
     QVector<matriz *> ms;
+    QVector<matriz *> mMR;
     int pos = 0;
     QString nProyecto;
     std::chrono::system_clock::time_point inicio,final;
     std::chrono::duration<float> duracion;
     QString nOperacion;
     QDir *directorio = new QDir();
+    QVector<QString> v;
 };
 #endif // MAINWINDOW_H

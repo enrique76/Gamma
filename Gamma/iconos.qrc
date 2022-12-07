@@ -65,5 +65,8 @@
         <file>iconos/paleta.png</file>
         <file>iconos/tipografia.png</file>
         <file>iconos/reciclar.png</file>
+        <file>iconos/funcion.png</file>
+        <file>iconos/variable.png</file>
+        <file>iconos/vMatrices.png</file>
     </qresource>
 </RCC>

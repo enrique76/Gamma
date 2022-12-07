@@ -1,0 +1,12 @@
+release/importar.o
+release/main.o
+release/mainwindow.o
+release/matriz.o
+release/nuevo.o
+release/retiquetas.o
+release/qrc_iconos.o
+release/moc_importar.o
+release/moc_mainwindow.o
+release/moc_matriz.o
+release/moc_nuevo.o
+release/moc_retiquetas.o

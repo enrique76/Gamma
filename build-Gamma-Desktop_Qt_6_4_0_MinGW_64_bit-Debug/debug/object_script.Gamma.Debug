@@ -1,0 +1,10 @@
+debug/importar.o
+debug/main.o
+debug/mainwindow.o
+debug/matriz.o
+debug/nuevo.o
+debug/qrc_iconos.o
+debug/moc_importar.o
+debug/moc_mainwindow.o
+debug/moc_matriz.o
+debug/moc_nuevo.o

@@ -16,6 +16,7 @@
 #include<QColorDialog>
 #include<QFileDialog>
 #include<QDir>
+#include<math.h>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -88,6 +89,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::Inicio(){
     ui->ventanaArbol->setVisible(false);
+    ui->vd->setVisible(false);
     ui->terminal->setVisible(false);
     ui->actionEntre_Matrices->setEnabled(false);
     ui->actionEntre_Escalar->setEnabled(false);
@@ -108,6 +110,12 @@ void MainWindow::Inicio(){
     ui->actionMatriz_de_Rigidez->setEnabled(false);
     ui->actionFunete->setEnabled(false);
     ui->actionColor->setEnabled(false);
+    ui->actionVariables->setEnabled(false);
+    ui->actionFunciones->setEnabled(false);
+    ui->actionMatrices->setEnabled(false);
+
+
+    ui->avd->setCurrentIndex(0);
 }
 
 void MainWindow::Final(){
@@ -131,6 +139,9 @@ void MainWindow::Final(){
     ui->actionMatriz_de_Rigidez->setEnabled(true);
     ui->actionFunete->setEnabled(true);
     ui->actionColor->setEnabled(true);
+    ui->actionVariables->setEnabled(true);
+    ui->actionFunciones->setEnabled(true);
+    ui->actionMatrices->setEnabled(true);
 
 
 }
@@ -616,6 +627,7 @@ void MainWindow::on_actionNuevo_Proyecto_triggered(){
         ui->CC->setText(QString::number(n.columnas));
 
         ui->nMatrices->setText(QString::number(ArbolProyecto->childCount())+" Matrices");
+        ui->titulo->setText(n.GetNombreProyecto());
     }
 
     //ui->toolBaMain->setVisible(false);
@@ -1330,7 +1342,7 @@ void MainWindow::on_Operaciones_tabBarClicked(int index){
         VerBotonesOperaciones(false);
     }
     else if(index == 9){ // matrizz de rigidez
-        VerBotonesOperaciones(false);
+        VerBotonesOperaciones(true);
     }
 }
 
@@ -1524,6 +1536,38 @@ void MainWindow::on_pushButton_9_clicked(){
         m->setComentario(t);
 
         ms.push_back(m);
+    }
+    else if(ui->Operaciones->currentIndex() == 9){
+        qDebug()<<ui->matricesMR->count();
+        irMatrices();
+
+        for(int i=0;i<ui->matricesMR->count();i++){
+
+            qDebug()<<this->mMR.at(i)->getNombre();
+
+            ui->baseMatrices->addTab(mMR.at(i),mMR.at(i)->getNombre());
+//            //qDebug()<<"se agrego";
+           // ui->baseMatrices->setCurrentIndex(ui->baseMatrices->count()-1);
+
+////            // agregar al arbol
+
+            QTreeWidgetItem *s = new QTreeWidgetItem(ArbolProyecto);
+            s->setText(0,this->mMR.at(i)->getNombre());
+            s->setIcon(0,QIcon(":/new/prefix1/iconos/matriz3.png"));
+
+            QString t;
+
+            t += "Operacion : "+this->mMR.at(i)->getNombre();
+
+            AddHistorial(t);
+
+            ms.push_back(this->mMR.at(i));
+        }
+
+//        this->mMR.clear();
+//        ui->matricesMR->clear();
+//        ui->tMR->setRowCount(0);
+//        ui->tMR->setColumnCount(0);
     }
 
 
@@ -1998,123 +2042,45 @@ void MainWindow::on_pushButton_11_clicked(){
             }
         }
 
-        bool V;
-        int t = ms.at(indices.at(0))->GetFilas();
+        int f = ms.at(indices.at(0))->GetFilas();
+        int c = ms.at(indices.at(0))->GetColumnas();
+
+        bool v;
+        QStringList lh,lv;
 
         for(int i=0;i<indices.size();i++){
-            if((ms.at(indices.at(i))->GetFilas() == ms.at(indices.at(i))->GetColumnas()) && (ms.at(indices.at(i))->GetFilas() == t)){
-                V = true;
+            if(f == ms.at(indices.at(i))->GetFilas() && c == ms.at(indices.at(i))->GetColumnas()){
+                v = true;
+                lh << ms.at(indices.at(i))->getHL();
+                lv << ms.at(indices.at(i))->getVL();
             }
             else{
-                V = false;
-                i = indices.size();
+                v = false;
+                i = n;
+                QMessageBox::critical(this,"Error","Las matrices no son del mismo tama;o");
             }
         }
 
-        QVector<QStringList> h,v;
+        if(v){
+            lh.removeDuplicates();
+            lv.removeDuplicates();
 
-           for(int i=0;i<indices.size();i++){
-               h.push_back(ms.at(indices.at(i))->getHL());
+            lh.sort();
+            lv.sort();
 
-               v.push_back(ms.at(indices.at(i))->getVL());
-           }
+            qDebug()<<lh;
+            qDebug()<<lv;
 
-            QString c = h.at(0).at(0);
+            ui->MatrizGlobal->setRowCount(f);
+            ui->MatrizGlobal->setColumnCount(c);
 
-            for(int i=0;i<c.size();i++){
-                if(c.at(i).isNumber()){
-                    c.remove(c.at(i));
+            ui->MatrizGlobal->setHorizontalHeaderLabels(lh);
+            ui->MatrizGlobal->setVerticalHeaderLabels(lv);
+
+            for(int i=0;i<f;i++){
+                for(int j=0;j<c;j++){
+                    ui->MatrizGlobal->setItem(i,j,new QTableWidgetItem("0"));
                 }
-            }
-
-
-        //    qDebug()<<c;
-
-            bool VT;
-
-            for(int i=0;i<indices.size();i++){
-                for(int j=0;j<ms.at(indices.at(i))->GetFilas();j++){
-                    if(h.at(i).at(j).contains(c) && v.at(i).at(j).contains(c)){
-                        VT = true;
-                    }
-                    else{
-                        VT = false;
-                        i = n;
-                    }
-                }
-            }
-
-            if(V && VT){
-                QStringList hn;
-
-                int nm = m.size()+1;
-
-                if(nm >= 99){
-                    QMessageBox::critical(this,"Matriz Global","La matriz es demaciado grande");
-                }
-                else{
-                    ui->MatrizGlobal->setRowCount(nm);
-                    ui->MatrizGlobal->setColumnCount(nm);
-                    ui->vGlobal->setRowCount(nm);
-                    ui->vGlobal->setColumnCount(1);
-
-                    for(int i=0;i<nm;i++){
-                        hn<<c+QString::number(i+1);
-                        ui->vGlobal->setItem(i,0,new QTableWidgetItem(hn.at(i)));
-                    }
-
-                    ui->MatrizGlobal->setHorizontalHeaderLabels(hn);
-
-                    // pasar Datos
-
-                    int f=0,c=0;
-                    int fm=0,cm=0;
-
-                    for(int i=0;i<ui->MatrizGlobal->rowCount();i++){
-                        for(int j=0;j<ui->MatrizGlobal->columnCount();j++){
-
-                                ui->MatrizGlobal->setItem(i,j,new QTableWidgetItem("-"));
-
-                        }
-                    }
-
-//                   for(int i=0;i<m.size();i++){
-
-//                        for(int j=i;j<t+i;j++){
-//                            for(int z=i;z<t+i;z++){
-//                                //ui->MatrizGlobal->setItem(j,z,new QTableWidgetItem("-"));
-
-//                                if(ui->MatrizGlobal->item(j,z)->text() == "-"){
-//                                    ui->MatrizGlobal->setItem(j,z,new QTableWidgetItem(ms.at(indices.at(i))->GetValor(fm,cm)));
-//                                    cm++;
-//                                }
-////                                else{
-////                                    double aux = ui->MatrizGlobal->item(j,z)->text().toDouble();
-////                                   ui->MatrizGlobal->setItem(j,z,new QTableWidgetItem(QString::number(ms.at(indices.at(i))->GetValor(fm,cm).toDouble() + aux)));
-////                                }
-
-
-//                            }
-//                             cm = 0;
-//                             fm++;
-//                        }
-
-//                        fm = 0;
-//                        //f++;
-//                       // c++;
-
-//                   }
-
-//                    for(int i=0;i<ui->MatrizGlobal->rowCount();i++){
-//                        for(int j=0;j<ui->MatrizGlobal->columnCount();j++){
-//                            if(ui->MatrizGlobal->item(i,j)->text() == "-"){
-//                                ui->MatrizGlobal->setItem(i,j,new QTableWidgetItem("0"));
-//                            }
-//                        }
-//                    }
-
-
-
             }
         }
     }
@@ -2388,5 +2354,211 @@ void MainWindow::on_actionReiniciar_triggered(){
 
 
       }
+}
+
+
+void MainWindow::on_agregarMR_clicked(){
+    double theta = ui->anguloMR->value()*0.01745329;
+
+    ui->tMR->setRowCount(ui->tMR->rowCount()+1);
+
+    int i = ui->tMR->rowCount()-1;
+
+    // elemente
+
+    ui->tMR->setItem(i,0,new QTableWidgetItem(QString::number(i+1)));
+
+    // angulo
+
+    ui->tMR->setItem(i,1,new QTableWidgetItem(QString::number(theta/0.01745329)));
+
+    // coseno
+
+    ui->tMR->setItem(i,2,new QTableWidgetItem(QString::number(cos(theta))));
+
+    // seno
+
+    ui->tMR->setItem(i,3,new QTableWidgetItem(QString::number(sin(theta))));
+
+    // coseno cuadrado
+
+    ui->tMR->setItem(i,4,new QTableWidgetItem(QString::number(pow(cos(theta),2))));
+
+    // seno cuadrado
+
+     ui->tMR->setItem(i,5,new QTableWidgetItem(QString::number(pow(sin(theta),2))));
+
+    // senocoseno
+
+    ui->tMR->setItem(i,6,new QTableWidgetItem(QString::number(sin(theta)*cos(theta))));
+
+    // AE/L
+
+    ui->tMR->setItem(i,7,new QTableWidgetItem(QString::number((ui->E->value()*ui->A->value())/(ui->L->value()))));
+
+
+}
+
+void MainWindow::on_pushButton_12_clicked(){
+
+    int in = ui->fMR->text().toInt();
+
+    double k = ui->tMR->item(in,7)->text().toDouble();
+
+       matriz *m = new matriz();
+
+       m->Crear(4,4,"MR("+ui->tMR->item(in,1)->text()+")",false);
+
+
+
+       ui->matricesMR->addTab(m,m->getNombre());
+       ui->matricesMR->setCurrentIndex(ui->matricesMR->count()-1);
+
+
+
+       // valores
+
+       for(int i=0;i<4;i++){
+           for(int j=0;j<4;j++){
+               if(i%2 == 0){
+                   if(j%2 == 0){
+                       m->AgregarValorMatriz(i,j,QString::number(ui->tMR->item(in,4)->text().toDouble()*k));
+                   }
+                   else{
+                       m->AgregarValorMatriz(i,j,QString::number(ui->tMR->item(in,6)->text().toDouble()*k));
+                   }
+               }
+               else{
+                   if(j%2 == 0){
+                       m->AgregarValorMatriz(i,j,QString::number(ui->tMR->item(in,6)->text().toDouble()*k));
+                   }
+                   else{
+                        m->AgregarValorMatriz(i,j,QString::number(ui->tMR->item(in,5)->text().toDouble()*k));
+                   }
+               }
+           }
+       }
+
+       // [0][0] cos^2 tMR(4)
+
+       // [0][1] sincos tMR(6)
+
+       // [0][2] -cos^2 tMR(4)
+
+       m->AgregarValorMatriz(0,2,QString::number(m->GetValor(0,2).toDouble()*-1));
+
+       // [0][3] -sincos tMR(6)
+
+       m->AgregarValorMatriz(0,3,QString::number(m->GetValor(0,3).toDouble()*-1));
+
+
+
+       // [1][0] sincos tMR(6)
+
+       // [1][1] sin^2 tMR(5)
+
+       // [1][2] -sincos tMR(6)
+
+       m->AgregarValorMatriz(1,2,QString::number(m->GetValor(1,2).toDouble()*-1));
+
+       // [1][3] -sin^2 tMR(5)
+
+       m->AgregarValorMatriz(1,3,QString::number(m->GetValor(1,3).toDouble()*-1));
+
+
+
+       // [2][0] -cos^2 tMR(4)
+
+       m->AgregarValorMatriz(2,0,QString::number(m->GetValor(2,0).toDouble()*-1));
+
+       // [2][1] -sincos tMR(6)
+
+       m->AgregarValorMatriz(2,1,QString::number(m->GetValor(2,1).toDouble()*-1));
+
+       // [2][2] cos^2 tMR(4)
+
+       // [2][3] sincos tMR(6)
+
+
+
+       // [3][0] -sincos tMR(6)
+
+       m->AgregarValorMatriz(3,0,QString::number(m->GetValor(3,0).toDouble()*-1));
+
+       // [3][1] -sin^2 tMR(5)
+
+       m->AgregarValorMatriz(3,1,QString::number(m->GetValor(3,1).toDouble()*-1));
+
+       // [3][2] sincos tMR(6)
+
+       // [3][3] sin^2 tMR(5)
+
+       // labes
+
+       //QStringList l;
+
+    m->setRuta(this->ruta+"/Matrices");
+
+    this->mMR.push_back(m);
+}
+
+void MainWindow::on_tMR_cellClicked(int row, int column)
+{
+    ui->fMR->setText(QString::number(row));
+}
+
+
+void MainWindow::on_actionVariables_triggered(){
+    if(!ui->vd->isVisible()){
+        ui->vd->setVisible(true);
+    }
+
+    ui->avd->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_addVariable_clicked(){
+    if(ui->inputVariables->text().isEmpty()){
+        QMessageBox::information(this,"Variable","Agrege alguna Variable");
+    }
+    else{
+        ui->viewVariables->setRowCount(ui->viewVariables->rowCount()+1);
+
+        int r = ui->viewVariables->rowCount()-1;
+
+        ui->viewVariables->setItem(r,0,new QTableWidgetItem(ui->inputNombreVariable->text()));
+        ui->viewVariables->setItem(r,1,new QTableWidgetItem(ui->inputVariables->text()));
+        ui->viewVariables->setItem(r,3,new QTableWidgetItem(ui->inputUnidades->text()));
+
+        this->v.append(ui->inputVariables->text());
+
+        ui->inputVariables->setText(" ");
+        ui->inputNombreVariable->setText(" ");
+        ui->inputUnidades->setText(" ");
+    }
+}
+
+
+void MainWindow::on_viewVariables_cellClicked(int row, int column)
+{
+    ui->ce->setText(QString::number(row));
+}
+
+
+void MainWindow::on_deleteVariable_clicked(){
+    if(ui->viewVariables->rowCount() > 0){
+        ui->viewVariables->removeRow(ui->ce->text().toInt());
+        this->v.remove(ui->ce->text().toInt());
+    }
+}
+
+
+void MainWindow::on_actionFunciones_triggered(){
+    ui->avd->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_actionMatrices_triggered(){
+    ui->avd->setCurrentIndex(2);
 }
 

@@ -1,6 +1,7 @@
 #include "matriz.h"
 #include "ui_matriz.h"
 #include<QDir>
+#include<QCompleter>
 
 matriz::matriz(QWidget *parent) :QWidget(parent),ui(new Ui::matriz){
     ui->setupUi(this);
@@ -448,5 +449,18 @@ void matriz::on_m_itemEntered(QTableWidgetItem *item)
 void matriz::on_m_cellClicked(int row, int column)
 {
     its.clear();
+}
+
+
+void matriz::on_m_cellChanged(int row, int column){
+
+}
+
+
+void matriz::on_m_itemChanged(QTableWidgetItem *item){
+    if(item->text() == "="){
+
+        qDebug()<<"ecuacion";
+    }
 }
 

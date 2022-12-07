@@ -1,0 +1,16 @@
+release/config.o
+release/grafica.o
+release/main.o
+release/mainwindow.o
+release/matriz.o
+release/nuevo.o
+release/qcustomplot.o
+release/rutas.o
+release/qrc_iconos.o
+release/moc_config.o
+release/moc_grafica.o
+release/moc_mainwindow.o
+release/moc_matriz.o
+release/moc_nuevo.o
+release/moc_qcustomplot.o
+release/moc_rutas.o

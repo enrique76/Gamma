@@ -1,0 +1,16 @@
+debug/config.o
+debug/grafica.o
+debug/main.o
+debug/mainwindow.o
+debug/matriz.o
+debug/nuevo.o
+debug/qcustomplot.o
+debug/rutas.o
+debug/qrc_iconos.o
+debug/moc_config.o
+debug/moc_grafica.o
+debug/moc_mainwindow.o
+debug/moc_matriz.o
+debug/moc_nuevo.o
+debug/moc_qcustomplot.o
+debug/moc_rutas.o

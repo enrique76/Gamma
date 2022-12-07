@@ -38,6 +38,10 @@ QString Nuevo::GetNombreMatriz(){
     return ui->nombreMatriz->text();
 }
 
+QString Nuevo::GetNombreProyecto(){
+    return ui->nombre->text();
+}
+
 QString Nuevo::GetComentario(){
     return ui->descipcion->toPlainText();
 }
